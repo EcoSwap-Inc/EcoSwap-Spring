@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_avaliacao;
+    private Long id_avaliacao;
 
     @OneToOne
     @JoinColumn(name="id_usuario_proposta")

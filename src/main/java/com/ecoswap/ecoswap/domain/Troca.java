@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Troca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_troca;
+    private Long id_troca;
 
     @ManyToOne
     @JoinColumn(name="id_usuario")

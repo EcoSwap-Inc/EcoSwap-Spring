@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_usuario;
+    private Long id_usuario;
 
     @Column(length = 45, nullable = false, unique = true)
     private String email;
@@ -40,4 +40,6 @@ public class Usuario {
 
     @Column(length = 45)
     private String complemento;
+
+    @OneToMany
 }
