@@ -1,10 +1,14 @@
 package com.ecoswap.ecoswap.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,5 +45,23 @@ public class Usuario {
     @Column(length = 45)
     private String complemento;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario")
+    private List<Produto> produtosList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario")
+    private List<Troca> trocasList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario")
+    private List<Proposta> propostasList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario_proposta")
+    private List<Avaliacao> avaliacoesPropostasList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario_troca")
+    private List<Avaliacao> avaliacoesTrocasList = new ArrayList<>();
 }

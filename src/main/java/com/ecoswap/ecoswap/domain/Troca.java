@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,7 +26,7 @@ public class Troca {
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_produto")
     private Produto produto;
 
@@ -35,4 +38,12 @@ public class Troca {
 
     @Column()
     private LocalDateTime data_conclusao;
+
+    @JsonIgnore
+    @OneToOne
+    private Avaliacao avaliacao;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Avaliacao> propostasList = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,4 +41,8 @@ public class Proposta {
 
     @Column()
     private LocalDateTime data_conclusao;
+
+    @JsonIgnore
+    @OneToOne
+    private Avaliacao avaliacao;
 }
