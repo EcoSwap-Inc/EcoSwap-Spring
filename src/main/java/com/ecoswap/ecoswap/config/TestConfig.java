@@ -100,9 +100,9 @@ public class TestConfig implements CommandLineRunner {
 
         /// ERRO ACONTECE NA CLASSE AVALIACAO
 
-        Avaliacao av1 = new Avaliacao( u1, u2, prop1, tr1, 5, 5);
-        Avaliacao av2 = new Avaliacao( u3, u4, prop2, tr2, 7, 5);
-        Avaliacao av3 = new Avaliacao( u5, u6, prop4, tr5, 1, 2);
+        Avaliacao av1 = new Avaliacao(null, u1, u2, tr1, 5, 5);
+        Avaliacao av2 = new Avaliacao(null, u3, u4, tr2, 7, 5);
+        Avaliacao av3 = new Avaliacao(null, u5, u6, tr5, 1, 2);
 
         avaliacaoRepository.saveAll(Arrays.asList(av1,av2,av3));
 

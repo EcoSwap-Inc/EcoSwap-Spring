@@ -55,9 +55,6 @@ public class Proposta implements Serializable {
     @Column()
     private LocalDateTime data_conclusao;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "proposta")
-    private Avaliacao avaliacao;
 
     public Long getId_proposta() {
         return id_proposta;
@@ -115,13 +112,7 @@ public class Proposta implements Serializable {
         this.data_conclusao = data_conclusao;
     }
 
-    public Avaliacao getAvaliacao() {
-        return avaliacao;
-    }
 
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -146,7 +137,7 @@ public class Proposta implements Serializable {
                 ", aceito=" + aceito +
                 ", data_criacao=" + data_criacao +
                 ", data_conclusao=" + data_conclusao +
-                ", avaliacao=" + avaliacao +
+
                 '}';
     }
 }

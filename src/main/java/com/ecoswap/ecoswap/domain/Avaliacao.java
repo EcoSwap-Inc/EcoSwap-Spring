@@ -18,10 +18,10 @@ public class Avaliacao implements Serializable {
     public Avaliacao() {
     }
 
-    public Avaliacao( Usuario usuario_proposta, Usuario usuario_troca, Proposta proposta, Troca troca, double avaliacao_proposta, double avaliacao_troca) {
+    public Avaliacao(Long id_avaliacao, Usuario usuario_proposta, Usuario usuario_troca, Troca troca, double avaliacao_proposta, double avaliacao_troca) {
+        this.id_avaliacao = id_avaliacao;
         this.usuario_proposta = usuario_proposta;
         this.usuario_troca = usuario_troca;
-        this.proposta = proposta;
         this.troca = troca;
         this.avaliacao_proposta = avaliacao_proposta;
         this.avaliacao_troca = avaliacao_troca;
@@ -39,15 +39,7 @@ public class Avaliacao implements Serializable {
     @JoinColumn(name="id_usuario_troca")
     private Usuario usuario_troca;
 
-    // ERRO AQUI
     @OneToOne
-    @MapsId
-    @JoinColumn // um dos erros aqui
-    private Proposta proposta;
-    //
-
-    @OneToOne
-    @MapsId
     @JoinColumn(name="id_troca")
     private Troca troca;
 
@@ -81,13 +73,8 @@ public class Avaliacao implements Serializable {
         this.usuario_troca = usuario_troca;
     }
 
-    public Proposta getProposta() {
-        return proposta;
-    }
 
-    public void setProposta(Proposta proposta) {
-        this.proposta = proposta;
-    }
+
 
     public Troca getTroca() {
         return troca;
@@ -132,7 +119,6 @@ public class Avaliacao implements Serializable {
                 "id_avaliacao=" + id_avaliacao +
                 ", usuario_proposta=" + usuario_proposta +
                 ", usuario_troca=" + usuario_troca +
-                ", proposta=" + proposta +
                 ", troca=" + troca +
                 ", avaliacao_proposta=" + avaliacao_proposta +
                 ", avaliacao_troca=" + avaliacao_troca +
