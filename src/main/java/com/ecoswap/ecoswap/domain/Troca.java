@@ -60,7 +60,7 @@ public class Troca implements Serializable {
 
     @Getter
     @JsonIgnore
-    @OneToOne(mappedBy = "troca", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "troca")
     private Avaliacao avaliacao;
 
     @JsonIgnore

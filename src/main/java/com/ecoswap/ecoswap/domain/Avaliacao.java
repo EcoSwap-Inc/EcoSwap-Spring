@@ -18,8 +18,7 @@ public class Avaliacao implements Serializable {
     public Avaliacao() {
     }
 
-    public Avaliacao(Long id_avaliacao, Usuario usuario_proposta, Usuario usuario_troca, Proposta proposta, Troca troca, double avaliacao_proposta, double avaliacao_troca) {
-        this.id_avaliacao = id_avaliacao;
+    public Avaliacao( Usuario usuario_proposta, Usuario usuario_troca, Proposta proposta, Troca troca, double avaliacao_proposta, double avaliacao_troca) {
         this.usuario_proposta = usuario_proposta;
         this.usuario_troca = usuario_troca;
         this.proposta = proposta;
@@ -40,9 +39,12 @@ public class Avaliacao implements Serializable {
     @JoinColumn(name="id_usuario_troca")
     private Usuario usuario_troca;
 
+    // ERRO AQUI
     @OneToOne
-    @JoinColumn(name="id_proposta")
+    @MapsId
+    @JoinColumn // um dos erros aqui
     private Proposta proposta;
+    //
 
     @OneToOne
     @MapsId

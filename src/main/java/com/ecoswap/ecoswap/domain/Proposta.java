@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -20,15 +21,13 @@ public class Proposta implements Serializable {
     public Proposta() {
     }
 
-    public Proposta(Long id_proposta, Usuario usuario, Troca troca, Produto produto, boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao, Avaliacao avaliacao) {
-        this.id_proposta = id_proposta;
+    public Proposta( Usuario usuario, Troca troca, Produto produto, boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao) {
         this.usuario = usuario;
         this.troca = troca;
         this.produto = produto;
         this.aceito = aceito;
         this.data_criacao = data_criacao;
         this.data_conclusao = data_conclusao;
-        this.avaliacao = avaliacao;
     }
 
     @Id
@@ -43,7 +42,7 @@ public class Proposta implements Serializable {
     @JoinColumn(name="id_troca")
     private Troca troca;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_produto")
     private Produto produto;
 
@@ -57,7 +56,7 @@ public class Proposta implements Serializable {
     private LocalDateTime data_conclusao;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(mappedBy = "proposta")
     private Avaliacao avaliacao;
 
     public Long getId_proposta() {
