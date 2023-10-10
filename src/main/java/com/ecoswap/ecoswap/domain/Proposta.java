@@ -7,16 +7,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name="Propostas")
-public class Proposta {
+public class Proposta implements Serializable {
+
+    public Proposta() {
+    }
+
+    public Proposta(Long id_proposta, Usuario usuario, Troca troca, Produto produto, boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao, Avaliacao avaliacao) {
+        this.id_proposta = id_proposta;
+        this.usuario = usuario;
+        this.troca = troca;
+        this.produto = produto;
+        this.aceito = aceito;
+        this.data_criacao = data_criacao;
+        this.data_conclusao = data_conclusao;
+        this.avaliacao = avaliacao;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_proposta;
@@ -45,4 +59,95 @@ public class Proposta {
     @JsonIgnore
     @OneToOne
     private Avaliacao avaliacao;
+
+    public Long getId_proposta() {
+        return id_proposta;
+    }
+
+    public void setId_proposta(Long id_proposta) {
+        this.id_proposta = id_proposta;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Troca getTroca() {
+        return troca;
+    }
+
+    public void setTroca(Troca troca) {
+        this.troca = troca;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public boolean isAceito() {
+        return aceito;
+    }
+
+    public void setAceito(boolean aceito) {
+        this.aceito = aceito;
+    }
+
+    public LocalDateTime getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(LocalDateTime data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+
+    public LocalDateTime getData_conclusao() {
+        return data_conclusao;
+    }
+
+    public void setData_conclusao(LocalDateTime data_conclusao) {
+        this.data_conclusao = data_conclusao;
+    }
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Proposta proposta = (Proposta) o;
+        return Objects.equals(id_proposta, proposta.id_proposta);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_proposta);
+    }
+
+    @Override
+    public String toString() {
+        return "Proposta{" +
+                "id_proposta=" + id_proposta +
+                ", usuario=" + usuario +
+                ", troca=" + troca +
+                ", produto=" + produto +
+                ", aceito=" + aceito +
+                ", data_criacao=" + data_criacao +
+                ", data_conclusao=" + data_conclusao +
+                ", avaliacao=" + avaliacao +
+                '}';
+    }
 }

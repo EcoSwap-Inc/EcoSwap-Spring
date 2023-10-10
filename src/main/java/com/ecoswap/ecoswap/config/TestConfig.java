@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.config;
 
 import com.ecoswap.ecoswap.domain.Categoria;
 import com.ecoswap.ecoswap.domain.Produto;
+import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.domain.Usuario;
 import com.ecoswap.ecoswap.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import javax.xml.crypto.Data;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 
 // CLASSE DE TESTE PARA O H2
 @Configuration
@@ -56,6 +60,10 @@ public class TestConfig implements CommandLineRunner {
         Produto p3 = new Produto(null, u1, cat2, "Galaxy s22");
 
         produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+
+        Troca tr1 = new Troca(null, u1, p1, false, LocalDateTime.now(), LocalDateTime.now(), null);
+
+        trocaRepository.save(tr1);
 
     }
 }
