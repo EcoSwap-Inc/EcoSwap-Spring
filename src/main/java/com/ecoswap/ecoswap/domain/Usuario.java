@@ -90,25 +90,6 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario_troca")
     private List<Avaliacao> avaliacoesTrocasList = new ArrayList<>();
 
-    public void setProdutosList(List<Produto> produtosList) {
-        this.produtosList = produtosList;
-    }
-
-    public void setTrocasList(List<Troca> trocasList) {
-        this.trocasList = trocasList;
-    }
-
-    public void setPropostasList(List<Proposta> propostasList) {
-        this.propostasList = propostasList;
-    }
-
-    public void setAvaliacoesPropostasList(List<Avaliacao> avaliacoesPropostasList) {
-        this.avaliacoesPropostasList = avaliacoesPropostasList;
-    }
-
-    public void setAvaliacoesTrocasList(List<Avaliacao> avaliacoesTrocasList) {
-        this.avaliacoesTrocasList = avaliacoesTrocasList;
-    }
 
     @Override
     public boolean equals(Object o) {

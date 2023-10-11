@@ -64,9 +64,6 @@ public class Troca implements Serializable {
     @OneToMany(mappedBy = "troca")
     private List<Proposta> propostasList = new ArrayList<>();
 
-    public void setPropostasList(List<Proposta> propostasList) {
-        this.propostasList = propostasList;
-    }
 
     @Override
     public boolean equals(Object o) {

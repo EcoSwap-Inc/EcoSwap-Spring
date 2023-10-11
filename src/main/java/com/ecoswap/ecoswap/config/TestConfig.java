@@ -1,7 +1,7 @@
 package com.ecoswap.ecoswap.config;
 
 import com.ecoswap.ecoswap.domain.*;
-import com.ecoswap.ecoswap.services.*;
+import com.ecoswap.ecoswap.repository.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
