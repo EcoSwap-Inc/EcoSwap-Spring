@@ -2,9 +2,7 @@ package com.ecoswap.ecoswap.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -12,17 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Getter
 @Entity
-@Table(name="Usuarios")
+@Table(name = "Usuarios")
 public class Usuario implements Serializable {
 
     public Usuario() {
     }
 
-    public Usuario(Long id_usuario, String email, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento) {
-        this.id_usuario = id_usuario;
+    public Usuario(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento) {
         this.email = email;
+        this.senha = senha;
         this.nome = nome;
         this.cidade = cidade;
         this.UF = UF;
@@ -32,117 +30,84 @@ public class Usuario implements Serializable {
         this.complemento = complemento;
     }
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
 
-    @Getter
+    @Setter
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
-    @Getter
+    @Setter
+    @Column(length = 45, nullable = false)
+    private String senha;
+
+    @Setter
     @Column(length = 45, nullable = false)
     private String nome;
 
-    @Getter
+    @Setter
     @Column(length = 45, nullable = false)
     private String cidade;
 
-    @Getter
+    @Setter
     @Column(length = 2, nullable = false)
     private String UF;
 
-    @Getter
-    @Column(nullable = false)
-    private int cep;
-
-    @Getter
+    @Setter
     @Column(length = 45, nullable = false)
     private String rua;
 
-    @Getter
+    @Setter
     @Column(nullable = false)
     private int numero_rua;
 
-    @Getter
+    @Setter
     @Column(length = 45)
     private String complemento;
 
+    @Setter
+    @Column(nullable = false)
+    private int cep;
+
     @JsonIgnore
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Produto> produtosList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Troca> trocasList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Proposta> propostasList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy="usuario_proposta")
+    @OneToMany(mappedBy = "usuario_proposta")
     private List<Avaliacao> avaliacoesPropostasList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy="usuario_troca")
+    @OneToMany(mappedBy = "usuario_troca")
     private List<Avaliacao> avaliacoesTrocasList = new ArrayList<>();
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setProdutosList(List<Produto> produtosList) {
+        this.produtosList = produtosList;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTrocasList(List<Troca> trocasList) {
+        this.trocasList = trocasList;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPropostasList(List<Proposta> propostasList) {
+        this.propostasList = propostasList;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setAvaliacoesPropostasList(List<Avaliacao> avaliacoesPropostasList) {
+        this.avaliacoesPropostasList = avaliacoesPropostasList;
     }
 
-    public void setUF(String UF) {
-        this.UF = UF;
-    }
-
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public void setNumero_rua(int numero_rua) {
-        this.numero_rua = numero_rua;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public List<Produto> getProdutosList() {
-        return produtosList;
-    }
-
-    public List<Troca> getTrocasList() {
-        return trocasList;
-    }
-
-    public List<Proposta> getPropostasList() {
-        return propostasList;
-    }
-
-    public List<Avaliacao> getAvaliacoesPropostasList() {
-        return avaliacoesPropostasList;
-    }
-
-    public List<Avaliacao> getAvaliacoesTrocasList() {
-        return avaliacoesTrocasList;
+    public void setAvaliacoesTrocasList(List<Avaliacao> avaliacoesTrocasList) {
+        this.avaliacoesTrocasList = avaliacoesTrocasList;
     }
 
     @Override

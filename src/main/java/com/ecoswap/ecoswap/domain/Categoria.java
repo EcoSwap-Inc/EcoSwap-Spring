@@ -2,9 +2,7 @@ package com.ecoswap.ecoswap.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -12,50 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Getter
 @Entity
-@Table(name="Categorias")
+@Table(name = "Categorias")
 public class Categoria implements Serializable {
 
     public Categoria() {
     }
 
-    public Categoria(Long id_categoria, String nome) {
-        this.id_categoria = id_categoria;
+    public Categoria(String nome) {
         this.nome = nome;
     }
 
-    public void setId_categoria(Long id_categoria) {
-        this.id_categoria = id_categoria;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_categoria;
 
-    @Getter
+    @Setter
     @Column(length = 45, nullable = false)
     private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy="categoria")
+    @OneToMany(mappedBy = "categoria")
     private List<Produto> produtosList = new ArrayList<>();
 
-    public Long getId_categoria() {
-        return id_categoria;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public List<Produto> getProdutosList() {
-        return produtosList;
+    public void setProdutosList(List<Produto> produtosList) {
+        this.produtosList = produtosList;
     }
 
     @Override
