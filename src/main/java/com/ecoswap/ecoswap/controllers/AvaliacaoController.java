@@ -34,6 +34,16 @@ public class AvaliacaoController {
         return avaliacaoService.findAvaliacaoById(id);
     }
 
+    @GetMapping("/mediaTrocas/{id}")
+    public ResponseEntity<String> getAvMediaTrocasUsuario(@PathVariable Long id) {
+        return avaliacaoService.getAvMediaTrocasUsuario(id);
+    }
+
+    @GetMapping("/mediaPropostas/{id}")
+    public ResponseEntity<String> getAvMediaPropostasUsuario(@PathVariable Long id) {
+        return avaliacaoService.getAvMediaPropostasUsuario(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarAvaliacao(@PathVariable Long id) {
         return avaliacaoService.deletarAvaliacao(id);

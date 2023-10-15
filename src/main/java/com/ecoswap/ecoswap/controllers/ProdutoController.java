@@ -30,6 +30,11 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.listarProduto());
     }
 
+    @GetMapping("/categoria/{cat_id}")
+    public ResponseEntity<List<Produto>> findProdutosByCategoria(@PathVariable Long cat_id) {
+        return ResponseEntity.ok(produtoService.findProdutosByCategoria(cat_id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findProdutoById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.findProdutoById(id));

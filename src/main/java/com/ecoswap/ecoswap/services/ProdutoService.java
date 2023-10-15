@@ -13,8 +13,6 @@ import java.util.List;
 
 @Service
 public class ProdutoService {
-
-
     @Autowired
     private ProdutoRepository produtoRepository;
 
@@ -25,6 +23,10 @@ public class ProdutoService {
 
     public List<Produto> listarProduto() {
         return produtoRepository.findAll();
+    }
+
+    public List<Produto> findProdutosByCategoria(Long cat_id) {
+        return produtoRepository.findByCategoria(cat_id);
     }
 
     public Produto findProdutoById(Long id) {

@@ -3,6 +3,7 @@ package com.ecoswap.ecoswap.services;
 import com.ecoswap.ecoswap.domain.Avaliacao;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.AvaliacaoRepository;
+import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class AvaliacaoService {
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public ResponseEntity<String> salvarAvaliacao(Avaliacao avaliacao) {
         avaliacaoRepository.save(avaliacao);
         return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Avaliação com ID " + avaliacao.getId_avaliacao() + " inserida com sucesso\"}");
@@ -29,6 +33,20 @@ public class AvaliacaoService {
     public Avaliacao findAvaliacaoById(Long id) {
         return avaliacaoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementFoundException("Avaliação não encontrada com o ID: " + id));
+    }
+
+    public ResponseEntity<String> getAvMediaTrocasUsuario(Long id) {
+        if (usuarioRepository.existsById(id))
+            return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"resultado\": " + avaliacaoRepository.getAvMediaTrocasUsuario(id) + "}");
+        else
+            throw new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id);
+    }
+
+    public ResponseEntity<String> getAvMediaPropostasUsuario(Long id) {
+        if (usuarioRepository.existsById(id))
+            return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"resultado\": " + avaliacaoRepository.getAvMediaPropostasUsuario(id) + "}");
+        else
+            throw new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id);
     }
 
     public ResponseEntity<String> deletarAvaliacao(Long id) {
