@@ -1,12 +1,17 @@
 package com.ecoswap.ecoswap.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Validated
 @Getter
 @Entity
 @Table(name = "Produtos")
@@ -25,18 +30,30 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_produto;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
+    // Validação
+    @NotNull
+    @Size(min = 5, max = 150)
+    // JPA
     @Setter
-    @Column(length = 45, nullable = false)
+    @Column(length = 150, nullable = false)
     private String nome;
 
     @Override

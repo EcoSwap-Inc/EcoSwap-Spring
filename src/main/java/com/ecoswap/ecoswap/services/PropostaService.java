@@ -1,14 +1,15 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.Proposta;
-import com.ecoswap.ecoswap.domain.Proposta;
+import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.PropostaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PropostaService {
@@ -17,8 +18,9 @@ public class PropostaService {
     @Autowired
     private PropostaRepository propostaRepository;
 
-    public Proposta salvarProposta(Proposta Proposta) {
-        return propostaRepository.save(Proposta);
+    public ResponseEntity<String> salvarProposta(Proposta proposta) {
+        propostaRepository.save(proposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Proposta com ID " + proposta.getId_proposta() + " inserida com sucesso\"}");
     }
 
     public List<Proposta> listarProposta() {
@@ -26,18 +28,18 @@ public class PropostaService {
     }
 
     public Proposta findPropostaById(Long id) {
-        return propostaRepository.findById(id).orElse(null);
+        return propostaRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Proposta não encontrada com o ID: " + id));
     }
 
-    public void deletarProposta(Long id) {
+    public ResponseEntity<String> deletarProposta(Long id) {
         propostaRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Proposta com ID " + id + " deletada com sucesso\"}");
     }
 
-    public Proposta atualizarProposta(Long id, Proposta proposta) {
-        Optional<Proposta> propostaExistenteOptional = Optional.ofNullable(propostaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Proposta não encontrado com o ID: " + id)));
-
-        Proposta propostaExistente = propostaExistenteOptional.get();
+    public ResponseEntity<String> atualizarProposta(Long id, Proposta proposta) {
+        Proposta propostaExistente = propostaRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Proposta não encontrada com o ID: " + id));
 
         propostaExistente.setAceito(proposta.isAceito());
         propostaExistente.setTroca(proposta.getTroca());
@@ -47,7 +49,8 @@ public class PropostaService {
         propostaExistente.setData_criacao(proposta.getData_criacao());
         propostaExistente.setData_conclusao(proposta.getData_conclusao());
 
-        return propostaRepository.save(propostaExistente);
+        propostaRepository.save(propostaExistente);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Proposta com ID " + id + " atualizada com sucesso\"}");
     }
 
 }

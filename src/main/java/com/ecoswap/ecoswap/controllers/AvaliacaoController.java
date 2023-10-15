@@ -2,11 +2,10 @@ package com.ecoswap.ecoswap.controllers;
 
 
 import com.ecoswap.ecoswap.domain.Avaliacao;
-import com.ecoswap.ecoswap.repository.AvaliacaoRepository;
 import com.ecoswap.ecoswap.services.AvaliacaoService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +19,12 @@ public class AvaliacaoController {
     @Autowired
     private AvaliacaoService avaliacaoService;
 
-    @PostMapping
-    public Avaliacao salvarAvaliacao(@RequestBody Avaliacao avaliacao) {
+    @PostMapping("/")
+    public ResponseEntity<String> salvarAvaliacao(@Valid @RequestBody Avaliacao avaliacao) {
         return avaliacaoService.salvarAvaliacao(avaliacao);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Avaliacao> listarAvaliacao() {
         return avaliacaoService.listarAvaliacao();
     }
@@ -36,15 +35,14 @@ public class AvaliacaoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarAvaliacao(@PathVariable Long id) {
-        avaliacaoService.deletarAvaliacao(id);
+    public ResponseEntity<String> deletarAvaliacao(@PathVariable Long id) {
+        return avaliacaoService.deletarAvaliacao(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Avaliacao> atualizarAvaliacao(@PathVariable Long id, @RequestBody Avaliacao avaliacao) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoService.atualizarAvaliacao(id, avaliacao));
+    public ResponseEntity<String> atualizarAvaliacao(@PathVariable Long id, @Valid @RequestBody Avaliacao avaliacao) {
+        return avaliacaoService.atualizarAvaliacao(id, avaliacao);
     }
-
 }
 
 

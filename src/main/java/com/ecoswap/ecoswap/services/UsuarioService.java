@@ -1,14 +1,15 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.Usuario;
-import com.ecoswap.ecoswap.domain.Usuario;
+import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -16,8 +17,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario salvarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public ResponseEntity<String> salvarUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + usuario.getId_usuario() + " inserido com sucesso\"}");
     }
 
     public List<Usuario> listarUsuario() {
@@ -25,30 +27,31 @@ public class UsuarioService {
     }
 
     public Usuario findUsuarioById(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id));
     }
 
-    public void deletarUsuario(Long id) {
+    public ResponseEntity<String> deletarUsuario(Long id) {
         usuarioRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " deletado com sucesso\"}");
     }
 
-    public Usuario atualizarUsuario(Long id, Usuario usuario) {
-        Optional<Usuario> usuarioExistenteOptional = Optional.ofNullable(usuarioRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado com o ID: " + id)));
+    public ResponseEntity<String> atualizarUsuario(Long id, Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id));
 
-        Usuario usuarioExistente = usuarioExistenteOptional.get();
+        usuarioExistente.setCep(usuario.getCep());
+        usuarioExistente.setEmail(usuario.getEmail());
+        usuarioExistente.setCidade(usuario.getCidade());
+        usuarioExistente.setNome(usuario.getNome());
+        usuarioExistente.setUF(usuario.getUF());
+        usuarioExistente.setCidade(usuario.getCidade());
+        usuarioExistente.setNumero_rua(usuario.getNumero_rua());
+        usuarioExistente.setRua(usuario.getRua());
+        usuarioExistente.setComplemento(usuario.getComplemento());
 
-       usuarioExistente.setCep(usuario.getCep());
-       usuarioExistente.setEmail(usuario.getEmail());
-       usuarioExistente.setCidade(usuario.getCidade());
-       usuarioExistente.setNome(usuario.getNome());
-       usuarioExistente.setUF(usuario.getUF());
-       usuarioExistente.setCidade(usuario.getCidade());
-       usuarioExistente.setNumero_rua(usuario.getNumero_rua());
-       usuarioExistente.setRua(usuario.getRua());
-       usuarioExistente.setComplemento(usuario.getComplemento());
-
-        return usuarioRepository.save(usuarioExistente);
+        usuarioRepository.save(usuarioExistente);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " atualizado com sucesso\"}");
     }
 
 }

@@ -2,6 +2,8 @@ package com.ecoswap.ecoswap.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,33 +33,55 @@ public class Proposta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_proposta;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_troca")
+    @JoinColumn(name = "id_troca", nullable = false)
     private Troca troca;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_produto")
+    @JoinColumn(name = "id_produto", nullable = false)
     private Produto produto;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    // Validação
+    // JPA
     @Setter
-    @Column(nullable = false)
+    @Column()
     private boolean aceito;
 
+    // Validação
+    @NotNull
+    // JPA
     @Setter
     @Column(nullable = false)
     private LocalDateTime data_criacao;
 
+    // Validação
+    // JPA
     @Setter
     @Column()
     private LocalDateTime data_conclusao;
 
+    // Validação
+    @Valid
+    // JPA
     @Setter
     @JsonIgnore
     @OneToOne(mappedBy = "proposta")

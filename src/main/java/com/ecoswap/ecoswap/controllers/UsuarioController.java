@@ -1,13 +1,10 @@
 package com.ecoswap.ecoswap.controllers;
 
-
 import com.ecoswap.ecoswap.domain.Usuario;
-import com.ecoswap.ecoswap.domain.Usuario;
-import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import com.ecoswap.ecoswap.services.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +18,12 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
-    public Usuario salvarUsuario(@RequestBody Usuario Usuario) {
+    @PostMapping("/")
+    public ResponseEntity<String> salvarUsuario(@Valid @RequestBody Usuario Usuario) {
         return usuarioService.salvarUsuario(Usuario);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Usuario> listarUsuario() {
         return usuarioService.listarUsuario();
     }
@@ -37,13 +34,13 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarUsuario(@PathVariable Long id) {
-        usuarioService.deletarUsuario(id);
+    public ResponseEntity<String> deletarUsuario(@PathVariable Long id) {
+        return usuarioService.deletarUsuario(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.atualizarUsuario(id, usuario));
+    public ResponseEntity<String> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
+        return usuarioService.atualizarUsuario(id, usuario);
     }
 
 }

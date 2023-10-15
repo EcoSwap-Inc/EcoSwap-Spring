@@ -1,6 +1,10 @@
 package com.ecoswap.ecoswap.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,30 +32,54 @@ public class Avaliacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_avaliacao;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @OneToOne
-    @JoinColumn(name = "id_troca")
+    @JoinColumn(name = "id_troca", nullable = false)
     private Troca troca;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @OneToOne
-    @JoinColumn(name = "id_proposta")
+    @JoinColumn(name = "id_proposta", nullable = false)
     private Proposta proposta;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_usuario_troca")
+    @JoinColumn(name = "id_usuario_troca", nullable = false)
     private Usuario usuario_troca;
 
+    // Validação
+    @Valid
+    @NotNull
+    // JPA
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_usuario_proposta")
+    @JoinColumn(name = "id_usuario_proposta", nullable = false)
     private Usuario usuario_proposta;
 
+    // Validação
+    @PositiveOrZero
+    @Max(5)
+    // JPA
     @Setter
     @Column()
     private double avaliacao_troca;
 
+    // Validação
+    @PositiveOrZero
+    @Max(5)
+    // JPA
     @Setter
     @Column()
     private double avaliacao_proposta;

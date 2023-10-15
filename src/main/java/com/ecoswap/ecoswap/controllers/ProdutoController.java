@@ -2,9 +2,8 @@ package com.ecoswap.ecoswap.controllers;
 
 
 import com.ecoswap.ecoswap.domain.Produto;
-import com.ecoswap.ecoswap.domain.Produto;
-import com.ecoswap.ecoswap.repository.ProdutoRepository;
 import com.ecoswap.ecoswap.services.ProdutoService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,15 +14,15 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/produtos")
+@RequestMapping(path = "/produto")
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
 
-    @PostMapping
-    public ResponseEntity<Produto> salvarProduto(@RequestBody Produto Produto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvarProduto(Produto));
+    @PostMapping("/")
+    public ResponseEntity<String> salvarProduto(@Valid @RequestBody Produto Produto) {
+        return produtoService.salvarProduto(Produto);
     }
 
     @GetMapping("/")
@@ -37,13 +36,13 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarProduto(@PathVariable Long id) {
-        produtoService.deletarProduto(id);
+    public ResponseEntity<String> deletarProduto(@PathVariable Long id) {
+        return produtoService.deletarProduto(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.atualizarProduto(id, produto));
+    public ResponseEntity<String> atualizarProduto(@PathVariable Long id, @Valid @RequestBody Produto produto) {
+        return produtoService.atualizarProduto(id, produto);
     }
 
 }

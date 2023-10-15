@@ -1,14 +1,15 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.Troca;
-import com.ecoswap.ecoswap.domain.Troca;
+import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.TrocaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TrocaService {
@@ -16,8 +17,9 @@ public class TrocaService {
     @Autowired
     private TrocaRepository trocaRepository;
 
-    public Troca salvarTroca(Troca Troca) {
-        return trocaRepository.save(Troca);
+    public ResponseEntity<String> salvarTroca(Troca troca) {
+        trocaRepository.save(troca);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + troca.getId_troca() + " inserida com sucesso\"}");
     }
 
     public List<Troca> listarTroca() {
@@ -25,18 +27,18 @@ public class TrocaService {
     }
 
     public Troca findTrocaById(Long id) {
-        return trocaRepository.findById(id).orElse(null);
+        return trocaRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Troca não encontrada com o ID: " + id));
     }
 
-    public void deletarTroca(Long id) {
+    public ResponseEntity<String> deletarTroca(Long id) {
         trocaRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " deletada com sucesso\"}");
     }
 
-    public Troca atualizarTroca(Long id, Troca troca) {
-        Optional<Troca> trocaExistenteOptional = Optional.ofNullable(trocaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado com o ID: " + id)));
-
-        Troca trocaExistente = trocaExistenteOptional.get();
+    public ResponseEntity<String> atualizarTroca(Long id, Troca troca) {
+        Troca trocaExistente = trocaRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementFoundException("Troca não encontrada com o ID: " + id));
 
         trocaExistente.setAvaliacao(troca.getAvaliacao());
         trocaExistente.setProduto(troca.getProduto());
@@ -45,7 +47,8 @@ public class TrocaService {
         trocaExistente.setData_criacao(troca.getData_criacao());
         trocaExistente.setData_conclusao(troca.getData_conclusao());
 
-        return trocaRepository.save(trocaExistente);
+        trocaRepository.save(trocaExistente);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " atualizada com sucesso\"}");
     }
 
 

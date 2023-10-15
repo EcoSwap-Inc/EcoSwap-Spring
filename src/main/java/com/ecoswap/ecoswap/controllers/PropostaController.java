@@ -2,12 +2,10 @@ package com.ecoswap.ecoswap.controllers;
 
 
 import com.ecoswap.ecoswap.domain.Proposta;
-import com.ecoswap.ecoswap.domain.Proposta;
-import com.ecoswap.ecoswap.repository.PropostaRepository;
 import com.ecoswap.ecoswap.services.PropostaService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +19,12 @@ public class PropostaController {
     @Autowired
     private PropostaService propostaService;
 
-    @PostMapping
-    public Proposta salvarProposta(@RequestBody Proposta Proposta) {
+    @PostMapping("/")
+    public ResponseEntity<String> salvarProposta(@Valid @RequestBody Proposta Proposta) {
         return propostaService.salvarProposta(Proposta);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Proposta> listarProposta() {
         return propostaService.listarProposta();
     }
@@ -37,15 +35,14 @@ public class PropostaController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarProposta(@PathVariable Long id) {
-        propostaService.deletarProposta(id);
+    public ResponseEntity<String> deletarProposta(@PathVariable Long id) {
+        return propostaService.deletarProposta(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Proposta> atualizarProposta(@PathVariable Long id, @RequestBody Proposta proposta) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(propostaService.atualizarProposta(id, proposta));
+    public ResponseEntity<String> atualizarProposta(@PathVariable Long id, @Valid @RequestBody Proposta proposta) {
+        return propostaService.atualizarProposta(id, proposta);
     }
-
 
 
 }

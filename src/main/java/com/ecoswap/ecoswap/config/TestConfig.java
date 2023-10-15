@@ -75,8 +75,8 @@ public class TestConfig implements CommandLineRunner {
         Proposta prop5 = new Proposta(u4, tr2, p1, true, LocalDateTime.now(), LocalDateTime.now(), null);
         propostaRepository.saveAll(Arrays.asList(prop1, prop2, prop3, prop4, prop5));
 
-        Avaliacao av1 = new Avaliacao(u1, u2, tr1, prop1, 5, 5);
-        Avaliacao av2 = new Avaliacao(u3, u4, tr2, prop2, 7, 5);
+        Avaliacao av1 = new Avaliacao(u1, u2, tr1, prop1, 3.5, 5);
+        Avaliacao av2 = new Avaliacao(u3, u4, tr2, prop2, 2, 5);
         Avaliacao av3 = new Avaliacao(u5, u6, tr5, prop4, 1, 2);
         avaliacaoRepository.saveAll(Arrays.asList(av1, av2, av3));
     }

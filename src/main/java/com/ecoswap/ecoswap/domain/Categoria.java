@@ -2,14 +2,18 @@ package com.ecoswap.ecoswap.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Validated
 @Getter
 @Entity
 @Table(name = "Categorias")
@@ -26,8 +30,12 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_categoria;
 
+    // Validação
+    @NotNull
+    @Size(min = 3, max = 100)
+    // JPA
     @Setter
-    @Column(length = 45, nullable = false)
+    @Column(length = 100, nullable = false)
     private String nome;
 
     @JsonIgnore
