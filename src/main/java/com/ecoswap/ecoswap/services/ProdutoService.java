@@ -33,7 +33,10 @@ public class ProdutoService {
     }
 
     public ResponseEntity<String> deletarProduto(Long id) {
-        produtoRepository.deleteById(id);
+        if (produtoRepository.existsById(id))
+            produtoRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Produto não encontrado com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + id + " deletado com sucesso\"}");
     }
 

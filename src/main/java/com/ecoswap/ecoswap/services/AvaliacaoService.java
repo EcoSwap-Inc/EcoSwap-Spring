@@ -32,7 +32,10 @@ public class AvaliacaoService {
     }
 
     public ResponseEntity<String> deletarAvaliacao(Long id) {
-        avaliacaoRepository.deleteById(id);
+        if (avaliacaoRepository.existsById(id))
+            avaliacaoRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Avaliação não encontrada com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Avaliação com ID " + id + " deletada com sucesso\"}");
     }
 

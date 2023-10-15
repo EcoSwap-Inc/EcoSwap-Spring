@@ -32,7 +32,10 @@ public class TrocaService {
     }
 
     public ResponseEntity<String> deletarTroca(Long id) {
-        trocaRepository.deleteById(id);
+        if (trocaRepository.existsById(id))
+            trocaRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Troca não encontrada com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " deletada com sucesso\"}");
     }
 

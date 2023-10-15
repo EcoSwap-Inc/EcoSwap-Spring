@@ -33,7 +33,10 @@ public class PropostaService {
     }
 
     public ResponseEntity<String> deletarProposta(Long id) {
-        propostaRepository.deleteById(id);
+        if (propostaRepository.existsById(id))
+            propostaRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Proposta não encontrada com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Proposta com ID " + id + " deletada com sucesso\"}");
     }
 

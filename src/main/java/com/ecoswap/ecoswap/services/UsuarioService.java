@@ -32,7 +32,10 @@ public class UsuarioService {
     }
 
     public ResponseEntity<String> deletarUsuario(Long id) {
-        usuarioRepository.deleteById(id);
+        if (usuarioRepository.existsById(id))
+            usuarioRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " deletado com sucesso\"}");
     }
 

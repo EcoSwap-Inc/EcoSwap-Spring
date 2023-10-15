@@ -33,7 +33,10 @@ public class CategoriaService {
     }
 
     public ResponseEntity<String> deletarCategoria(Long id) {
-        categoriaRepository.deleteById(id);
+        if (categoriaRepository.existsById(id))
+            categoriaRepository.deleteById(id);
+        else
+            throw new NoSuchElementFoundException("Categoria não encontrada com o ID: " + id);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Categoria com ID " + id + " deletada com sucesso\"}");
     }
 
