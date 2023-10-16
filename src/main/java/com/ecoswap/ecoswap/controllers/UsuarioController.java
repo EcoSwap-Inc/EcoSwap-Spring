@@ -3,14 +3,17 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.Usuario;
 import com.ecoswap.ecoswap.services.UsuarioService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/usuario")
@@ -32,6 +35,11 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public Usuario findUsuarioById(@PathVariable @Positive Long id) {
         return usuarioService.findUsuarioById(id);
+    }
+
+    @GetMapping("/validarLogin/")
+    public ResponseEntity<String> validarLogin(@RequestParam(name="email") @Email String email, @RequestParam(name="senha") String senha) {
+        return usuarioService.validarLogin(email, senha);
     }
 
     @DeleteMapping("/{id}")

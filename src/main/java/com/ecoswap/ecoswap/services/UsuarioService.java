@@ -31,6 +31,10 @@ public class UsuarioService {
                 .orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id));
     }
 
+    public ResponseEntity<String> validarLogin(String email, String senha) {
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"resultado\": " + usuarioRepository.validarLogin(email, senha) + "}");
+    }
+
     public ResponseEntity<String> deletarUsuario(Long id) {
         if (usuarioRepository.existsById(id))
             usuarioRepository.deleteById(id);
