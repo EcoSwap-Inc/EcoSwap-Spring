@@ -1,6 +1,8 @@
 package com.ecoswap.ecoswap.exception;
 
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -19,7 +21,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoSuchElementFoundException.class)
     public ResponseEntity<Object> handleNoSuchElementFoundException(
-            NoSuchElementFoundException ex, WebRequest request) {
+            NoSuchElementFoundException ex) {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", ex.getStatusCode().value());
@@ -34,7 +36,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("status", ex.getStatusCode().value());
+        body.put("status", status.value());
         body.put("data", LocalDateTime.now());
 
         FieldError er = ex.getFieldError();
@@ -43,5 +45,24 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, status);
     }
 
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("status", status.value());
+        body.put("data", LocalDateTime.now());
+        body.put("mensagem", "O valor recebido do parâmetro '" + ex.getPropertyName() + "' é inválido, pois: impossível de converter " + ex.getValue().getClass().getName() + " para " + ex.getRequiredType().getName());
+
+        return new ResponseEntity<>(body, status);
+    }
+
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleUnhandledException(Exception ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("status", 500);
+        body.put("data", LocalDateTime.now());
+        body.put("mensagem", ex.getMessage() + "\n" + ex.getCause());
+
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

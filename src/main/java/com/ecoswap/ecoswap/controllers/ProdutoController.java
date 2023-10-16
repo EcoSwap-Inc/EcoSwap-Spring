@@ -4,6 +4,7 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.services.ProdutoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,22 +32,22 @@ public class ProdutoController {
     }
 
     @GetMapping("/categoria/{cat_id}")
-    public ResponseEntity<List<Produto>> findProdutosByCategoria(@PathVariable Long cat_id) {
+    public ResponseEntity<List<Produto>> findProdutosByCategoria(@PathVariable @Positive Long cat_id) {
         return ResponseEntity.ok(produtoService.findProdutosByCategoria(cat_id));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> findProdutoById(@PathVariable Long id) {
+    public ResponseEntity<Produto> findProdutoById(@PathVariable @Positive Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.findProdutoById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarProduto(@PathVariable Long id) {
+    public ResponseEntity<String> deletarProduto(@PathVariable @Positive Long id) {
         return produtoService.deletarProduto(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarProduto(@PathVariable Long id, @Valid @RequestBody Produto produto) {
+    public ResponseEntity<String> atualizarProduto(@PathVariable @Positive Long id, @Valid @RequestBody Produto produto) {
         return produtoService.atualizarProduto(id, produto);
     }
 

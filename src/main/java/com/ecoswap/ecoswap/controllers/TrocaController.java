@@ -4,6 +4,7 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.services.TrocaService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,17 +32,17 @@ public class TrocaController {
     }
 
     @GetMapping("/{id}")
-    public Troca findTrocaById(@PathVariable Long id) {
+    public Troca findTrocaById(@PathVariable @Positive Long id) {
         return trocaService.findTrocaById(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarTroca(@PathVariable Long id) {
+    public ResponseEntity<String> deletarTroca(@PathVariable @Positive Long id) {
         return trocaService.deletarTroca(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarTroca(@PathVariable Long id, @Valid @RequestBody Troca troca) {
+    public ResponseEntity<String> atualizarTroca(@PathVariable @Positive Long id, @Valid @RequestBody Troca troca) {
         return trocaService.atualizarTroca(id, troca);
     }
 

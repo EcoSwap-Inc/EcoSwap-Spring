@@ -4,6 +4,7 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.Proposta;
 import com.ecoswap.ecoswap.services.PropostaService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,17 +31,17 @@ public class PropostaController {
     }
 
     @GetMapping("/{id}")
-    public Proposta findPropostaById(@PathVariable Long id) {
+    public Proposta findPropostaById(@PathVariable @Positive Long id) {
         return propostaService.findPropostaById(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarProposta(@PathVariable Long id) {
+    public ResponseEntity<String> deletarProposta(@PathVariable @Positive Long id) {
         return propostaService.deletarProposta(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarProposta(@PathVariable Long id, @Valid @RequestBody Proposta proposta) {
+    public ResponseEntity<String> atualizarProposta(@PathVariable @Positive Long id, @Valid @RequestBody Proposta proposta) {
         return propostaService.atualizarProposta(id, proposta);
     }
 

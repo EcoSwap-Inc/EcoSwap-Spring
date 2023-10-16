@@ -4,6 +4,7 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.Categoria;
 import com.ecoswap.ecoswap.services.CategoriaService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,17 +32,17 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public Categoria findCategoriaById(@PathVariable Long id) {
+    public Categoria findCategoriaById(@PathVariable @Positive Long id) {
         return categoriaService.findCategoriaById(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarCategoria(@PathVariable Long id) {
+    public ResponseEntity<String> deletarCategoria(@PathVariable @Positive Long id) {
         return categoriaService.deletarCategoria(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarCategoria(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
+    public ResponseEntity<String> atualizarCategoria(@PathVariable @Positive Long id, @Valid @RequestBody Categoria categoria) {
         return categoriaService.atualizarCategoria(id, categoria);
     }
 }
