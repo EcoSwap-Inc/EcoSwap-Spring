@@ -63,7 +63,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", status.value());
         body.put("data", LocalDateTime.now());
-        body.put("mensagem", "Valor de parâmetro obrigatório '" + ex.getParameterName() + "' de tipo '"+ ex.getParameterType() + "' não recebido");
+        body.put("mensagem", "Valor de parâmetro obrigatório '" + ex.getParameterName() + "' de tipo '" + ex.getParameterType() + "' não recebido");
 
         return new ResponseEntity<>(body, status);
     }
@@ -86,15 +86,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
 
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleUnhandledException(Exception ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("status", 500);
+        body.put("data", LocalDateTime.now());
+        body.put("mensagem", ex.getClass().getName() + ex.getMessage() + ex.getCause());
 
-//    @ExceptionHandler(Exception.class)
-//    protected ResponseEntity<Object> handleUnhandledException(Exception ex) {
-//        Map<String, Object> body = new LinkedHashMap<>();
-//        body.put("status", 500);
-//        body.put("data", LocalDateTime.now());
-//        body.put("mensagem", ex.getClass().getName() + ex.getMessage() + ex.getCause());
-//
-//        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

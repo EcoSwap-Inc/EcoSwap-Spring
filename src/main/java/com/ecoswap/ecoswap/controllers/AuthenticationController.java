@@ -2,7 +2,7 @@ package com.ecoswap.ecoswap.controllers;
 
 import com.ecoswap.ecoswap.domain.users.AuthenticationDTO;
 import com.ecoswap.ecoswap.domain.users.LoginResponseDTO;
-import com.ecoswap.ecoswap.domain.users.ModelUsuarioDTO;
+import com.ecoswap.ecoswap.domain.users.RegistrationDTO;
 import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.ecoswap.ecoswap.infra.security.TokenService;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
@@ -42,19 +42,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity registrar(@RequestBody @Valid AuthenticationDTO data) {
-        if (usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
+    public ResponseEntity registrar(@RequestBody @Valid RegistrationDTO data) {
+        //        if (usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
 
+        System.out.println(data);
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
 
+        Usuario newUser = new Usuario(data.email(), encryptedPassword, data.nome(), data.cidade(),
+                data.uf(), data.cep(), data.rua(), 1, null);
 
-        // ARRUMAR AQUI
-
-        var newUser = new Usuario(data.email(), encryptedPassword, "usuario.getNome()", "usuario.getCidade()",
-                "sp",
-                321321, "usuario.getRua()", 321321, "usuario.getComplemento()");
-
-        //
         this.usuarioRepository.save(newUser);
 
         return ResponseEntity.ok().build();
