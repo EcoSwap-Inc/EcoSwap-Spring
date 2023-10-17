@@ -1,6 +1,7 @@
 package com.ecoswap.ecoswap.controllers;
 
 
+import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.services.TrocaService;
 import jakarta.validation.Valid;
@@ -44,7 +45,7 @@ public class TrocaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarTroca(@PathVariable @Positive Long id, @Valid @RequestBody Troca troca) {
+    public ResponseEntity<String> atualizarTroca(@PathVariable @Positive Long id, @Valid @RequestBody TrocaInput troca) {
         return trocaService.atualizarTroca(id, troca);
     }
 

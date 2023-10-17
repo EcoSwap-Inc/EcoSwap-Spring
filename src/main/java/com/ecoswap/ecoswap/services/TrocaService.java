@@ -1,8 +1,12 @@
 package com.ecoswap.ecoswap.services;
 
+import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
+import com.ecoswap.ecoswap.repository.AvaliacaoRepository;
+import com.ecoswap.ecoswap.repository.ProdutoRepository;
 import com.ecoswap.ecoswap.repository.TrocaRepository;
+import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,15 @@ public class TrocaService {
 
     @Autowired
     private TrocaRepository trocaRepository;
+
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public ResponseEntity<String> salvarTroca(Troca troca) {
         trocaRepository.save(troca);
@@ -39,16 +52,34 @@ public class TrocaService {
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " deletada com sucesso\"}");
     }
 
-    public ResponseEntity<String> atualizarTroca(Long id, Troca troca) {
+    public ResponseEntity<String> atualizarTroca(Long id, TrocaInput troca) {
+        if (!troca.isFinalizada() && troca.getData_criacao() == null && troca.getData_conclusao() == null && troca.getAvaliacao_id() == null && troca.getProduto_id() == null && troca.getUsuario_id() == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Troca' foi informado\"}");
+
         Troca trocaExistente = trocaRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementFoundException("Troca não encontrada com o ID: " + id));
 
-        trocaExistente.setAvaliacao(troca.getAvaliacao());
-        trocaExistente.setProduto(troca.getProduto());
-        trocaExistente.setFinalizada(troca.isFinalizada());
-        trocaExistente.setUsuario(troca.getUsuario());
-        trocaExistente.setData_criacao(troca.getData_criacao());
-        trocaExistente.setData_conclusao(troca.getData_conclusao());
+        if (troca.getAvaliacao_id() != null) {
+            Long avaliacao_id = troca.getAvaliacao_id();
+            trocaExistente.setAvaliacao(avaliacaoRepository.findById(avaliacao_id).orElseThrow(() -> new NoSuchElementFoundException("Avaliação não encontrada com o ID: " + avaliacao_id)));
+        }
+        if (troca.getUsuario_id() != null) {
+            Long usuario_id = troca.getUsuario_id();
+            trocaExistente.setUsuario(usuarioRepository.findById(usuario_id).orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + usuario_id)));
+        }
+        if (troca.getProduto_id() != null) {
+            Long produto_id = troca.getProduto_id();
+            trocaExistente.setProduto(produtoRepository.findById(produto_id).orElseThrow(() -> new NoSuchElementFoundException("Produto não encontrado com o ID: " + produto_id)));
+        }
+        if (troca.isFinalizada() != trocaExistente.isFinalizada()) {
+            trocaExistente.setFinalizada(troca.isFinalizada());
+        }
+        if (troca.getData_criacao() != null) {
+            trocaExistente.setData_criacao(troca.getData_criacao());
+        }
+        if (troca.getData_conclusao() != null) {
+            trocaExistente.setData_conclusao(troca.getData_conclusao());
+        }
 
         trocaRepository.save(trocaExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " atualizada com sucesso\"}");

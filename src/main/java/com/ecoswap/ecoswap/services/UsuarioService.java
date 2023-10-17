@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.services;
 
+import com.ecoswap.ecoswap.domain.InputClasses.UsuarioInput;
 import com.ecoswap.ecoswap.domain.Usuario;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
@@ -43,19 +44,31 @@ public class UsuarioService {
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " deletado com sucesso\"}");
     }
 
-    public ResponseEntity<String> atualizarUsuario(Long id, Usuario usuario) {
+    public ResponseEntity<String> atualizarUsuario(Long id, UsuarioInput usuario) {
+        if (usuario.getCidade() == null && usuario.getNome() == null && usuario.getEmail() == null && usuario.getComplemento() == null && usuario.getCep() == 0 && usuario.getNumero_rua() == 0 && usuario.getRua() == null && usuario.getSenha() == null && usuario.getUF() == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Usuário' foi informado\"}");
+
         Usuario usuarioExistente = usuarioRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + id));
 
-        usuarioExistente.setCep(usuario.getCep());
-        usuarioExistente.setEmail(usuario.getEmail());
-        usuarioExistente.setCidade(usuario.getCidade());
-        usuarioExistente.setNome(usuario.getNome());
-        usuarioExistente.setUF(usuario.getUF());
-        usuarioExistente.setCidade(usuario.getCidade());
-        usuarioExistente.setNumero_rua(usuario.getNumero_rua());
-        usuarioExistente.setRua(usuario.getRua());
-        usuarioExistente.setComplemento(usuario.getComplemento());
+        if (usuario.getCep() != 0)
+            usuarioExistente.setCep(usuario.getCep());
+        if (usuario.getEmail() != null)
+            usuarioExistente.setEmail(usuario.getEmail());
+        if (usuario.getCidade() != null)
+            usuarioExistente.setCidade(usuario.getCidade());
+        if (usuario.getNome() != null)
+            usuarioExistente.setNome(usuario.getNome());
+        if (usuario.getUF() != null)
+            usuarioExistente.setUF(usuario.getUF());
+        if (usuario.getSenha() != null)
+            usuarioExistente.setUF(usuario.getSenha());
+        if (usuario.getNumero_rua() != 0)
+            usuarioExistente.setNumero_rua(usuario.getNumero_rua());
+        if (usuario.getRua() != null)
+            usuarioExistente.setRua(usuario.getRua());
+        if (usuario.getComplemento() != null)
+            usuarioExistente.setComplemento(usuario.getComplemento());
 
         usuarioRepository.save(usuarioExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " atualizado com sucesso\"}");

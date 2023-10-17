@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.controllers;
 
 
 import com.ecoswap.ecoswap.domain.Avaliacao;
+import com.ecoswap.ecoswap.domain.InputClasses.AvaliacaoInput;
 import com.ecoswap.ecoswap.services.AvaliacaoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -53,7 +54,7 @@ public class AvaliacaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarAvaliacao(@PathVariable @Positive Long id, @Valid @RequestBody Avaliacao avaliacao) {
+    public ResponseEntity<String> atualizarAvaliacao(@PathVariable @Positive Long id, @Valid @RequestBody AvaliacaoInput avaliacao) {
         return avaliacaoService.atualizarAvaliacao(id, avaliacao);
     }
 }

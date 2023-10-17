@@ -1,6 +1,7 @@
 package com.ecoswap.ecoswap.controllers;
 
 
+import com.ecoswap.ecoswap.domain.InputClasses.PropostaInput;
 import com.ecoswap.ecoswap.domain.Proposta;
 import com.ecoswap.ecoswap.services.PropostaService;
 import jakarta.validation.Valid;
@@ -43,7 +44,7 @@ public class PropostaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarProposta(@PathVariable @Positive Long id, @Valid @RequestBody Proposta proposta) {
+    public ResponseEntity<String> atualizarProposta(@PathVariable @Positive Long id, @Valid @RequestBody PropostaInput proposta) {
         return propostaService.atualizarProposta(id, proposta);
     }
 

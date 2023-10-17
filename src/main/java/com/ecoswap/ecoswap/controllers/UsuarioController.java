@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.controllers;
 
+import com.ecoswap.ecoswap.domain.InputClasses.UsuarioInput;
 import com.ecoswap.ecoswap.domain.Usuario;
 import com.ecoswap.ecoswap.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -38,7 +39,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/validarLogin/")
-    public ResponseEntity<String> validarLogin(@RequestParam(name="email") @Email String email, @RequestParam(name="senha") String senha) {
+    public ResponseEntity<String> validarLogin(@RequestParam(name = "email") @Email String email, @RequestParam(name = "senha") String senha) {
         return usuarioService.validarLogin(email, senha);
     }
 
@@ -48,8 +49,9 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarUsuario(@PathVariable @Positive Long id, @Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<String> atualizarUsuario(@PathVariable @Positive Long id, @Valid @RequestBody UsuarioInput usuario) {
         return usuarioService.atualizarUsuario(id, usuario);
     }
+
 
 }

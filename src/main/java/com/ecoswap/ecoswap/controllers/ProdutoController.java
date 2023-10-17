@@ -1,6 +1,7 @@
 package com.ecoswap.ecoswap.controllers;
 
 
+import com.ecoswap.ecoswap.domain.InputClasses.ProdutoInput;
 import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.services.ProdutoService;
 import jakarta.validation.Valid;
@@ -49,8 +50,7 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarProduto(@PathVariable @Positive Long id, @Valid @RequestBody Produto produto) {
+    public ResponseEntity<String> atualizarProduto(@PathVariable @Positive Long id, @Valid @RequestBody ProdutoInput produto) {
         return produtoService.atualizarProduto(id, produto);
     }
-
 }

@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.controllers;
 
 
 import com.ecoswap.ecoswap.domain.Categoria;
+import com.ecoswap.ecoswap.domain.InputClasses.CategoriaInput;
 import com.ecoswap.ecoswap.services.CategoriaService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -44,7 +45,7 @@ public class CategoriaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarCategoria(@PathVariable @Positive Long id, @Valid @RequestBody Categoria categoria) {
+    public ResponseEntity<String> atualizarCategoria(@PathVariable @Positive Long id, @Valid @RequestBody CategoriaInput categoria) {
         return categoriaService.atualizarCategoria(id, categoria);
     }
 }
