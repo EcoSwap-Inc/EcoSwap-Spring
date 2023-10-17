@@ -1,12 +1,14 @@
 package com.ecoswap.ecoswap.config;
 
 import com.ecoswap.ecoswap.domain.*;
+import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.ecoswap.ecoswap.repository.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,6 +16,7 @@ import java.util.Arrays;
 // CLASSE DE TESTE PARA O H2
 @Configuration
 @Transactional
+// H2 SERVER @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
     @Autowired

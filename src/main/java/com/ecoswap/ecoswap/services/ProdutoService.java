@@ -6,6 +6,7 @@ import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.CategoriaRepository;
 import com.ecoswap.ecoswap.repository.ProdutoRepository;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;

@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain;
 
+import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;

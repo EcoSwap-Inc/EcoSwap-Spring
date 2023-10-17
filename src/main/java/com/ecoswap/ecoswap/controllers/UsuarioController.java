@@ -1,7 +1,7 @@
 package com.ecoswap.ecoswap.controllers;
 
 import com.ecoswap.ecoswap.domain.InputClasses.UsuarioInput;
-import com.ecoswap.ecoswap.domain.Usuario;
+import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.ecoswap.ecoswap.services.UsuarioService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
