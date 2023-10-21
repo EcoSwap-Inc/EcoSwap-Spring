@@ -86,14 +86,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(Exception.class)
-    protected ResponseEntity<Object> handleUnhandledException(Exception ex) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("status", 500);
-        body.put("data", LocalDateTime.now());
-        body.put("mensagem", ex.getClass().getName() + ex.getMessage() + ex.getCause());
-
-        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    protected ResponseEntity<Object> handleUnhandledException(Exception ex) {
+//        Map<String, Object> body = new LinkedHashMap<>();
+//        body.put("status", 500);
+//        body.put("data", LocalDateTime.now());
+//        body.put("mensagem", ex.getClass().getName() + ex.getMessage() + ex.getCause());
+//
+//        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
 }
