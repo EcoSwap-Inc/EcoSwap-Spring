@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/troca")
+@RequestMapping(path = "/api/troca")
 public class TrocaController {
 
 

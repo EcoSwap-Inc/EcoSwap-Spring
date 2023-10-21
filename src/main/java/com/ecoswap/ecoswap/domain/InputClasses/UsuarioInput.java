@@ -1,7 +1,7 @@
 package com.ecoswap.ecoswap.domain.InputClasses;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import org.springframework.validation.annotation.Validated;
@@ -46,7 +46,7 @@ public class UsuarioInput implements Serializable {
     @Size(max = 150)
     private String rua;
 
-    @Positive
+    @PositiveOrZero
     private int numero_rua;
 
     @Size(max = 100)

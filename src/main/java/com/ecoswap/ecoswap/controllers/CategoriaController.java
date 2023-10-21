@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/categoria")
+@RequestMapping(path = "/api/categoria")
 public class CategoriaController {
 
 

@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/usuario")
+@RequestMapping(path = "/api/usuario")
 public class UsuarioController {
 
     @Autowired

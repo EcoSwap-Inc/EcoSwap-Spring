@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/proposta")
+@RequestMapping(path = "/api/proposta")
 public class PropostaController {
 
     @Autowired
