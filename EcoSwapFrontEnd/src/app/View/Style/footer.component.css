@@ -1,0 +1,30 @@
+footer{
+    background-color: #4F7942;
+    position:fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    display:flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+footer span{
+    margin-top: 1.5%;
+}
+
+/* Mobile viewport */
+@media(max-width: 400px){
+    footer{
+        height: 11vh;
+    }
+
+    footer span{
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top:5%;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    
+}
