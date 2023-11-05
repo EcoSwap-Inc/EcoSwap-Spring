@@ -1,0 +1,26 @@
+.products-container{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.item{
+    margin-right: 3.5%;
+    margin-bottom: 2.5%;
+}
+
+.header-section{
+    margin-bottom: 2%;
+    cursor:default;
+}
+
+h2{
+    margin-bottom: 0.5%;
+    color: #24501F;
+    cursor:default;
+}
+
+.container-sec{
+    margin-top: 2.5%;
+    margin-left: 2%;
+    width: 97vw;
+}

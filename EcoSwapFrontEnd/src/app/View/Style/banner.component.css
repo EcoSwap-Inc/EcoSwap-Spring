@@ -45,6 +45,7 @@ input::placeholder{
     height: 35px;
     text-align: center;
     color: #24501F;
+    cursor: pointer;
 }
 
 .search-icon i{

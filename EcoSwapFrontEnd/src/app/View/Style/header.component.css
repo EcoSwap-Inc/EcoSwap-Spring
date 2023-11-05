@@ -4,4 +4,33 @@ header{
     
 }
 
+.navigation-pfp{
+    background-color: #4F7942;
+    width: 10vw;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    margin-left: 90%;
+    display: block;
+    position: absolute;
+}
 
+.navigation-pfp i{
+    margin-left: 15%;
+    margin-right: 5%;
+
+}
+
+.navigation-pfp li{
+    padding-bottom: 10px;
+    list-style: none;
+    cursor: pointer;
+}
+
+/* Mobile viewport */
+@media(max-width: 400px){
+    .navigation-pfp{
+        display: none;
+    }
+}

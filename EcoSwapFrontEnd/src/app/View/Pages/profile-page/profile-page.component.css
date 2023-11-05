@@ -1,0 +1,153 @@
+section{
+    height: 30vw;
+    cursor: default;
+}
+
+ul{
+    list-style: none;
+}
+
+.pfp-page img{
+    height: 15rem;
+    min-height: 5rem;
+}
+
+.side-by-side{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    margin-left: 15%;
+
+}
+
+.contacts{
+    margin-left: 5%;
+    margin-top: -0.1%;
+   
+}
+
+.user-info{
+    width:250%;
+    font-size: 105%;
+}
+
+.user-info h2{
+    margin-bottom: 2%;
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    width: 250%;
+}
+
+.contacts i{
+    margin-right: 3%;
+   
+}
+
+.shortcut-aside i{
+    margin-left: 3%;
+    font-size: 115%;
+    cursor: pointer;
+}
+
+.shortcut-aside i:hover{
+    color:#24501F;
+    transition: all0.5s ease;
+}
+
+.shortcut-aside{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.shortcuts{
+    margin-left: 10%;
+    border: 2px solid #000000;
+    border-radius: 16px;
+    padding: 14px 16px;
+}
+
+.mobile-only{
+    display:none;
+}
+
+#swap-log, #inventory{
+    width: 35%;
+}
+
+.btn{
+    background-image: linear-gradient(to right, #1B6D5F, #4F9847);
+    color: #FFFFFF;
+    border-radius: 32px;
+    border: none;
+    font-weight: bold;
+    padding: 14px 16px;
+    margin-bottom: 6%;
+    font-size: 98%;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transition: ease-in 1s;
+    box-shadow: 15px 15px 25px #1d1f1d15;
+    height: 3rem;
+}
+
+
+
+/* Mobile viewport */
+@media(max-width: 400px){
+    .mobile-only{
+        display:block;
+    }
+
+    .side-by-side{
+        flex-direction: column;
+        margin-left: 5%;  
+        margin-right: 5%;
+    }
+
+    .pfp-page img{
+        height: 10rem;
+        min-height: 5rem;
+    }
+
+    .btns{
+        margin-top: 10%;
+        margin-left: 3%;
+        
+    }
+
+    .contacts{
+        margin-top: 5%;
+    }
+
+    section{
+        margin-top: 10%;
+        margin-left: -5%;
+        margin-right: 10%;
+        height: 100vh;
+    }
+
+    .shortcut-aside{
+        margin-top: 8%;
+        flex-direction: column;
+        margin-bottom: 8%;
+    }
+
+    .btn{
+        margin-bottom: 1.2%;
+        width: 45%;
+    }
+
+    #swap-log, #inventory{
+        width: 95%;
+    }
+    .shortcuts{
+        margin-top: 5%;
+    }
+}

@@ -35,7 +35,11 @@ nav{
 .pfnav img{
     height: 3rem;
     min-height: 3rem;
-    
+    cursor:pointer;
+}
+
+.notif-icon{
+    cursor:pointer;
 }
 
 .profilelist{
@@ -55,10 +59,13 @@ nav{
     display: none;
 }
 
+
+
 /* Mobile viewport */
 @media(max-width: 400px){
     nav{
         padding-left: 5px;
+       
     }
     .only-mobile{
         display: block;

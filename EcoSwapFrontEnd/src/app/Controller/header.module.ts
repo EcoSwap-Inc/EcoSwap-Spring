@@ -4,7 +4,7 @@ import { BannerComponent } from './banner.component';
 import { HeaderComponent } from './header.component';
 import { NavbarComponent } from './navbar.component';
 
-
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { NavbarComponent } from './navbar.component';
     NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent
