@@ -1,21 +1,23 @@
 <nav>
     <ul class="navbarlist">
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Mídia</a></li>
-        <li><a href="#">Colecionáveis</a></li>
-        <li><a href="#">Jardinagem</a></li>
-        <li><a href="#">Informática</a></li>
+        <li><a [routerLink] = "['/home']">Início</a></li>
+        <li><a [routerLink] = "['/category', 'midia']">Mídia</a></li>
+        <li><a [routerLink] = "['/category', 'colecionaveis']">Colecionáveis</a></li>
+        <li><a [routerLink] = "['/category', 'jardinagem']">Jardinagem</a></li>
+        <li><a [routerLink] = "['/category', 'informatica']">Informática</a></li>
         <div class="only-mobile">
-            <li><a href="#">Meu perfil</a></li>
+            <li><a [routerLink]= "['/profile']">Meu perfil</a></li>
+            <li><a href="#">Notificações</a></li>
         </div>
     </ul>
     
     <ul class="profilelist">
             <li class="notif-icon"><i class="fa-solid fa-bell"></i></li>
-            <div>
-                <li class="pfnav"><img src="../../../assets/profile-pic.png"></li>
-            </div>
+            <li class="pfnav"><img src="../../../assets/profile-pic.png"></li>
+            
             
     </ul>
+
+    
        
 </nav>

@@ -1,0 +1,66 @@
+.divider{
+    background-color: #B8B7B77E;
+    height: 0.1rem;
+    width: 95%;
+    
+}
+
+.container-sec{
+    margin-top: 2.5%;
+    margin-left: 4%;
+    overflow-y: visible;
+}
+
+.header-section{
+    margin-bottom: 2%;
+    cursor:default;
+}
+
+.header-section h2{
+    margin-bottom: 0.5%;
+}
+
+h2{
+    color: #24501F;
+    cursor:default;
+}
+
+.popular h2{
+    margin-top: 2%;
+}
+
+.carousel-container{
+    display: flex;
+}
+
+.carousel-item{
+    margin-right: 3.5%;
+    margin-bottom: 2.5%;
+}
+
+/* Mobile viewport */
+@media(max-width: 400px){
+    .container-sec{
+        margin-left:5%;
+        margin-top: 5%
+    }
+
+    .header-section span{
+        font-size: 85%;
+
+    }
+
+    h2{
+        font-size: 125%;
+    }
+
+    .popular h2{
+        margin-top: 5%;
+    }
+
+    .carousel-item{
+        margin-right: 15%;
+        margin-bottom: 8%;
+    }
+
+}
