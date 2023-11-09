@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['../View/Style/header.component.css']
 })
 export class HeaderComponent {
+    menuAberto: boolean = false;
 
+    changeMenuPfpMenuState (state: boolean) {
+      this.menuAberto = state;
+    }
 }

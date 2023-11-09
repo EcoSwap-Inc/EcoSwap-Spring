@@ -1,12 +1,11 @@
-<script src="../Behavior/navscript.js"></script>
 <header>
     <app-banner></app-banner>
     
-    <app-navbar></app-navbar>
+    <app-navbar (novoPfpMenuEstadoEvent)="changeMenuPfpMenuState($event)"></app-navbar>
     
 </header>
 
-<div class="navigation-pfp" id="navPfp">
+<div class="navigation-pfp" id="navPfp" *ngIf="menuAberto" >
     <ul >
         <li [routerLink]= "['/profile']"><i class="fa-solid fa-user"></i>Meu perfil</li>
         <li><i class="fa-solid fa-door-open"></i>Sair</li>

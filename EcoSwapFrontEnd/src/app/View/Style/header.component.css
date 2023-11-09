@@ -30,9 +30,6 @@ header{
     cursor: pointer;
 }
 
-#navPfp{
-    display: none;
-}
 
 /* Mobile viewport */
 @media(max-width: 400px){
