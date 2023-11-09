@@ -21,10 +21,12 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Usuario usuario, Categoria categoria, String nome) {
+    public Produto(Usuario usuario, Categoria categoria, String nome, String descricao, byte[] imagem) {
         this.usuario = usuario;
         this.categoria = categoria;
         this.nome = nome;
+        this.imagem = imagem;
+        this.descricao = descricao;
     }
 
     @Id
@@ -56,6 +58,18 @@ public class Produto implements Serializable {
     @Setter
     @Column(length = 150, nullable = false)
     private String nome;
+
+    // Validação
+    @Size(max = 500)
+    // JPA
+    @Setter
+    @Column(length = 500, nullable = false)
+    private String descricao;
+
+    @Lob
+    @Setter
+    @Column (name = "imagem")
+    private byte[] imagem;
 
     @Override
     public boolean equals(Object o) {

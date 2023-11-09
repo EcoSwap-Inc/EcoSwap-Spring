@@ -55,7 +55,7 @@ public class ProdutoService {
     }
 
     public ResponseEntity<String> atualizarProduto(Long id, ProdutoInput produto) {
-        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null)
+        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null && produto.getImagem() == null && produto.getDescricao() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Produto' foi informado\"}");
 
         Produto produtoExistente = produtoRepository.findById(id)
@@ -65,13 +65,16 @@ public class ProdutoService {
             Long cat_id = produto.getCategoria_id();
             produtoExistente.setCategoria(categoriaRepository.findById(cat_id).orElseThrow(() -> new NoSuchElementFoundException("Categoria não encontrada com o ID: " + cat_id)));
         }
-        if (produto.getNome() != null) {
-            produtoExistente.setNome(produto.getNome());
-        }
         if (produto.getUsuario_id() != null) {
             Long user_id = produto.getUsuario_id();
             produtoExistente.setUsuario(usuarioRepository.findById(user_id).orElseThrow(() -> new NoSuchElementFoundException("Usuário não encontrado com o ID: " + user_id)));
         }
+        if (produto.getNome() != null)
+            produtoExistente.setNome(produto.getNome());
+        if (produto.getImagem() != null)
+            produtoExistente.setImagem(produto.getImagem());
+        if (produto.getDescricao() != null)
+            produtoExistente.setDescricao(produto.getDescricao());
 
         produtoRepository.save(produtoExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + id + " atualizado com sucesso\"}");

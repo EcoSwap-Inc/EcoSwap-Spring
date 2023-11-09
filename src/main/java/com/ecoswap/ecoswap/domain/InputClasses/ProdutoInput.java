@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain.InputClasses;
 
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -14,10 +15,12 @@ public class ProdutoInput implements Serializable {
     public ProdutoInput() {
     }
 
-    public ProdutoInput(Long usuario, Long categoria, String nome) {
+    public ProdutoInput(Long usuario, Long categoria, String nome, String descricao, byte[] imagem) {
         this.usuario_id = usuario;
         this.categoria_id = categoria;
         this.nome = nome;
+        this.imagem = imagem;
+        this.descricao = descricao;
     }
 
     @Positive
@@ -28,4 +31,10 @@ public class ProdutoInput implements Serializable {
 
     @Size(min = 5, max = 150)
     private String nome;
+
+    @Size(max=500)
+    private String descricao;
+
+    @Lob
+    private byte[] imagem;
 }

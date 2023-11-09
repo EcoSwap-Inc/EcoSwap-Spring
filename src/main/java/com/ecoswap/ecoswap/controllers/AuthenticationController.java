@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -49,7 +51,7 @@ public class AuthenticationController {
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
 
         Usuario newUser = new Usuario(data.email(), encryptedPassword, data.nome(), data.cidade(),
-                data.uf(), data.cep(), data.rua(), 1, null);
+                data.uf(), data.cep(), data.rua(), 1, null, null, 1, LocalDate.parse("1990-01-01"));
 
         this.usuarioRepository.save(newUser);
 

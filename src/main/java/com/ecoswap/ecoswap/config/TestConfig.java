@@ -8,8 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -38,12 +38,12 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa");
-        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho");
-        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho");
-        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho");
-        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho");
-        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho");
+        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
         usuarioRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
 
         Categoria cat1 = new Categoria("Livros");
@@ -55,13 +55,13 @@ public class TestConfig implements CommandLineRunner {
         Categoria cat7 = new Categoria("Eletronicos");
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 
-        Produto p1 = new Produto(u1, cat1, "Senhor dos aneis");
-        Produto p2 = new Produto(u2, cat3, "Mac Air m1");
-        Produto p3 = new Produto(u3, cat2, "Galaxy s22");
-        Produto p4 = new Produto(u5, cat7, "Nintendo 3ds");
-        Produto p5 = new Produto(u1, cat6, "AirMax");
-        Produto p6 = new Produto(u4, cat5, "Moletom");
-        Produto p7 = new Produto(u6, cat4, "Onix 2022");
+        Produto p1 = new Produto(u1, cat1, "Senhor dos aneis", "", null);
+        Produto p2 = new Produto(u2, cat3, "Mac Air m1", "", null);
+        Produto p3 = new Produto(u3, cat2, "Galaxy s22", "", null);
+        Produto p4 = new Produto(u5, cat7, "Nintendo 3ds", "", null);
+        Produto p5 = new Produto(u1, cat6, "AirMax", "", null);
+        Produto p6 = new Produto(u4, cat5, "Moletom", "", null);
+        Produto p7 = new Produto(u6, cat4, "Onix 2022", "", null);
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 
         Troca tr1 = new Troca(u1, p1, false, LocalDateTime.now(), LocalDateTime.now(), null);

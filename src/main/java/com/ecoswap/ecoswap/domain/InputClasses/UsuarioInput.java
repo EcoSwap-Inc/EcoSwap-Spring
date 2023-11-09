@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain.InputClasses;
 
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Validated
 @Getter
@@ -15,7 +17,7 @@ public class UsuarioInput implements Serializable {
     public UsuarioInput() {
     }
 
-    public UsuarioInput(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento) {
+    public UsuarioInput(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, int telefone, LocalDate dataNasc) {
         this.email = email;
         this.senha = senha;
         this.nome = nome;
@@ -25,6 +27,9 @@ public class UsuarioInput implements Serializable {
         this.rua = rua;
         this.numero_rua = numero_rua;
         this.complemento = complemento;
+        this.imagem = imagem;
+        this.telefone = telefone;
+        this.dataNasc = dataNasc;
     }
 
     @Email()
@@ -51,6 +56,13 @@ public class UsuarioInput implements Serializable {
 
     @Size(max = 100)
     private String complemento;
+
+    @Lob
+    private byte[] imagem;
+
+    private LocalDate dataNasc;
+
+    private int telefone;
 
     private int cep;
 }

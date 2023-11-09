@@ -47,7 +47,7 @@ public class UsuarioService {
     }
 
     public ResponseEntity<String> atualizarUsuario(Long id, UsuarioInput usuario) {
-        if (usuario.getCidade() == null && usuario.getNome() == null && usuario.getEmail() == null && usuario.getComplemento() == null && usuario.getCep() == 0 && usuario.getNumero_rua() == 0 && usuario.getRua() == null && usuario.getSenha() == null && usuario.getUF() == null)
+        if (usuario.getCidade() == null && usuario.getNome() == null && usuario.getEmail() == null && usuario.getComplemento() == null && usuario.getCep() == 0 && usuario.getNumero_rua() == 0 && usuario.getRua() == null && usuario.getSenha() == null && usuario.getUF() == null && usuario.getImagem() == null && usuario.getTelefone() == 0 && usuario.getDataNasc() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Usuário' foi informado\"}");
 
         Usuario usuarioExistente = usuarioRepository.findById(id)
@@ -71,6 +71,12 @@ public class UsuarioService {
             usuarioExistente.setRua(usuario.getRua());
         if (usuario.getComplemento() != null)
             usuarioExistente.setComplemento(usuario.getComplemento());
+        if (usuario.getImagem() != null)
+            usuarioExistente.setImagem(usuario.getImagem());
+        if (usuario.getDataNasc() != null)
+            usuarioExistente.setDataNasc(usuario.getDataNasc());
+        if (usuario.getTelefone() != 0)
+            usuarioExistente.setTelefone(usuario.getTelefone());
 
         usuarioRepository.save(usuarioExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + id + " atualizado com sucesso\"}");

@@ -12,16 +12,15 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDate;
+import java.util.*;
 
 @Validated
 @Getter
@@ -32,7 +31,7 @@ public class Usuario implements UserDetails, Serializable {
     public Usuario() {
     }
 
-    public Usuario(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento) {
+    public Usuario(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, int telefone, LocalDate dataNasc) {
         this.email = email;
         this.senha = senha;
         this.nome = nome;
@@ -42,6 +41,9 @@ public class Usuario implements UserDetails, Serializable {
         this.rua = rua;
         this.numero_rua = numero_rua;
         this.complemento = complemento;
+        this.imagem = imagem;
+        this.telefone = telefone;
+        this.dataNasc = dataNasc;
     }
 
     @Id
@@ -116,6 +118,26 @@ public class Usuario implements UserDetails, Serializable {
     @Setter
     @Column(nullable = false)
     private int cep;
+
+    // Validação
+    @NotNull
+    // JPA
+    @Setter
+    @Column()
+    private int telefone;
+
+    // Validação
+    @NotNull
+    // JPA
+    @Setter
+    @Column(nullable = false)
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private LocalDate dataNasc;
+
+    @Lob
+    @Setter
+    @Column (name = "imagem")
+    private byte[] imagem;
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
