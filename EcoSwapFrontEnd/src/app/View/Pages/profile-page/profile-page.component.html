@@ -14,7 +14,7 @@
                 </ul>
             </div>
             <div class="btns">
-                <button class= "btn" id = "edit-info">Editar informações</button>
+                <button [routerLink]="['/editinfo']" class= "btn" id = "edit-info">Editar informações</button>
                 <button class="btn mobile-only">Sair</button>
             </div>
         </aside>
@@ -22,11 +22,11 @@
 
     <aside class="shortcut-aside">
         <div class="shortcuts" id="inventory">
-            <h3>Inventário <b>()</b><i class="fa-solid fa-circle-arrow-right"></i></h3>
+            <h3 [routerLink] = "['/inventory']">Inventário <b>()</b><i class="fa-solid fa-circle-arrow-right"></i></h3>
             <span>Veja todos os itens que você cadastrou para trocas</span>
         </div>
         <div class="shortcuts" id="swap-log">
-            <h3>Histórico de trocas<i class="fa-solid fa-circle-arrow-right"></i></h3>
+            <h3 [routerLink]="['/history']">Histórico de trocas<i class="fa-solid fa-circle-arrow-right"></i></h3>
             <span>Veja informações sobre trocas antigas</span>
         </div>
     </aside>

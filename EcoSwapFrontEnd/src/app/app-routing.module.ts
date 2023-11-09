@@ -17,7 +17,7 @@ const routes: Routes = [{
       import('./View/Pages/sign-up/sign-up.module').then((m) => m.SignUpModule),
   },
   {
-    path: 'home',
+    path: 'main',
     loadChildren: () =>
       import('./View/Pages/main-catalogue/main-catalogue.module').then((m) => m.MainCatalogueModule),
   },
@@ -36,9 +36,20 @@ const routes: Routes = [{
     loadChildren: () =>
       import('./View/Pages/edit-product/edit-product.module').then((m) => m.EditProductModule),
   },
+  {
+    path: 'newproduct',
+    loadChildren: () =>
+      import('./View/Pages/new-product/new-product.module').then((m) => m.NewProductModule),
+  },
   //Midia - categoria
   {
     path: 'category/:midia',
+    loadChildren: () =>
+      import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
+  },
+  //Midia - Livros e HQ's
+  {
+    path: 'category/:livrosehqs',
     loadChildren: () =>
       import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
   },
@@ -64,6 +75,11 @@ const routes: Routes = [{
   path: 'editinfo',
     loadChildren: () =>
       import('./View/Pages/edit-info/edit-info.module').then((m) => m.EditInfoModule),
+  },
+  {
+    path: 'history',
+      loadChildren: () =>
+        import('./View/Pages/swap-log/swap-log.module').then((m) => m.SwapLogModule),
   }
 ];
 

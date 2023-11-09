@@ -1,14 +1,22 @@
 <section>
-    <div>
-        <img src="../../../../assets/logo_header.png" alt="logo">
+    <div class="login-div">
+        <img src="../../../../assets/logo_header.png" alt="logo" >
     </div>
 </section>
-<section>
-    <span>Bem vindo ao EcoSwap</span>
-</section>
+
+    
 
 <section class="form">
+    <span>Bem vindo ao EcoSwap, seu sistema de trocas 100% brasileiro e sustentável!</span>
+
     <form>
         <label>E-mail</label>
+        <input type="text" id="userEmail" placeholder="E-mail de acesso">
+        <label>Senha</label>
+        <input type="password" id="userPassword" placeholder="Senha de acesso">
+        <a id="placeholderRecover">Esqueceu sua senha?</a>
     </form>
+    <button  id="loginButton" class="btn" [routerLink]="['/main']">Entrar</button>
+    <a [routerLink]="['/signup']" id="signup">Cadastre-se</a>
+   
 </section>

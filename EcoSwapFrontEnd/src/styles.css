@@ -10,4 +10,17 @@ body{
     font-family: 'Poppins', 'Helvetica', 'Sans-serif';
     overflow-x: hidden;
     background-color: #F5F5F5;
+
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
