@@ -53,7 +53,7 @@ ul{
     cursor: pointer;
 }
 
-.shortcut-aside i:hover{
+.shortcut-aside i:hover, h3:hover{
     color:#24501F;
     transition: all0.5s ease;
 }
@@ -95,6 +95,10 @@ ul{
     transition: ease-in 1s;
     box-shadow: 15px 15px 25px #1d1f1d15;
     height: 3rem;
+}
+
+h3{
+    cursor: pointer;
 }
 
 

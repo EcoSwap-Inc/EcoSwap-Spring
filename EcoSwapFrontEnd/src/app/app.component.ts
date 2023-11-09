@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EcoSwapFrontEnd';
+
+  showHeader: boolean = true;
+  showFooter: boolean = true;
+
+  constructor(private router:Router){
+    router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd){
+          const curRoute = event.url;
+          if(curRoute == '/login' || curRoute == '/signup'){
+            this.showHeader = false;
+            this.showFooter = false;
+          }
+          else{
+            this.showFooter = true;
+            this.showHeader = true;
+          }
+      }
+    })
+  }
 }

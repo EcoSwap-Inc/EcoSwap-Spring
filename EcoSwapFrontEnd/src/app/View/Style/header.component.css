@@ -16,6 +16,8 @@ header{
     position: absolute;
 }
 
+
+
 .navigation-pfp i{
     margin-left: 15%;
     margin-right: 5%;
@@ -28,9 +30,13 @@ header{
     cursor: pointer;
 }
 
+#navPfp{
+    display: none;
+}
+
 /* Mobile viewport */
 @media(max-width: 400px){
-    .navigation-pfp{
+    #navPfp{
         display: none;
     }
 }

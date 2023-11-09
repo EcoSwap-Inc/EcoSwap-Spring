@@ -1,9 +1,11 @@
+<script src="../Behavior/navscript.js"></script>
 <nav>
     <ul class="navbarlist">
-        <li><a [routerLink] = "['/home']">Início</a></li>
+        <li><a [routerLink] = "['/main']">Início</a></li>
         <li><a [routerLink] = "['/category', 'midia']">Mídia</a></li>
         <li><a [routerLink] = "['/category', 'colecionaveis']">Colecionáveis</a></li>
         <li><a [routerLink] = "['/category', 'jardinagem']">Jardinagem</a></li>
+        <li><a [routerLink] = "['/category', 'livrosehqs']">Livros e HQ's</a></li>
         <li><a [routerLink] = "['/category', 'informatica']">Informática</a></li>
         <div class="only-mobile">
             <li><a [routerLink]= "['/profile']">Meu perfil</a></li>
@@ -13,7 +15,7 @@
     
     <ul class="profilelist">
             <li class="notif-icon"><i class="fa-solid fa-bell"></i></li>
-            <li class="pfnav"><img src="../../../assets/profile-pic.png"></li>
+            <li class="pfnav" id="pf"><img src="../../../assets/profile-pic.png"></li>
             
             
     </ul>

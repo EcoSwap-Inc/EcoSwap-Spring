@@ -31,12 +31,22 @@ h2{
 
 .carousel-container{
     display: flex;
+    overflow-y: hidden;
+    overflow-x:visible;
+    margin-bottom: 2%;
 }
 
 .carousel-item{
     margin-right: 3.5%;
     margin-bottom: 2.5%;
 }
+
+.carousel-container {
+    scrollbar-width: thin; /* Set the scrollbar width */
+    scrollbar-color: #24501F #f0f0f0 ; /* Set the track and thumb colors */
+    scroll-behavior: smooth;
+    width: 98%;
+  }
 
 /* Mobile viewport */
 @media(max-width: 400px){
