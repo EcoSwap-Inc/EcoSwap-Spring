@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NewProductRoutingModule } from './new-product-routing.module';
 import { NewProductComponent } from './new-product.component';
 
+
 @NgModule({
   declarations: [NewProductComponent],
   imports: [
