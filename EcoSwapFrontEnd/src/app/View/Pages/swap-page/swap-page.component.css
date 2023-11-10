@@ -1,0 +1,81 @@
+.body{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    height: 25rem;
+    width: 25rem;
+    border-radius: 32px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+
+#yourProd{
+    display: flex;
+    flex-direction: column;
+    margin-right: 5%;
+}
+
+.align-btn{
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 4%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    background-image: linear-gradient(to right, #1B6D5F, #4F9847);
+    color: #FFFFFF;
+    border-radius: 32px;
+    border: none;
+    font-weight: bold;
+    padding: 14px 16px;
+    width: 35%;
+    font-size: 98%;
+    cursor: pointer;
+    
+}
+
+.btn:hover{
+    transition: ease-in 0.5s;
+    box-shadow: 15px 15px 25px #1d1f1d1f;
+    
+}
+
+select{
+    color: #1c6d13;
+    padding: 14px 16px;
+    margin-top: 5%;
+    width: 100%;
+    margin-bottom: 1.5%;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+i{
+    margin-right: 2%;
+}
+
+h2{
+    text-align: center;
+}
+
+span{
+    color:#24501F;
+} 
+
+h3{
+    color:#24501F;
+    font-size: 135%;
+    margin-bottom: 2%;
+}
