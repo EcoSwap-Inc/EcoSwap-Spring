@@ -108,7 +108,7 @@ select{
 .btn:hover{
     transition: ease-in 1s;
     box-shadow: 15px 15px 25px #1d1f1d15;
-    height: 3rem;
+    
 }
 .form{
     position: absolute;
@@ -118,3 +118,4 @@ select{
 .form-step2, .form-step3{
     visibility: hidden;
 }
+

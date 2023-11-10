@@ -77,6 +77,16 @@ const routes: Routes = [{
       import('./View/Pages/edit-info/edit-info.module').then((m) => m.EditInfoModule),
   },
   {
+    path: 'swap',
+      loadChildren: () =>
+        import('./View/Pages/swap-page/swap-page.module').then((m) => m.SwapPageModule),
+  },
+  {
+    path: 'info',
+      loadChildren: () =>
+        import('./View/Pages/product-info/product-info.module').then((m) => m.ProductInfoModule),
+  },
+  {
     path: 'history',
       loadChildren: () =>
         import('./View/Pages/swap-log/swap-log.module').then((m) => m.SwapLogModule),

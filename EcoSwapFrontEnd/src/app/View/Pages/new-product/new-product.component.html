@@ -1,19 +1,51 @@
-<section>
-    <h2>Cadastro de produtos</h2>
-    
-</section>
+<script src="../../Behavior/fileupload.js"></script>
 
-<section class="form-edit">
-    <form>
-        <label>Qual é o nome do seu produto?</label>
-        <input type="text" id="productName" placeholder="Nome do produto">
-        <label>Dê uma descrição para o seu produto</label>
-        <input type="text" id="productDesc" placeholder="Descrição do produto">
-        <select id="productCat">
-            <option value="midia">Mídia</option>
-            <option value="colecionaveis">Colecionáveis</option>
-            <option value="jardinagem">Jardinagem</option>
-            <option value="informática">Mídia</option>
-        </select>
-    </form>
+<section class="body">
+
+    <section>
+        <h2>Cadastro de produtos</h2>
+        
+    </section>
+
+    <section class=" form form-new">
+        <span>Cadastre um novo produto para trocar no catálogo EcoSwap!</span>
+        <form>
+            <label>Qual é o nome do seu produto?</label>
+            <input type="text" id="productName" placeholder="Nome do produto">
+            <label>Dê uma descrição para o seu produto</label>
+            <input  type="text" id="productDesc" placeholder="Descrição do produto">
+            <label>Em qual categoria seu produto se encaixa?</label>
+            <select id="productCat">
+                <option value="midia">Mídia</option>
+                <option value="colecionaveis">Colecionáveis</option>
+                <option value="jardinagem">Jardinagem</option>
+                <option value="informática">Mídia</option>
+            </select>
+            <label> Que tal mostrar uma foto do produto?</label>
+            <div class="side">
+                <div class="img-input">
+                    <label for="img1">
+                        <i class="fa-solid fa-camera"></i>
+                    <input type="file" name="imagem" accept="image/*" id="img1" class=img>
+                    </label>
+                </div>
+                <div class="img-input">
+                    <label for="img2">
+                        <i class="fa-solid fa-camera"></i>
+                    <input type="file" name="imagem" accept="image/*" id="img2" class=img>
+                    </label>
+                </div>
+                
+                <div class="img-input">
+                    <label for="img3">
+                        <i class="fa-solid fa-camera"></i>
+                    <input type="file" name="imagem" accept="image/*" id="img3" class=img>
+                    </label>
+                </div>
+            </div>
+            
+        </form>
+        <button class="btn">Concluir</button>
+        
+    </section>
 </section>
