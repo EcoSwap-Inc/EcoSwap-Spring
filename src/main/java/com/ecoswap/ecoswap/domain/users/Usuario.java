@@ -4,6 +4,7 @@ import com.ecoswap.ecoswap.domain.Avaliacao;
 import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Proposta;
 import com.ecoswap.ecoswap.domain.Troca;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -12,7 +13,6 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +31,7 @@ public class Usuario implements UserDetails, Serializable {
     public Usuario() {
     }
 
-    public Usuario(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, int telefone, LocalDate dataNasc) {
+    public Usuario(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, String telefone, LocalDate dataNasc) {
         this.email = email;
         this.senha = senha;
         this.nome = nome;
@@ -84,10 +84,9 @@ public class Usuario implements UserDetails, Serializable {
 
     // Validação
     @NotNull
-    @Size(min = 2, max = 2)
     // JPA
     @Setter
-    @Column(length = 2, nullable = false)
+    @Column(nullable = false)
     private String UF;
 
     // Validação
@@ -124,14 +123,14 @@ public class Usuario implements UserDetails, Serializable {
     // JPA
     @Setter
     @Column()
-    private int telefone;
+    private String telefone;
 
     // Validação
     @NotNull
     // JPA
     @Setter
     @Column(nullable = false)
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dataNasc;
 
     @Lob

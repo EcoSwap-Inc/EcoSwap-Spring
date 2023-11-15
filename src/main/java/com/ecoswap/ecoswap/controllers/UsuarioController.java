@@ -24,8 +24,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping("/")
-    public ResponseEntity<String> salvarUsuario(@Valid @RequestBody Usuario Usuario) {
-        return usuarioService.salvarUsuario(Usuario);
+    public ResponseEntity<String> salvarUsuario(@Valid @RequestBody UsuarioInput usuario) {
+        return usuarioService.salvarUsuario(usuario);
     }
 
     @GetMapping("/")
