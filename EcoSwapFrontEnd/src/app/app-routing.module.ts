@@ -51,37 +51,8 @@ const routes: Routes = [{
       import('./View/Pages/new-product/new-product.module').then((m) => m.NewProductModule),
       canActivate: [AuthGuard],
   },
-  //Midia - categoria
   {
-    path: 'category/:midia',
-    loadChildren: () =>
-      import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
-    canActivate: [AuthGuard],
-  },
-  //Midia - Livros e HQ's
-  {
-    path: 'category/:livrosehqs',
-    loadChildren: () =>
-      import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
-    canActivate: [AuthGuard],
-  },
-  //Colecionaveis- categoria
-  {
-    path: 'category/:colecionaveis',
-    loadChildren: () =>
-      import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
-    canActivate: [AuthGuard],
-  },
-  //Jardinagem - categoria
-  {
-    path: 'category/:jardinagem',
-    loadChildren: () =>
-      import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
-    canActivate: [AuthGuard],
-  },
-  //Informática - categoria
-  {
-    path: 'category/:informatica',
+    path: 'category/:id',
     loadChildren: () =>
       import('./View/Pages/category-catalogue/category-catalogue.module').then((m) => m.CategoryCatalogueModule),
     canActivate: [AuthGuard],
@@ -99,7 +70,7 @@ const routes: Routes = [{
     canActivate: [AuthGuard],
   },
   {
-    path: 'info',
+    path: 'info/:id',
       loadChildren: () =>
         import('./View/Pages/product-info/product-info.module').then((m) => m.ProductInfoModule),
     canActivate: [AuthGuard],
