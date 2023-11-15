@@ -113,12 +113,12 @@ select{
 .form{
     position: absolute;
     width: 95%;
-}
 
-.form-step1, .form-step3{
-    visibility: hidden;
 }
 
 i{
     margin-right: 0.5%;
 }
+
+
+

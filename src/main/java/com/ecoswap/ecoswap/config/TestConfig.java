@@ -38,12 +38,12 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, 1, LocalDate.parse("2005-10-10"));
-        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
-        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
-        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
-        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
-        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, 1, LocalDate.parse("2005-10-10"));
+        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
         usuarioRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
 
         Categoria cat1 = new Categoria("Livros");

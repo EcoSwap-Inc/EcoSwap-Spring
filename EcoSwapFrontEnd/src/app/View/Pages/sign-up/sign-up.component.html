@@ -9,32 +9,33 @@
         <h2>Cadastre-se</h2>
     </section>
 
-    <section class="form form-step1">
+    <section class="form form-step1"  *ngIf="passo == 0">
         <span><b>Passo 1 -</b> Conte mais sobre você</span>
         <form>
-            <label>Qual será seu nome de usuário?</label>
-            <input type="text" id="userName" placeholder="E-mail de acesso">
+            <label>Qual será seu nome?</label>
+            <input type="text" [formControl]="nome" placeholder="Nome de usuário">
             <label>Qual é a sua data de nascimento?</label>
-            <input type="date" id="userBday" placeholder="Data de nascimento">
+            <input type="date" [formControl]="dataNasc" placeholder="Data de nascimento">
             <label>Qual é o seu e-mail?</label>
-            <input type="text" id="userEmail" placeholder="Senha de acesso">
+            <input type="text" [formControl]="email" placeholder="E-mail de acesso">
             <label>Qual é o seu telefone?</label>
-            <input type="text" id="userPhone" placeholder="Telefone para contato">
+            <input type="text" [formControl]="telefone" placeholder="Telefone para contato">
         </form>
-        <button class="btn">Próximo</button>
+        <button class="btn" (click)="proximoPasso()">Próximo</button>
         <div class="step-progress">
             <i class="fa-solid fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
         </div>
     </section>
-    <section class="form form-step2">
+    <section class="form form-step2" *ngIf="passo == 1">
         <span><b>Passo 2 - </b>Seu endereço para entregas</span>
         <form>
                 <label id="ceplabel">Qual é o seu CEP?</label>
-                <input type="text" id="userCEP" placeholder="CEP residencial">
+                <input type="number" [formControl]="cep" placeholder="CEP residencial">
+                
                 <label id="uflabel">Qual é a UF?</label>
-                <select type="date" id="userUF">
+                <select type="date" [formControl]="UF">
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
                     <option value="AP">AP</option>
@@ -62,33 +63,33 @@
                     <option value="TO">TO</option>
                 </select>
             <label>Qual é a cidade?</label>
-            <input type="text" id="userCity" placeholder="Cidade de residência">
+            <input type="text" [formControl]="cidade" placeholder="Cidade de residência">
             <label>Qual é o seu endereço?</label>
-            <input type="text" id="userAddress" placeholder="Informe sua rua/avenida/rodovia">
+            <input type="text" [formControl]="rua" placeholder="Informe sua rua/avenida/rodovia">
             <label>Qual é o número da residência?</label>
-            <input type="text" id="userAddressNum" placeholder="Informe o número residencial">
+            <input type="number" [formControl]="numero_rua" placeholder="Informe o número residencial">
             <label>Precisa adicionar um complemento?</label>
-            <input type="text" id="userExtraInfo" placeholder="Informe o complemento residencial">
+            <input type="text" [formControl]="complemento" placeholder="Informe o complemento residencial">
         </form>
-        <button class="btn">Próximo</button>
+        <button class="btn" (click)="proximoPasso()">Próximo</button>
         <div class="step-progress">
             <i class="fa-regular fa-circle"></i>
             <i class="fa-solid fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
         </div>
     </section>
-    <section class="form form-step3">
+    <section class="form form-step3" *ngIf="passo >= 2">
         <span><b>Passo 3 -</b> Defina sua senha</span>
         <p>Requisitos de senha</p>
 
         <form>
             <label>Qual será sua senha?</label>
-            <input type="text" id="userPassword" placeholder="Senha de acesso">
+            <input type="password" [formControl]="senha" placeholder="Senha de acesso">
             <label>Confirme sua senha</label>
-            <input type="text" id="userPasswordConfirm" placeholder="Insira a mesma senha">
+            <input type="password" [formControl]="senhaConfirmar" placeholder="Insira a mesma senha">
           
         </form>
-        <button class="btn">Concluir</button>
+        <button class="btn" (click)="proximoPasso()">Concluir</button>
         <div class="step-progress">
             <i class="fa-regular fa-circle"></i>
             <i class="fa-regular fa-circle"></i>
