@@ -46,8 +46,6 @@ public class AuthenticationController {
 
     @PostMapping("/registrar")
     public ResponseEntity registrar(@RequestBody UsuarioInput usuario) {
-
-
         Usuario novoUsuario = new Usuario();
 
         if (usuario.getCep() != 0)
@@ -56,7 +54,7 @@ public class AuthenticationController {
             novoUsuario.setEmail(usuario.getEmail());
         if (usuario.getSenha() != null) {
             String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.getSenha());
-            novoUsuario.setSenha(usuario.getEmail());
+            novoUsuario.setSenha(encryptedPassword);
         }
         if (usuario.getCidade() != null)
             novoUsuario.setCidade(usuario.getCidade());
