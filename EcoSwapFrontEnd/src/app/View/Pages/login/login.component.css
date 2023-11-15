@@ -2,11 +2,13 @@
     background-image: url(../../../../assets/eco-login.jpg);
     background-repeat: no-repeat;
     background-position-x: 15%;
+    background-size: cover;
     padding-bottom: 2%;
     padding-top: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 

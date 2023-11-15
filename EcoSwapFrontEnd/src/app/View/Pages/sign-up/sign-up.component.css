@@ -115,7 +115,10 @@ select{
     width: 95%;
 }
 
-.form-step2, .form-step3{
+.form-step1, .form-step3{
     visibility: hidden;
 }
 
+i{
+    margin-right: 0.5%;
+}

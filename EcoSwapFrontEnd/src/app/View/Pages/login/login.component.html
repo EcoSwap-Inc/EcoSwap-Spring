@@ -14,7 +14,7 @@
         <input type="text" id="userEmail" placeholder="E-mail de acesso">
         <label>Senha</label>
         <input type="password" id="userPassword" placeholder="Senha de acesso">
-        <a id="placeholderRecover">Esqueceu sua senha?</a>
+        <a id="placeholderRecover" (click)="showAlert()">Esqueceu sua senha?</a>
     </form>
     <button  id="loginButton" class="btn" [routerLink]="['/main']">Entrar</button>
     <a [routerLink]="['/signup']" id="signup">Cadastre-se</a>

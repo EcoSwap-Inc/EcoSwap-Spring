@@ -1,0 +1,43 @@
+.inventory-grid img{
+    height: 14rem;
+    width: 12rem;
+    border-radius: 16px;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.inventory-grid{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prod-details img{
+    height: 20rem;
+    width: 20rem;
+    border-radius: 16px;
+}
+
+.container-sec{
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-between;
+}
+
+.prod-details{
+    width: 90%;
+}
+
+.body{
+    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title-button{
+    display: flex;
+    justify-content: space-between;
+}

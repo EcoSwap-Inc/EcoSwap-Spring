@@ -1,21 +1,32 @@
-<section class="container-sec">
+<section class="body">
     <section class="header-section">
-        <h2>Seu inventário</h2>
-        <button [routerLink]="['/newproduct']">Cadastrar novo produto</button>
+        <div class="title-button">
+            <h2>Seu inventário</h2>
+            <button [routerLink]="['/newproduct']">Cadastrar novo produto</button>
+        </div>
         <span>Navegue por seus produtos disponíveis no EcoSwap.</span>
     </section>
-
-    <aside>
-        <div id="prod-img">
+    <section class="container-sec">
+        <aside class="inventory-grid">
             <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
-        </div>
-    </aside>
-    <aside>
-        <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
-        <h3>Produto<i class="fa-regular fa-pen-to-square"></i></h3>
-        <div class="category">Mídia</div>
-        <h3>Descrição:</h3>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-    </aside>
-
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+        </aside>
+        <aside class="prod-details">
+            <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+            <h3>Produto<i class="fa-regular fa-pen-to-square"></i></h3>
+            <div class="category">Mídia</div>
+            <h3>Descrição:</h3>
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </aside>
+    </section>
 </section>

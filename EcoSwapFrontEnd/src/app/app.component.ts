@@ -16,7 +16,7 @@ export class AppComponent {
     router.events.subscribe((event) => {
       if(event instanceof NavigationEnd){
           const curRoute = event.url;
-          if(curRoute == '/login' || curRoute == '/signup'){
+          if(curRoute === '/login' || curRoute === '/signup' || curRoute === '/'){
             this.showHeader = false;
             this.showFooter = false;
           }
@@ -27,4 +27,6 @@ export class AppComponent {
       }
     })
   }
+
+  
 }

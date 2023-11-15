@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  showAlert(){
+    window.alert("Entre em contato com o suporte");
+  }
 }
