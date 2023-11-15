@@ -114,8 +114,3 @@ select{
     position: absolute;
     width: 95%;
 }
-
-.form-step2, .form-step3{
-    visibility: hidden;
-}
-
