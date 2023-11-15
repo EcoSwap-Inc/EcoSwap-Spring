@@ -20,9 +20,36 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public ResponseEntity<String> salvarUsuario(Usuario usuario) {
-        usuarioRepository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + usuario.getId_usuario() + " inserido com sucesso\"}");
+    public ResponseEntity<String> salvarUsuario(UsuarioInput usuario) {
+        Usuario novoUsuario = new Usuario();
+
+        if (usuario.getCep() != 0)
+            novoUsuario.setCep(usuario.getCep());
+        if (usuario.getEmail() != null)
+            novoUsuario.setEmail(usuario.getEmail());
+        if (usuario.getCidade() != null)
+            novoUsuario.setCidade(usuario.getCidade());
+        if (usuario.getNome() != null)
+            novoUsuario.setNome(usuario.getNome());
+        if (usuario.getUF() != null)
+            novoUsuario.setUF(usuario.getUF());
+        if (usuario.getSenha() != null)
+            novoUsuario.setUF(usuario.getSenha());
+        if (usuario.getNumero_rua() != 0)
+            novoUsuario.setNumero_rua(usuario.getNumero_rua());
+        if (usuario.getRua() != null)
+            novoUsuario.setRua(usuario.getRua());
+        if (usuario.getComplemento() != null)
+            novoUsuario.setComplemento(usuario.getComplemento());
+        if (usuario.getImagem() != null)
+            novoUsuario.setImagem(usuario.getImagem());
+        if (usuario.getDataNasc() != null)
+            novoUsuario.setDataNasc(usuario.getDataNasc());
+        if (usuario.getTelefone() != null)
+            novoUsuario.setTelefone(usuario.getTelefone());
+
+        usuarioRepository.save(novoUsuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Usuário com ID " + novoUsuario.getId_usuario() + " inserido com sucesso\"}");
     }
 
     public List<Usuario> listarUsuario() {
@@ -47,7 +74,7 @@ public class UsuarioService {
     }
 
     public ResponseEntity<String> atualizarUsuario(Long id, UsuarioInput usuario) {
-        if (usuario.getCidade() == null && usuario.getNome() == null && usuario.getEmail() == null && usuario.getComplemento() == null && usuario.getCep() == 0 && usuario.getNumero_rua() == 0 && usuario.getRua() == null && usuario.getSenha() == null && usuario.getUF() == null && usuario.getImagem() == null && usuario.getTelefone() == 0 && usuario.getDataNasc() == null)
+        if (usuario.getCidade() == null && usuario.getNome() == null && usuario.getEmail() == null && usuario.getComplemento() == null && usuario.getCep() == 0 && usuario.getNumero_rua() == 0 && usuario.getRua() == null && usuario.getSenha() == null && usuario.getUF() == null && usuario.getImagem() == null && usuario.getTelefone() == null && usuario.getDataNasc() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Usuário' foi informado\"}");
 
         Usuario usuarioExistente = usuarioRepository.findById(id)
@@ -75,7 +102,7 @@ public class UsuarioService {
             usuarioExistente.setImagem(usuario.getImagem());
         if (usuario.getDataNasc() != null)
             usuarioExistente.setDataNasc(usuario.getDataNasc());
-        if (usuario.getTelefone() != 0)
+        if (usuario.getTelefone() != null)
             usuarioExistente.setTelefone(usuario.getTelefone());
 
         usuarioRepository.save(usuarioExistente);

@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.controllers;
 
+import com.ecoswap.ecoswap.domain.InputClasses.UsuarioInput;
 import com.ecoswap.ecoswap.domain.users.AuthenticationDTO;
 import com.ecoswap.ecoswap.domain.users.LoginResponseDTO;
 import com.ecoswap.ecoswap.domain.users.RegistrationDTO;
@@ -44,16 +45,41 @@ public class AuthenticationController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity registrar(@RequestBody @Valid RegistrationDTO data) {
-        //        if (usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
+    public ResponseEntity registrar(@RequestBody UsuarioInput usuario) {
 
-        System.out.println(data);
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
 
-        Usuario newUser = new Usuario(data.email(), encryptedPassword, data.nome(), data.cidade(),
-                data.uf(), data.cep(), data.rua(), 1, null, null, 1, LocalDate.parse("1990-01-01"));
+        Usuario novoUsuario = new Usuario();
 
-        this.usuarioRepository.save(newUser);
+        if (usuario.getCep() != 0)
+            novoUsuario.setCep(usuario.getCep());
+        if (usuario.getEmail() != null)
+            novoUsuario.setEmail(usuario.getEmail());
+        if (usuario.getSenha() != null) {
+            String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.getSenha());
+            novoUsuario.setSenha(usuario.getEmail());
+        }
+        if (usuario.getCidade() != null)
+            novoUsuario.setCidade(usuario.getCidade());
+        if (usuario.getNome() != null)
+            novoUsuario.setNome(usuario.getNome());
+        if (usuario.getUF() != null)
+            novoUsuario.setUF(usuario.getUF());
+        if (usuario.getSenha() != null)
+            novoUsuario.setUF(usuario.getSenha());
+        if (usuario.getNumero_rua() != 0)
+            novoUsuario.setNumero_rua(usuario.getNumero_rua());
+        if (usuario.getRua() != null)
+            novoUsuario.setRua(usuario.getRua());
+        if (usuario.getComplemento() != null)
+            novoUsuario.setComplemento(usuario.getComplemento());
+        if (usuario.getImagem() != null)
+            novoUsuario.setImagem(usuario.getImagem());
+        if (usuario.getDataNasc() != null)
+            novoUsuario.setDataNasc(usuario.getDataNasc());
+        if (usuario.getTelefone() != null)
+            novoUsuario.setTelefone(usuario.getTelefone());
+
+        this.usuarioRepository.save(novoUsuario);
 
         return ResponseEntity.ok().build();
     }

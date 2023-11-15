@@ -11,12 +11,12 @@
 
     <form>
         <label>E-mail</label>
-        <input type="text" id="userEmail" placeholder="E-mail de acesso">
+        <input type="text" id="userEmail" placeholder="E-mail de acesso" #email>
         <label>Senha</label>
-        <input type="password" id="userPassword" placeholder="Senha de acesso">
+        <input type="password" id="userPassword" placeholder="Senha de acesso" #senha>
         <a id="placeholderRecover">Esqueceu sua senha?</a>
     </form>
-    <button  id="loginButton" class="btn" [routerLink]="['/main']">Entrar</button>
+    <button  id="loginButton" class="btn" (click)="login(email, senha)">Entrar</button>
     <a [routerLink]="['/signup']" id="signup">Cadastre-se</a>
    
 </section>

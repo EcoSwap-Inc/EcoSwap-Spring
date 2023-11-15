@@ -1,5 +1,6 @@
 package com.ecoswap.ecoswap.domain.InputClasses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -17,7 +18,7 @@ public class UsuarioInput implements Serializable {
     public UsuarioInput() {
     }
 
-    public UsuarioInput(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, int telefone, LocalDate dataNasc) {
+    public UsuarioInput(String email, String senha, String nome, String cidade, String UF, int cep, String rua, int numero_rua, String complemento, byte[] imagem, String telefone, LocalDate dataNasc) {
         this.email = email;
         this.senha = senha;
         this.nome = nome;
@@ -45,7 +46,6 @@ public class UsuarioInput implements Serializable {
     @Size(max = 75)
     private String cidade;
 
-    @Size(min = 2, max = 2)
     private String UF;
 
     @Size(max = 150)
@@ -60,9 +60,10 @@ public class UsuarioInput implements Serializable {
     @Lob
     private byte[] imagem;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNasc;
 
-    private int telefone;
+    private String telefone;
 
     private int cep;
 }
