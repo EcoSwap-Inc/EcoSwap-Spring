@@ -8,13 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoryCatalogueComponent {
   produtos!: any[];
-  token: string | null;
   id!: string | null;
   categoria!: string;
 
   constructor(private route: ActivatedRoute) {
-    this.token = localStorage.getItem('token')
-
     route.params.subscribe(() => {
       this.id = this.route.snapshot.paramMap.get('id');
 
@@ -41,7 +38,7 @@ export class CategoryCatalogueComponent {
         headers: { 
           'Accept': 'application/json', 
           'Content-Type': 'application/json', 
-          'Authorization': `${this.token}` 
+          'Authorization': `${localStorage.getItem('token')}` 
         },
       })
       .then(response => response.json())
