@@ -32,7 +32,7 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_produto;
+    private Long id;
 
     // Validação
     @Valid
@@ -83,18 +83,18 @@ public class Produto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produto produto = (Produto) o;
-        return Objects.equals(id_produto, produto.id_produto);
+        return Objects.equals(id, produto.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_produto);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Produto{" +
-                "id_produto=" + id_produto +
+                "id_produto=" + id +
                 ", usuario=" + usuario +
                 ", categoria=" + categoria +
                 ", nome='" + nome + '\'' +

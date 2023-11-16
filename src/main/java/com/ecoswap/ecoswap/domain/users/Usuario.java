@@ -183,45 +183,47 @@ public class Usuario implements UserDetails, Serializable {
                 ", rua='" + rua + '\'' +
                 ", numero_rua=" + numero_rua +
                 ", complemento='" + complemento + '\'' +
-                ", produtosList=" + produtosList +
-                ", trocasList=" + trocasList +
-                ", propostasList=" + propostasList +
-                ", avaliacoesPropostasList=" + avaliacoesPropostasList +
-                ", avaliacoesTrocasList=" + avaliacoesTrocasList +
                 '}';
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
 
     }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
         return getSenha();
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return getEmail();
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
