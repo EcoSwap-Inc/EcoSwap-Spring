@@ -16,7 +16,6 @@ export class HeaderComponent {
       this.menuAberto = state;
     }
 
-
     //Notificações
     notifNav: boolean = false;
 
