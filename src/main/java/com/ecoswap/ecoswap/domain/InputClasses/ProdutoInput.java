@@ -15,7 +15,7 @@ public class ProdutoInput implements Serializable {
     public ProdutoInput() {
     }
 
-    public ProdutoInput(Long usuario, Long categoria, String nome, String descricao, byte[] imagem) {
+    public ProdutoInput(Long usuario, Long categoria, String nome, String descricao, String imagem) {
         this.usuario_id = usuario;
         this.categoria_id = categoria;
         this.nome = nome;
@@ -36,5 +36,11 @@ public class ProdutoInput implements Serializable {
     private String descricao;
 
     @Lob
-    private byte[] imagem;
+    private String imagem;
+
+    private Long views;
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
 }

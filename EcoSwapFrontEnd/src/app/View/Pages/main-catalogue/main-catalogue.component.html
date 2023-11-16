@@ -7,26 +7,15 @@
         <h2>Novos</h2>
 
         <div class="carousel-container">
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-               
+            <app-cards *ngFor="let produto of produtosNovos" class="carousel-item" [routerLink]="['/info', produto.id_produto]" [produto]="produto"></app-cards>               
         </div>
-        
     </section>
     <div class="divider"></div>
     <section class="popular">
         <h2>Populares</h2>
 
         <div class="carousel-container">
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item"  [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item" [routerLink]="['/info']"></app-cards>
-            <app-cards class="carousel-item" [routerLink]="['/info']"></app-cards>
+            <app-cards *ngFor="let produto of produtosPopulares" class="carousel-item" [routerLink]="['/info', produto.id_produto]" [produto]="produto"></app-cards>               
         </div>
 
     </section>
