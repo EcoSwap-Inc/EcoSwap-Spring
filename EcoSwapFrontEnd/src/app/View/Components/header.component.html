@@ -8,7 +8,7 @@
 <div class="navigation-pfp" id="navPfp" *ngIf="menuAberto" >
     <ul >
         <li [routerLink]= "['/profile']"><i class="fa-solid fa-user"></i>Meu perfil</li>
-        <li><i class="fa-solid fa-door-open"></i>Sair</li>
+        <li (click)="deslogar()"><i class="fa-solid fa-door-open"></i>Sair</li>
     </ul>
 </div>
 

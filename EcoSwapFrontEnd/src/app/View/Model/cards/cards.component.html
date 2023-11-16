@@ -1,14 +1,12 @@
 <div class="product-card">
     <div class="img-prod" id="prodImg">
-        <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto">
+        <img [src]="'data:image/png;charset=utf-8;base64,' + produto.imagem">
     </div>
-    <p id="prodName" >Produto</p>
-    <span id="userName">User</span>
+    <p id="prodName" >{{this.produto.nome}}</p>
+    <span id="userName">{{this.produto.usuario.nome}}</span>
     <div class="user-evaluation" id="userEvaluation">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <div *ngFor="let item of [].constructor(5); index as i">
+            <i class="fa-star" [ngClass]="i < rating ?  'fa-solid' : 'fa-regular'"></i>
+        </div>
     </div>
 </div>

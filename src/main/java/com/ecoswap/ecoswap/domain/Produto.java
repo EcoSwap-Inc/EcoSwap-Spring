@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 @Validated
@@ -21,7 +22,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Usuario usuario, Categoria categoria, String nome, String descricao, byte[] imagem) {
+    public Produto(Usuario usuario, Categoria categoria, String nome, String descricao, String imagem) {
         this.usuario = usuario;
         this.categoria = categoria;
         this.nome = nome;
@@ -69,7 +70,13 @@ public class Produto implements Serializable {
     @Lob
     @Setter
     @Column (name = "imagem")
-    private byte[] imagem;
+    private String imagem;
+
+    @Column(name = "dataCriada", updatable = false)
+    private Instant dataCriada = Instant.now();
+
+    @Setter
+    private Long views = 0L;
 
     @Override
     public boolean equals(Object o) {

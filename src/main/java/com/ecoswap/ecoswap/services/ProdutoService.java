@@ -8,6 +8,8 @@ import com.ecoswap.ecoswap.repository.ProdutoRepository;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,14 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public List<Produto> findProdutosNovos() {
+        return produtoRepository.findAll(PageRequest.of(0, 10, Sort.by("dataCriada").ascending())).getContent();
+    }
+
+    public List<Produto> findProdutosPopulares() {
+        return produtoRepository.findAll(PageRequest.of(0, 10, Sort.by("views").descending())).getContent();
+    }
+
     public List<Produto> findProdutosByCategoria(Long cat_id) {
         return produtoRepository.findByCategoria(cat_id);
     }
@@ -55,7 +65,7 @@ public class ProdutoService {
     }
 
     public ResponseEntity<String> atualizarProduto(Long id, ProdutoInput produto) {
-        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null && produto.getImagem() == null && produto.getDescricao() == null)
+        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null && produto.getImagem() == null && produto.getDescricao() == null && produto.getViews() == 0)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Produto' foi informado\"}");
 
         Produto produtoExistente = produtoRepository.findById(id)
@@ -75,6 +85,8 @@ public class ProdutoService {
             produtoExistente.setImagem(produto.getImagem());
         if (produto.getDescricao() != null)
             produtoExistente.setDescricao(produto.getDescricao());
+        if (produto.getViews() != 0)
+            produtoExistente.setViews(produto.getViews());
 
         produtoRepository.save(produtoExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + id + " atualizado com sucesso\"}");
