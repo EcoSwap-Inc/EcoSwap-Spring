@@ -1,28 +1,19 @@
 <section class="body">
     <aside id="prodImg">
-        <img src = "../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
+        <img [src]="'data:image/png;charset=utf-8;base64,' + produto.imagem" alt="Imagem de produto"/>
     </aside>
     <aside id="prodInfo">
-        <h2 id="prodName">Produto</h2>
-        <h3 id="userName">User</h3>
-        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>Uberaba - MG</span>
+        <h2 id="prodName">{{ produto.nome }}</h2>
+        <h3 id="userName">{{ produto.usuario.nome}}</h3>
+        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{ produto.usuario.cidade}} - {{produto.usuario.uf}}</span>
         <div class="category" id="catProd">
-            <span>Mídia</span>
+            <span>{{produto.categoria.nome}}</span>
         </div>
         <div class="user-evaluation" id="userEvaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
+            <i class="fa-star" *ngFor="let item of [].constructor(5); index as i" [ngClass]="i < rating ?  'fa-solid' : 'fa-regular'"></i>
         </div>
         <p>
-            Lorem ipsum dolor sit amet. Ea nemo earum aut quibusdam soluta est itaque magni 
-            aut placeat quod et numquam quasi. 
-            Qui quam reiciendis ut distinctio numquam ex fuga mollitia.
-            Ut beatae recusandae et velit nihil sed rerum sint qui quis
-            sint ut ratione tempore. Et laborum iure ut culpa dolores a 
-            quia tempora. 
+            {{produto.descricao}}
         </p>
         <button class="btn"[routerLink]="['/swap']">Trocar</button>
     </aside>
