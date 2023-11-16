@@ -64,9 +64,9 @@ const routes: Routes = [{
     canActivate: [AuthGuard],
   },
   {
-    path: 'editproduct',
+    path: 'editproduct/:id',
       loadChildren: () =>
-        import('./View/Pages/edit-info/edit-info.module').then((m) => m.EditInfoModule),
+        import('./View/Pages/edit-product/edit-product.module').then((m) => m.EditProductModule),
       canActivate: [AuthGuard],
     },
   {

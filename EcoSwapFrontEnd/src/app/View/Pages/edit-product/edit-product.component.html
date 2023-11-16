@@ -9,13 +9,11 @@
         <span>Edite o nome ou descrição do seu produto</span>
         <form>
             <label>Qual é o nome do seu produto?</label>
-            <input type="text" id="productName" placeholder="Nome do produto">
+            <input type="text" [formControl]="nome" placeholder="Nome do produto">
             <label>Dê uma descrição para o seu produto</label>
-            <input  type="text" id="productDesc" placeholder="Descrição do produto">
-
-            
+            <input  type="text" [formControl]="descricao" placeholder="Descrição do produto">
         </form>
-        <button class="btn">Concluir</button>
+        <button class="btn" (click)="salvarAlteracoes()">Concluir</button>
         
     </section>
 </section>
