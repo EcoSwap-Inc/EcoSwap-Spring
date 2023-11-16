@@ -39,6 +39,7 @@ h2{
 .carousel-item{
     margin-right: 3.5%;
     margin-bottom: 2.5%;
+    cursor: pointer;
 }
 
 .carousel-container {

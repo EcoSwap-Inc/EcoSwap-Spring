@@ -2,7 +2,7 @@
     <section class="header-section">
         <div class="title-button">
             <h2>Seu inventário</h2>
-            <button [routerLink]="['/newproduct']">Cadastrar novo produto</button>
+            <button [routerLink]="['/newproduct']" class="btn">Cadastrar novo produto</button>
         </div>
         <span>Navegue por seus produtos disponíveis no EcoSwap.</span>
     </section>
@@ -23,10 +23,12 @@
         </aside>
         <aside class="prod-details">
             <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem de produto"/>
-            <h3>Produto<i class="fa-regular fa-pen-to-square"></i></h3>
+            <div class="info">
+            <h3>Produto<i class="fa-regular fa-pen-to-square" [routerLink]="['/editproduct']"></i><i class="fa-solid fa-trash"></i></h3>
             <div class="category">Mídia</div>
             <h3>Descrição:</h3>
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+        </div>
         </aside>
     </section>
 </section>

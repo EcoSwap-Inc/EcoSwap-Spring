@@ -25,7 +25,7 @@ img{
     justify-content: center;
     border-radius: 16px;
     margin-bottom: 2%;
-    cursor:pointer;
+    overflow-wrap: break-word;
   
     
 }

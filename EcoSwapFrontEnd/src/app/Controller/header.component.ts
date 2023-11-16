@@ -12,4 +12,11 @@ export class HeaderComponent {
     changeMenuPfpMenuState (state: boolean) {
       this.menuAberto = state;
     }
+
+    //Notificações
+    notifNav: boolean = false;
+
+    changeNotifState (state: boolean) {
+      this.notifNav = state;
+    }
 }

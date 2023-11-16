@@ -14,9 +14,8 @@ header{
     margin-left: 90%;
     display: block;
     position: absolute;
+
 }
-
-
 
 .navigation-pfp i{
     margin-left: 15%;
@@ -29,6 +28,30 @@ header{
     list-style: none;
     cursor: pointer;
 }
+
+.notif-nav{
+    background-color: #FFFFFF;
+    width: 30vw;
+    color: #000000;
+    font-style: italic;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    margin-left: 75%;
+    display: block;
+    position: absolute;
+    overflow-wrap: break-word;
+}
+
+.notif-nav li{
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    list-style: none;
+    cursor: pointer;
+}
+
+
 
 
 /* Mobile viewport */

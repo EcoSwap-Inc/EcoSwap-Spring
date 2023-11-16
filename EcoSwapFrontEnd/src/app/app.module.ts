@@ -8,10 +8,10 @@ import { FooterModule } from './Controller/footer.module';
 
 
 
+
 @NgModule({
   declarations: [
-    AppComponent,
-   
+    AppComponent
 
   ],
   imports: [

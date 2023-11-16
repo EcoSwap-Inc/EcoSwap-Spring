@@ -6,6 +6,7 @@
     margin-left: 1%;
     margin-right: 2%;
     margin-bottom: 2%;
+    cursor: pointer;
 }
 
 .inventory-grid{
@@ -15,9 +16,12 @@
 }
 
 .prod-details img{
-    height: 20rem;
-    width: 20rem;
+    height: 28rem;
+    width: 90%;
     border-radius: 16px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
 }
 
 .container-sec{
@@ -27,17 +31,87 @@
 }
 
 .prod-details{
+    width: 35rem;
+    color: #FFFFFF;
+    background-image: linear-gradient(to right, #1B6D5F, #4F9847);
+    margin-right: 5%;
+    border-radius: 16px;
+    word-wrap: break-word;
+    height: 60rem;
+    overflow-wrap: break-word;
+    max-width: 45rem;
+    padding: 10px;
+    cursor: default;
+}
+
+.prod-details h3{
+    font-size: 155%;
+}
+
+.prod-details i{
+    margin-left: 2%;
+    cursor:pointer;
+}
+
+.category{
+    border: 1px solid #FFFFFF;
+    border-radius: 64px;
+    text-align: center;
+    font-weight: bold;
+    width: 45%;
+    margin-bottom: 5%;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 90%;
+    margin-left: 5%;
+}
+
+.info span{
+    font-style: italic;
+}
+
+.info i:hover{
+    
 }
 
 .body{
     margin-top: 2%;
     margin-bottom: 5%;
-    margin-left: 5%;
+    margin-left: 2%;
     margin-right: 5%;
 }
 
 .title-button{
     display: flex;
     justify-content: space-between;
+}
+
+.btn{
+    background-image: linear-gradient(to right, #1B6D5F, #4F9847);
+    color: #FFFFFF;
+    border-radius: 32px;
+    border: none;
+    font-weight: bold;
+    padding: 14px 16px;
+    width: 25%;
+    font-size: 98%;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transition: ease-in 1s;
+    box-shadow: 15px 15px 25px #1d1f1d23;
+   
+}
+
+.header-section{
+    cursor: default;
+}
+
+.header-section h3{
+    color:#24501F;
 }

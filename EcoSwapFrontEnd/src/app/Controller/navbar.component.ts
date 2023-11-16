@@ -14,4 +14,14 @@ export class NavbarComponent {
       this.estadoPfpMenu = !this.estadoPfpMenu;
       this.novoPfpMenuEstadoEvent.emit(this.estadoPfpMenu);
     }
+
+    //notificações
+    estadoNotif: boolean = false;
+
+    @Output() novoNotifEvent = new EventEmitter<boolean>();
+
+    changeNotifState () {
+      this.estadoNotif = !this.estadoNotif;
+      this.novoNotifEvent.emit(this.estadoNotif);
+    }
 }
