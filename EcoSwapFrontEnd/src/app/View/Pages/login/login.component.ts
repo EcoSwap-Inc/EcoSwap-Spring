@@ -23,8 +23,10 @@ export class LoginComponent {
       })
       .then(response => response.json())
       .then((data) => {
+        console.log(data)
         if (data.status == undefined) {
           localStorage.setItem('token', data.token);
+          localStorage.setItem('user_id', data.id)
 
           this.router.navigateByUrl('/main')
         }

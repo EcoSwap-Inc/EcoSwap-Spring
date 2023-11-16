@@ -25,6 +25,8 @@ export class HeaderComponent {
 
     deslogar() {
       localStorage.removeItem('token');
+      localStorage.removeItem('user_id');
+
       this.router.navigateByUrl('/login');
     }
 }

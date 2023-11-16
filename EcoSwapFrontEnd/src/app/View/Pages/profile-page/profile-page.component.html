@@ -6,11 +6,11 @@
 
         <aside class="contacts">
             <div class="user-info">
-                <h2>User</h2>
+                <h2>{{usuario.nome ?? 'User'}}</h2>
                 <ul>
-                    <li><i class="fa-solid fa-location-dot"></i><b>Localização:</b> Sorocaba - SP</li>
-                    <li><i class="fa-solid fa-envelope"></i><b>E-mail:</b> aaaaaa</li>
-                    <li><i class="fa-solid fa-phone"></i><b>Telefone:</b> aaaa</li>
+                    <li><i class="fa-solid fa-location-dot"></i><b>Localização: </b>{{usuario.cidade ?? 'Cidade'}} - {{usuario.uf ?? 'SP'}}</li>
+                    <li><i class="fa-solid fa-envelope"></i><b>E-mail: </b>{{usuario.email ?? 'email@email.com'}}</li>
+                    <li><i class="fa-solid fa-phone"></i><b>Telefone: </b>{{usuario.telefone ?? '000000000000'}}</li>
                 </ul>
             </div>
             <div class="btns">

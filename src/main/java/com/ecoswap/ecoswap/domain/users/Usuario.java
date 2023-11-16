@@ -86,7 +86,7 @@ public class Usuario implements UserDetails, Serializable {
     @NotNull
     // JPA
     @Setter
-    @Column(nullable = false)
+    @Column(length = 2, nullable = false)
     private String UF;
 
     // Validação
