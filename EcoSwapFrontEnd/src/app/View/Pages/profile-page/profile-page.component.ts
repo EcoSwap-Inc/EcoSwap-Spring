@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent {
-  usuario: any;
+  usuario: any = {nome: 'User', cidade: 'Cidade', uf: 'SP', email: 'email@email.com', telefone: '000000000000'};
 
   constructor() {
     fetch('http://localhost:8080/api/usuario/' + localStorage.getItem('user_id'), {
@@ -20,7 +20,6 @@ export class ProfilePageComponent {
     .then(response => response.json())
     .then((data) => {
       this.usuario = data;
-      console.log(this.usuario)
     });
   }
 }

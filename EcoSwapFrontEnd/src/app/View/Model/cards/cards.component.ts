@@ -23,7 +23,6 @@ export class CardsComponent {
     .then(response => response.json())
     .then((data) => {
       this.rating = data.resultado;
-      console.log(data)
     })
   }
 }

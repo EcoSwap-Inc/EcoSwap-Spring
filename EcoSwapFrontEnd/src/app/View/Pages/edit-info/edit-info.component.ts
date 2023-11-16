@@ -29,6 +29,7 @@ export class EditInfoComponent {
     })
     .then(response => response.json())
     .then((data) => {
+      this.usuario = data;
       this.telefone.setValue(data.telefone);
       this.UF.setValue(data.uf)
       this.cidade.setValue(data.cidade)
@@ -40,20 +41,18 @@ export class EditInfoComponent {
   }
 
   salvarAlteracoes() {
-    let valores: any = {
-      cidade: this.cidade.value,
-      rua: this.rua.value,
-      numero_rua: this.numero_rua.value,
-      complemento: this.complemento.value,
-      cep: this.cep.value,
-      uf: this.UF.value,
-      telefone: this.telefone.value,
-    }
+    this.usuario.cidade = this.cidade.value;
+    this.usuario.rua = this.rua.value;
+    this.usuario.numero_rua = this.numero_rua.value;
+    this.usuario.complemento = this.complemento.value;
+    this.usuario.cep = this.cep.value;
+    this.usuario.uf = this.UF.value;
+    this.usuario.telefone = this.telefone.value;
 
     fetch('http://localhost:8080/api/usuario/' + localStorage.getItem('user_id'), {
       method: 'PUT',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(valores)
+      body: JSON.stringify(this.usuario)
     })
     .then(response => response)
     .then((data) => {

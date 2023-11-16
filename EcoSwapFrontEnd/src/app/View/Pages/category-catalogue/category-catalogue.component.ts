@@ -44,7 +44,6 @@ export class CategoryCatalogueComponent {
       .then(response => response.json())
       .then((data) => {
         this.produtos = data;
-        console.log(this.produtos)
       })
     });
   }

@@ -72,7 +72,6 @@ export class NewProductComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
         this.imagem = reader.result;
-        console.log(this.imagem)
     };
 
   }

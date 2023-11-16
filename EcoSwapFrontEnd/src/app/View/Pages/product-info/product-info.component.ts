@@ -38,7 +38,6 @@ export class ProductInfoComponent {
         .then(response => response.json())
         .then((data) => {
           this.rating = data.resultado;
-          console.log(data)
         })
       })
     });
