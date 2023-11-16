@@ -7,19 +7,15 @@ import { HeaderModule } from './Controller/header.module';
 import { FooterModule } from './Controller/footer.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
-   
-
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HeaderModule, 
     FooterModule
-
   ],
   providers: [],
   bootstrap: [AppComponent],
