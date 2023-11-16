@@ -38,7 +38,7 @@ export class SignUpComponent {
         numero_rua: this.numero_rua.value,
         complemento: this.complemento.value,
         cep: this.cep.value,
-        UF: this.UF.value,
+        uf: this.UF.value,
         telefone: this.telefone.value,
         dataNasc: this.dataNasc.value
       }

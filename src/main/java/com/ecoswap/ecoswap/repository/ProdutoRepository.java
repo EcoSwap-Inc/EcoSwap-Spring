@@ -10,4 +10,7 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     @Query("select p from Produto p where p.categoria.id_categoria = :categoria")
     List<Produto> findByCategoria(@Param("categoria") Long categoria);
+
+    public List<Produto> findTop10ByOrderByIdDesc();
+
 }

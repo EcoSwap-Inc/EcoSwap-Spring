@@ -11,41 +11,28 @@
         <span>Cadastre um novo produto para trocar no catálogo EcoSwap!</span>
         <form>
             <label>Qual é o nome do seu produto?</label>
-            <input type="text" id="productName" placeholder="Nome do produto">
+            <input type="text" [formControl]="nomeForm" placeholder="Nome do produto">
             <label>Dê uma descrição para o seu produto</label>
-            <input  type="text" id="productDesc" placeholder="Descrição do produto">
+            <input  type="text" [formControl]="descricaoForm" placeholder="Descrição do produto">
             <label>Em qual categoria seu produto se encaixa?</label>
-            <select id="productCat">
-                <option value="midia">Mídia</option>
-                <option value="colecionaveis">Colecionáveis</option>
-                <option value="jardinagem">Jardinagem</option>
-                <option value="informática">Mídia</option>
+            <select [formControl]="categoriaForm" [value]="'midia'">
+                <option value="1">Mídia</option>
+                <option value="2">Colecionáveis</option>
+                <option value="3">Jardinagem</option>
+                <option value="4">Livros e HQs</option>
+                <option value="5">Informática</option>
             </select>
             <label> Que tal mostrar uma foto do produto?</label>
             <div class="side">
-                <div class="img-input">
+                <div class="img-input" (click)="imagemForm.click()">
                     <label for="img1">
                         <i class="fa-solid fa-camera"></i>
-                    <input type="file" name="imagem" accept="image/*" id="img1" class=img>
-                    </label>
-                </div>
-                <div class="img-input">
-                    <label for="img2">
-                        <i class="fa-solid fa-camera"></i>
-                    <input type="file" name="imagem" accept="image/*" id="img2" class=img>
-                    </label>
-                </div>
-                
-                <div class="img-input">
-                    <label for="img3">
-                        <i class="fa-solid fa-camera"></i>
-                    <input type="file" name="imagem" accept="image/*" id="img3" class=img>
+                        <input type="file" name="imagem" accept="image/*" id="#imagemForm" #imagemForm (change)="imagemToBase64($event)">
                     </label>
                 </div>
             </div>
-            
         </form>
-        <button class="btn">Concluir</button>
+        <button class="btn" (click)="salvarProduto()">Concluir</button>
         
     </section>
 </section>

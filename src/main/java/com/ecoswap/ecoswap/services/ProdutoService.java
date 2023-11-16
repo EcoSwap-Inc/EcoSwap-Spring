@@ -32,7 +32,7 @@ public class ProdutoService {
 
     public ResponseEntity<String> salvarProduto(Produto produto) {
         produtoRepository.save(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + produto.getId_produto() + " inserido com sucesso\"}");
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + produto.getId() + " inserido com sucesso\"}");
     }
 
     public List<Produto> listarProduto() {
@@ -40,7 +40,7 @@ public class ProdutoService {
     }
 
     public List<Produto> findProdutosNovos() {
-        return produtoRepository.findAll(PageRequest.of(0, 10, Sort.by("dataCriada").ascending())).getContent();
+        return produtoRepository.findTop10ByOrderByIdDesc();
     }
 
     public List<Produto> findProdutosPopulares() {

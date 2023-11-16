@@ -34,7 +34,7 @@ public class UsuarioService {
         if (usuario.getUF() != null)
             novoUsuario.setUF(usuario.getUF());
         if (usuario.getSenha() != null)
-            novoUsuario.setUF(usuario.getSenha());
+            novoUsuario.setSenha(usuario.getSenha());
         if (usuario.getNumero_rua() != 0)
             novoUsuario.setNumero_rua(usuario.getNumero_rua());
         if (usuario.getRua() != null)
@@ -91,7 +91,7 @@ public class UsuarioService {
         if (usuario.getUF() != null)
             usuarioExistente.setUF(usuario.getUF());
         if (usuario.getSenha() != null)
-            usuarioExistente.setUF(usuario.getSenha());
+            usuarioExistente.setSenha(usuario.getSenha());
         if (usuario.getNumero_rua() != 0)
             usuarioExistente.setNumero_rua(usuario.getNumero_rua());
         if (usuario.getRua() != null)
