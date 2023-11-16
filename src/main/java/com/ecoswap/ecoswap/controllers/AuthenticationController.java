@@ -3,7 +3,6 @@ package com.ecoswap.ecoswap.controllers;
 import com.ecoswap.ecoswap.domain.InputClasses.UsuarioInput;
 import com.ecoswap.ecoswap.domain.users.AuthenticationDTO;
 import com.ecoswap.ecoswap.domain.users.LoginResponseDTO;
-import com.ecoswap.ecoswap.domain.users.RegistrationDTO;
 import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.ecoswap.ecoswap.infra.security.TokenService;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
