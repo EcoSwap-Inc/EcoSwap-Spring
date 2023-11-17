@@ -1,6 +1,7 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
+import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.AvaliacaoRepository;
@@ -9,6 +10,8 @@ import com.ecoswap.ecoswap.repository.TrocaRepository;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +37,7 @@ public class TrocaService {
 
     public ResponseEntity<String> salvarTroca(Troca troca) {
         trocaRepository.save(troca);
-        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + troca.getId_troca() + " inserida com sucesso\"}");
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"201\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + troca.getId() + " inserida com sucesso\"}");
     }
 
     public List<Troca> listarTroca() {
@@ -54,8 +57,24 @@ public class TrocaService {
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Troca com ID " + id + " deletada com sucesso\"}");
     }
 
+    public List<Troca> findTrocasNovas() {
+        return trocaRepository.findTop10ByFinalizadaIsFalseOrderByIdDesc();
+    }
+
+    public List<Troca> findTrocasPopulares() {
+        return trocaRepository.findTop10ByFinalizadaIsFalseOrderByViewsDesc();
+    }
+
+    public List<Troca> findTrocasByCategoria(Long cat_id) {
+        return trocaRepository.findByCategoria(cat_id);
+    }
+
+    public Troca findTrocaAtivaExistente(Long id) {
+        return trocaRepository.findTrocaAtivaExistente(id);
+    }
+
     public ResponseEntity<String> atualizarTroca(Long id, TrocaInput troca) {
-        if (!troca.isFinalizada() && troca.getData_criacao() == null && troca.getData_conclusao() == null && troca.getAvaliacao_id() == null && troca.getProduto_id() == null && troca.getUsuario_id() == null)
+        if (!troca.isFinalizada() && troca.getData_conclusao() == null && troca.getAvaliacao_id() == null && troca.getProduto_id() == null && troca.getUsuario_id() == null && troca.getViews() == 0)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Troca' foi informado\"}");
 
         Troca trocaExistente = trocaRepository.findById(id)
@@ -76,11 +95,11 @@ public class TrocaService {
         if (troca.isFinalizada() != trocaExistente.isFinalizada()) {
             trocaExistente.setFinalizada(troca.isFinalizada());
         }
-        if (troca.getData_criacao() != null) {
-            trocaExistente.setData_criacao(troca.getData_criacao());
-        }
         if (troca.getData_conclusao() != null) {
             trocaExistente.setData_conclusao(troca.getData_conclusao());
+        }
+        if (troca.getViews() != null) {
+            trocaExistente.setViews(troca.getViews());
         }
 
         trocaRepository.save(trocaExistente);

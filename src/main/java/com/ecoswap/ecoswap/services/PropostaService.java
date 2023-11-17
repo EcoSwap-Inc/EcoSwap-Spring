@@ -1,7 +1,9 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.InputClasses.PropostaInput;
+import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Proposta;
+import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.*;
 import jakarta.transaction.Transactional;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -46,6 +49,10 @@ public class PropostaService {
                 .orElseThrow(() -> new NoSuchElementFoundException("Proposta não encontrada com o ID: " + id));
     }
 
+    public List<Proposta> findPropostasByTrocaId(Long id) {
+        return propostaRepository.findAllByTrocaId(id);
+    }
+
     public ResponseEntity<String> deletarProposta(Long id) {
         if (propostaRepository.existsById(id))
             propostaRepository.deleteById(id);
@@ -55,14 +62,22 @@ public class PropostaService {
     }
 
     public ResponseEntity<String> atualizarProposta(Long id, PropostaInput proposta) {
-        if (!proposta.isAceito() && proposta.getData_criacao() == null && proposta.getData_conclusao() == null && proposta.getAvaliacao_id() != null && proposta.getProduto_id() == null && proposta.getTroca_id() == null && proposta.getUsuario_id() == null)
+        if (!proposta.getAceito() && proposta.getData_criacao() == null && proposta.getData_conclusao() == null && proposta.getAvaliacao_id() != null && proposta.getProduto_id() == null && proposta.getTroca_id() == null && proposta.getUsuario_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Proposta' foi informado\"}");
 
         Proposta propostaExistente = propostaRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementFoundException("Proposta não encontrada com o ID: " + id));
 
-        if (proposta.isAceito() != propostaExistente.isAceito()) {
-            propostaExistente.setAceito(proposta.isAceito());
+        if (proposta.getAceito() != propostaExistente.getAceito()) {
+            if (proposta.getAceito()) {
+                Troca troca = propostaExistente.getTroca();
+                troca.setFinalizada(true);
+                troca.setData_conclusao(LocalDateTime.now());
+
+                Produto produto = troca.getProduto();
+                produto.setUsuario(propostaExistente.getUsuario());
+            }
+            propostaExistente.setAceito(proposta.getAceito());
         }
         if (proposta.getTroca_id() != null) {
             Long troca_id = proposta.getTroca_id();

@@ -72,12 +72,6 @@ public class Produto implements Serializable {
     @Column (name = "imagem")
     private String imagem;
 
-    @Column(name = "dataCriada", updatable = false)
-    private Instant dataCriada = Instant.now();
-
-    @Setter
-    private Long views = 0L;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

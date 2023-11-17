@@ -1,7 +1,9 @@
 package com.ecoswap.ecoswap.controllers;
 
 
+import com.ecoswap.ecoswap.domain.InputClasses.ProdutoInput;
 import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
+import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.services.TrocaService;
 import jakarta.validation.Valid;
@@ -13,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Validated
 @RestController
@@ -36,12 +39,39 @@ public class TrocaController {
 
     @GetMapping("/{id}")
     public Troca findTrocaById(@PathVariable @Positive Long id) {
+        Troca troca = trocaService.findTrocaById(id);
+
+        TrocaInput input = new TrocaInput();
+        input.setViews(troca.getViews() + 1);
+        trocaService.atualizarTroca(id, input);
+
         return trocaService.findTrocaById(id);
+    }
+
+    @GetMapping("/existe/{id}")
+    public ResponseEntity findTrocaAtivaExistente(@PathVariable @Positive Long id) {
+        Troca troca = trocaService.findTrocaAtivaExistente(id);
+        return ResponseEntity.ok(Objects.requireNonNullElse(troca, false));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarTroca(@PathVariable @Positive Long id) {
         return trocaService.deletarTroca(id);
+    }
+
+    @GetMapping("/novos")
+    public ResponseEntity<List<Troca>> findTrocasNovas() {
+        return ResponseEntity.ok(trocaService.findTrocasNovas());
+    }
+
+    @GetMapping("/populares")
+    public ResponseEntity<List<Troca>> findTrocasPopulares() {
+        return ResponseEntity.ok(trocaService.findTrocasPopulares());
+    }
+
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<List<Troca>> findProdutosByCategoria(@PathVariable @Positive Long id) {
+        return ResponseEntity.ok(trocaService.findTrocasByCategoria(id));
     }
 
     @PutMapping("/{id}")

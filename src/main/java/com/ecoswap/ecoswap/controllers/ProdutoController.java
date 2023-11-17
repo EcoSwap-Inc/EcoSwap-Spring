@@ -34,11 +34,6 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.listarProduto());
     }
 
-    @GetMapping("/categoria/{cat_id}")
-    public ResponseEntity<List<Produto>> findProdutosByCategoria(@PathVariable @Positive Long cat_id) {
-        return ResponseEntity.ok(produtoService.findProdutosByCategoria(cat_id));
-    }
-
     @GetMapping("/usuario/{id_usuario}")
     public ResponseEntity<List<Produto>> findProdutosByUsuario(@PathVariable @Positive Long id_usuario) {
         return ResponseEntity.ok(produtoService.findProdutosByUsuario(id_usuario));
@@ -46,29 +41,13 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findProdutoById(@PathVariable @Positive Long id) {
-        Produto produto = produtoService.findProdutoById(id);
-
-        ProdutoInput input = new ProdutoInput();
-        input.setViews(produto.getViews() + 1);
-        produtoService.atualizarProduto(id, input);
-
-        return ResponseEntity.status(HttpStatus.OK).body(produto);
+        return ResponseEntity.status(HttpStatus.OK).body(produtoService.findProdutoById(id));
     }
 
     @GetMapping("/img/{id}")
     public ResponseEntity<String> getImage(@PathVariable @Positive Long id) {
         var img = produtoService.findProdutoById(id).getImagem();
         return ResponseEntity.status(HttpStatus.OK).body("{\"imagem\": \"" + img + "\"}");
-    }
-
-    @GetMapping("/novos")
-    public ResponseEntity<List<Produto>> findProdutosNovos() {
-        return ResponseEntity.ok(produtoService.findProdutosNovos());
-    }
-
-    @GetMapping("/populares")
-    public ResponseEntity<List<Produto>> findProdutosPopulares() {
-        return ResponseEntity.ok(produtoService.findProdutosPopulares());
     }
 
     @DeleteMapping("/{id}")
@@ -80,6 +59,4 @@ public class ProdutoController {
     public ResponseEntity<String> atualizarProduto(@PathVariable @Positive Long id, @Valid @RequestBody ProdutoInput produto) {
         return produtoService.atualizarProduto(id, produto);
     }
-
-
 }

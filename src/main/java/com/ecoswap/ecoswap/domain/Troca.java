@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +24,17 @@ public class Troca implements Serializable {
     public Troca() {
     }
 
-    public Troca(Usuario usuario, Produto produto, boolean finalizada, LocalDateTime data_criacao, LocalDateTime data_conclusao, Avaliacao avaliacao) {
+    public Troca(Usuario usuario, Produto produto, boolean finalizada, LocalDateTime data_conclusao, Avaliacao avaliacao) {
         this.usuario = usuario;
         this.produto = produto;
         this.finalizada = finalizada;
-        this.data_criacao = data_criacao;
         this.data_conclusao = data_conclusao;
         this.avaliacao = avaliacao;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_troca;
+    private Long id;
 
     // Validação
     @Valid
@@ -61,14 +61,11 @@ public class Troca implements Serializable {
     @Column(nullable = false)
     private boolean finalizada;
 
-    // Validação
-    @NotNull
     // JPA
     @Setter
-    @Column(nullable = false)
-    private LocalDateTime data_criacao;
+    @Column()
+    private LocalDateTime data_criacao = LocalDateTime.now();
 
-    // Validação
     // JPA
     @Setter
     @Column()
@@ -82,6 +79,9 @@ public class Troca implements Serializable {
     @OneToOne(mappedBy = "troca")
     private Avaliacao avaliacao;
 
+    @Setter
+    private Long views = 0L;
+
     @JsonIgnore
     @OneToMany(mappedBy = "troca")
     private List<Proposta> propostasList = new ArrayList<>();
@@ -92,18 +92,18 @@ public class Troca implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Troca troca = (Troca) o;
-        return Objects.equals(id_troca, troca.id_troca);
+        return Objects.equals(id, troca.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_troca);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Troca{" +
-                "id_troca=" + id_troca +
+                "id_troca=" + id +
                 ", usuario=" + usuario +
                 ", produto=" + produto +
                 ", finalizada=" + finalizada +

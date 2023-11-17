@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -27,14 +28,16 @@ public class UsuarioService {
             novoUsuario.setCep(usuario.getCep());
         if (usuario.getEmail() != null)
             novoUsuario.setEmail(usuario.getEmail());
+        if (usuario.getSenha() != null) {
+            String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.getSenha());
+            novoUsuario.setSenha(encryptedPassword);
+        }
         if (usuario.getCidade() != null)
             novoUsuario.setCidade(usuario.getCidade());
         if (usuario.getNome() != null)
             novoUsuario.setNome(usuario.getNome());
         if (usuario.getUF() != null)
             novoUsuario.setUF(usuario.getUF());
-        if (usuario.getSenha() != null)
-            novoUsuario.setSenha(usuario.getSenha());
         if (usuario.getNumero_rua() != 0)
             novoUsuario.setNumero_rua(usuario.getNumero_rua());
         if (usuario.getRua() != null)
