@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -82,9 +81,16 @@ public class PropostaService {
                 Produto produto = troca.getProduto();
                 produto.setUsuario(propostaExistente.getUsuario());
                 produtoRepository.save(produto);
+
                 Produto produto2 = propostaExistente.getProduto();
                 produto2.setUsuario(troca.getUsuario());
                 produtoRepository.save(produto2);
+
+                Troca trocaProduto = trocaRepository.findTrocaAtivaExistente(produto2.getId());
+                if (trocaProduto != null) {
+                    trocaProduto.setFinalizada(true);
+                    trocaRepository.save(trocaProduto);
+                }
             }
             propostaExistente.setAceito(proposta.getAceito());
         }

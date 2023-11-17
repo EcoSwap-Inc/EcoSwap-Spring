@@ -1,8 +1,6 @@
 package com.ecoswap.ecoswap.repository;
 
 import com.ecoswap.ecoswap.domain.Proposta;
-import com.ecoswap.ecoswap.domain.Troca;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

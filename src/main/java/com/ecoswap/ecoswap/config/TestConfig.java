@@ -1,6 +1,9 @@
 package com.ecoswap.ecoswap.config;
 
-import com.ecoswap.ecoswap.domain.*;
+import com.ecoswap.ecoswap.domain.Categoria;
+import com.ecoswap.ecoswap.domain.Produto;
+import com.ecoswap.ecoswap.domain.Proposta;
+import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.domain.users.Usuario;
 import com.ecoswap.ecoswap.repository.*;
 import jakarta.persistence.EntityManager;
@@ -10,19 +13,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.awt.image.WritableRaster;
 import java.util.Base64;
 
 // CLASSE DE TESTE PARA O H2
@@ -35,7 +30,7 @@ public class TestConfig implements CommandLineRunner {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
-//    @Autowired
+    //    @Autowired
 //    private AvaliacaoRepository avaliacaoRepository;
     @Autowired
     private PropostaRepository propostaRepository;
@@ -81,18 +76,18 @@ public class TestConfig implements CommandLineRunner {
         Produto p2 = new Produto(u2, cat5, "Mac Air m1", "", imgMac);
         Produto p3 = new Produto(u2, cat2, "Galaxy s22", "", imgGalaxy);
         Produto p4 = new Produto(u1, cat5, "Nintendo 3ds", "", imgNintendo);
-        Produto p5 = new Produto(u1, cat2, "AirMax", "Trazendo impacto no visual clássico que seus filhos irão adorar, o tênis Nike Air Max 90 965 esbanja inovação sem comprometer sua originalidade! O design deste Air faz com que ele seja divertido, adicionando elegância e um visual dos anos 90 com detalhes minimalistas que renovam ainda mais o ícone do Air.\n\nO tênis masculino é construído em materiais sintéticos e couro, seu acolchoamento é macio ao redor do tornozelo e combina com o amortecimento Air para oferecer conforto no seu calçar. Seu solado em waffle para manter a alta durabilidade.", imgAirmax);
+        Produto p5 = new Produto(u1, cat2, "AirMax", "Trazendo impacto no visual clássico que seus filhos irão adorar, o tênis Nike Air Max 90 965 esbanja inovação sem comprometer sua originalidade! O design deste Air faz com que ele seja divertido, adicionando elegância e um visual dos anos 90 com detalhes minimalistas que renovam ainda mais o ícone do Air.", imgAirmax);
         Produto p6 = new Produto(u2, cat2, "Moletom", "", imgMoletom);
         Produto p8 = new Produto(u2, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgDiario);
         Produto p9 = new Produto(u1, cat1, "Bee Movie", "", imgBee);
-        Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "Um vaso para jardim em cerâmica é uma peça encantadora que combina funcionalidade e beleza estética para realçar o ambiente externo. Seu design pode variar, desde formas clássicas e elegantes, estilos mais contemporâneos e artísticos. A cerâmica permite uma ampla gama de texturas e padrões, permitindo que o vaso se destaque como uma peça decorativa por si só ou como um complemento perfeito para as plantas que abrigam. Além disso, a cerâmica oferece ótima retenção de água, ajudando a manter as plantas saudáveis \u200B\u200Be hidratadas.", imgPote);
+        Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "Um vaso para jardim em cerâmica é uma peça encantadora que combina funcionalidade e beleza estética para realçar o ambiente externo. Seu design pode variar, desde formas clássicas e elegantes, estilos mais contemporâneos e artísticos. A cerâmica permite uma ampla gama de texturas e padrões, permitindo que o vaso se destaque como uma peça decorativa por si só ou como um complemento perfeito para as plantas que abrigam.", imgPote);
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p8, p9, p10));
 
-        Troca tr1 = new Troca(u1, p1, false,  null, null);
-        Troca tr2 = new Troca(u2, p2, false,  null, null);
-        Troca tr3 = new Troca(u2, p3, false,  null, null);
-        Troca tr4 = new Troca(u1, p5, false,  null, null);
-        Troca tr5 = new Troca(u2, p6, false,  null, null);
+        Troca tr1 = new Troca(u1, p1, false, null, null);
+        Troca tr2 = new Troca(u2, p2, false, null, null);
+        Troca tr3 = new Troca(u2, p3, false, null, null);
+        Troca tr4 = new Troca(u1, p5, false, null, null);
+        Troca tr5 = new Troca(u2, p6, false, null, null);
         trocaRepository.saveAll(Arrays.asList(tr1, tr2, tr3, tr4, tr5));
 
         Proposta prop1 = new Proposta(u1, tr5, p5, null, null, null);

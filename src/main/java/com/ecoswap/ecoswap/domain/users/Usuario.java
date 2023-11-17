@@ -20,7 +20,10 @@ import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 @Validated
 @Getter
@@ -130,12 +133,12 @@ public class Usuario implements UserDetails, Serializable {
     // JPA
     @Setter
     @Column(nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNasc;
 
     @Lob
     @Setter
-    @Column (name = "imagem")
+    @Column(name = "imagem")
     private byte[] imagem;
 
     @JsonIgnore
