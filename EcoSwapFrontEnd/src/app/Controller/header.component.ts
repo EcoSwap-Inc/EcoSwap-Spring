@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent {
     menuAberto: boolean = false;
-    notificacoes: any;
+    notificacoes: any = [];
 
     constructor (private router: Router, private route: ActivatedRoute) {
       this.router.events.subscribe((val) => {

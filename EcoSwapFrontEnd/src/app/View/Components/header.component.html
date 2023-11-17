@@ -14,7 +14,7 @@
 </div>
 
 <div class="notif-nav" id="navnotif" *ngIf="notifNav">
-    <ul class="notiflist">
+    <ul class="notiflist" style="min-height: 5vh">
         <li class="notif" *ngFor="let notificacao of notificacoes">{{notificacao.usuario.nome}} enviou um pedido de troca</li>
         
     </ul>
