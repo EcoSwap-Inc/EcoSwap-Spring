@@ -7,15 +7,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-info.component.css']
 })
 export class ProductInfoComponent {
-  produto: any = {nome: "", descricao: "", usuario: {nome: "", cidade: "", uf: ""}, categoria: {nome: ""}};
+  user_id!: number; 
+  troca: any = {produto: {nome: "", descricao: "", usuario: {nome: "", cidade: "", uf: ""}, categoria: {nome: ""}}, usuario: {nome: "", cidade:"", uf:""}};
   rating: any = 0;
 
   constructor(private route: ActivatedRoute) {
     route.params.subscribe(() => {
+      this.user_id = parseInt(localStorage.getItem('user_id') ?? '1');
       let id = this.route.snapshot.paramMap.get('id');
-      let token = localStorage.getItem('token')
+      let token = localStorage.getItem('token');
 
-      fetch('http://localhost:8080/api/produto/' + id, {
+      fetch('http://localhost:8080/api/troca/' + id, {
         method: 'GET',
         headers: { 
           'Accept': 'application/json', 
@@ -25,9 +27,9 @@ export class ProductInfoComponent {
       })
       .then(response => response.json())
       .then((data) => {
-        this.produto = data;
+        this.troca = data;
         
-        fetch("http://localhost:8080/api/avaliacao/mediaTrocas/" + this.produto.usuario.id_usuario, {
+        fetch("http://localhost:8080/api/avaliacao/mediaTrocas/" + this.troca.usuario.id_usuario, {
           method: 'GET',
           headers: { 
             'Accept': 'application/json', 

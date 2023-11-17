@@ -7,7 +7,7 @@
         <h2>Novos</h2>
 
         <div class="carousel-container">
-            <app-cards *ngFor="let produto of produtosNovos" class="carousel-item" [routerLink]="['/info', produto.id]" [produto]="produto"></app-cards>               
+            <app-cards *ngFor="let troca of trocasNovas" class="carousel-item" [routerLink]="['/info', troca.id]" [produto]="troca.produto"></app-cards>               
         </div>
     </section>
     <div class="divider"></div>
@@ -15,7 +15,7 @@
         <h2>Populares</h2>
 
         <div class="carousel-container">
-            <app-cards *ngFor="let produto of produtosPopulares" class="carousel-item" [routerLink]="['/info', produto.id]" [produto]="produto"></app-cards>               
+            <app-cards *ngFor="let troca of trocasPopulares" class="carousel-item" [routerLink]="['/info', troca.id]" [produto]="troca.produto"></app-cards>               
         </div>
 
     </section>

@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EditProductRoutingModule } from './edit-product-routing.module';
 import { EditProductComponent } from './edit-product.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [EditProductComponent],

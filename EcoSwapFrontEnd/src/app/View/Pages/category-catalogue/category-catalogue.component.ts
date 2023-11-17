@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./category-catalogue.component.css']
 })
 export class CategoryCatalogueComponent {
-  produtos!: any[];
+  trocas!: any[];
   id!: string | null;
   categoria!: string;
 
@@ -33,7 +33,7 @@ export class CategoryCatalogueComponent {
 
       this.categoria = categorias_nome[this.id as keyof typeof categorias_nome]
 
-      fetch('http://localhost:8080/api/produto/categoria/' + categorias_id[this.id as keyof typeof categorias_id], {
+      fetch('http://localhost:8080/api/troca/categoria/' + categorias_id[this.id as keyof typeof categorias_id], {
         method: 'GET',
         headers: { 
           'Accept': 'application/json', 
@@ -43,7 +43,7 @@ export class CategoryCatalogueComponent {
       })
       .then(response => response.json())
       .then((data) => {
-        this.produtos = data;
+        this.trocas = data;
       })
     });
   }
