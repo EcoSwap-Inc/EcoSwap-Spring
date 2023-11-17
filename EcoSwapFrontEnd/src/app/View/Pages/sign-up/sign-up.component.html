@@ -13,7 +13,7 @@
         <span><b>Passo 1 -</b> Conte mais sobre você</span>
         <form>
             <label>Qual será seu nome?</label>
-            <input type="text" [formControl]="nome" placeholder="Nome de usuário">
+            <input type="text" [formControl]="nome" placeholder="Nome de usuário" required>
             <label>Qual é a sua data de nascimento?</label>
             <input type="date" [formControl]="dataNasc" placeholder="Data de nascimento">
             <label>Qual é o seu e-mail?</label>
@@ -32,7 +32,7 @@
         <span><b>Passo 2 - </b>Seu endereço para entregas</span>
         <form>
                 <label id="ceplabel">Qual é o seu CEP?</label>
-                <input type="number" [formControl]="cep" placeholder="CEP residencial">
+                <input type="number" [formControl]="cep" placeholder="CEP residencial" >
                 
                 <label id="uflabel">Qual é a UF?</label>
                 <select type="date" [formControl]="UF">

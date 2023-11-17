@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  
+
+
   passo: number = 0;
 
   nome: FormControl = new FormControl();
