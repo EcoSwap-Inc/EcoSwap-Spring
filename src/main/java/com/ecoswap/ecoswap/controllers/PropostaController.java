@@ -38,6 +38,16 @@ public class PropostaController {
         return propostaService.findPropostaById(id);
     }
 
+    @GetMapping("/troca/{id}")
+    public List<Proposta> findPropostasByTrocaId(@PathVariable @Positive Long id) {
+        return propostaService.findPropostasByTrocaId(id);
+    }
+
+    @GetMapping("/finalizadas/{id}")
+    public List<Proposta> findAllFinalizadas(@PathVariable @Positive Long id) {
+        return propostaService.findAllPropostasFinalizadas(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarProposta(@PathVariable @Positive Long id) {
         return propostaService.deletarProposta(id);

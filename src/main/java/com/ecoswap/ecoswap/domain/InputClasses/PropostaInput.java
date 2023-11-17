@@ -14,7 +14,7 @@ public class PropostaInput implements Serializable {
     public PropostaInput() {
     }
 
-    public PropostaInput(Long usuario, Long troca, Long produto, boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao, Long avaliacao) {
+    public PropostaInput(Long usuario, Long troca, Long produto, Boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao, Long avaliacao) {
         this.usuario_id = usuario;
         this.troca_id = troca;
         this.produto_id = produto;
@@ -33,7 +33,7 @@ public class PropostaInput implements Serializable {
     @Positive
     private Long usuario_id;
 
-    private boolean aceito;
+    private Boolean aceito;
 
     private LocalDateTime data_criacao;
 

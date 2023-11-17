@@ -39,18 +39,6 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public List<Produto> findProdutosNovos() {
-        return produtoRepository.findTop10ByOrderByIdDesc();
-    }
-
-    public List<Produto> findProdutosPopulares() {
-        return produtoRepository.findAll(PageRequest.of(0, 10, Sort.by("views").descending())).getContent();
-    }
-
-    public List<Produto> findProdutosByCategoria(Long cat_id) {
-        return produtoRepository.findByCategoria(cat_id);
-    }
-
     public List<Produto> findProdutosByUsuario(Long id_usuario) {
         return produtoRepository.findByUsuario(id_usuario);
     }
@@ -69,7 +57,7 @@ public class ProdutoService {
     }
 
     public ResponseEntity<String> atualizarProduto(Long id, ProdutoInput produto) {
-        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null && produto.getImagem() == null && produto.getDescricao() == null && produto.getViews() == 0)
+        if (produto.getCategoria_id() == null && produto.getNome() == null && produto.getUsuario_id() == null && produto.getImagem() == null && produto.getDescricao() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Produto' foi informado\"}");
 
         Produto produtoExistente = produtoRepository.findById(id)
@@ -89,8 +77,6 @@ public class ProdutoService {
             produtoExistente.setImagem(produto.getImagem());
         if (produto.getDescricao() != null)
             produtoExistente.setDescricao(produto.getDescricao());
-        if (produto.getViews() != 0)
-            produtoExistente.setViews(produto.getViews());
 
         produtoRepository.save(produtoExistente);
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Produto com ID " + id + " atualizado com sucesso\"}");

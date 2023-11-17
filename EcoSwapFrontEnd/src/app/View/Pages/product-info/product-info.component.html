@@ -1,20 +1,20 @@
 <section class="body">
     <aside id="prodImg">
-        <img [src]="produto.imagem" alt="Imagem de produto"/>
+        <img [src]="troca.produto.imagem" alt="Imagem de produto"/>
     </aside>
     <aside id="prodInfo">
-        <h2 id="prodName">{{ produto.nome }}</h2>
-        <h3 id="userName">{{ produto.usuario.nome}}</h3>
-        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{ produto.usuario.cidade}} - {{produto.usuario.uf}}</span>
+        <h2 id="prodName">{{troca.produto.nome }}</h2>
+        <h3 id="userName">{{troca.usuario.nome}}</h3>
+        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{troca.usuario.cidade}} - {{troca.usuario.uf}}</span>
         <div class="category" id="catProd">
-            <span>{{produto.categoria.nome}}</span>
+            <span>{{troca.produto.categoria.nome}}</span>
         </div>
         <div class="user-evaluation" id="userEvaluation">
             <i class="fa-star" *ngFor="let item of [].constructor(5); index as i" [ngClass]="i < rating ?  'fa-solid' : 'fa-regular'"></i>
         </div>
         <p>
-            {{produto.descricao}}
+            {{troca.produto.descricao}}
         </p>
-        <button class="btn"[routerLink]="['/swap', produto.id]">Trocar</button>
+        <button *ngIf="user_id != troca.usuario.id_usuario" class="btn" [routerLink]="['/swap', troca.id]">Trocar</button>
     </aside>
 </section>

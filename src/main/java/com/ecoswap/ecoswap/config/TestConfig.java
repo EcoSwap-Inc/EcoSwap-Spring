@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -34,8 +35,8 @@ public class TestConfig implements CommandLineRunner {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
-    @Autowired
-    private AvaliacaoRepository avaliacaoRepository;
+//    @Autowired
+//    private AvaliacaoRepository avaliacaoRepository;
     @Autowired
     private PropostaRepository propostaRepository;
     @Autowired
@@ -50,13 +51,15 @@ public class TestConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String imgComputador = "data:image/png;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/teste.png"))), StandardCharsets.UTF_8);
 
-        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
-        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
-        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
-        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
-        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
-        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
-        usuarioRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
+        BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+        Usuario u1 = new Usuario("joaoadsistemas@gmail.com", b.encode("123"), "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
+        Usuario u2 = new Usuario("pedrohtejon@gmail.com", b.encode("pedro123"), "Pedro", "Sorocaba", "SP", 18016000, "Rua Tal", 34, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
+//        Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+//        Usuario u3 = new Usuario("carlos@gmail.com", "123", "Carlos", "Sorocaba", "SP", 18522019, "Cicero Almeida", 1423, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+//        Usuario u4 = new Usuario("roberto@gmail.com", "123", "Roberto", "Tatui", "SP", 129834, "Principal ", 654, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+//        Usuario u5 = new Usuario("larissa@gmail.com", "123", "Larissa", "Boituva", "SP", 4019023, "Brasil ", 64, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+//        Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
+        usuarioRepository.saveAll(Arrays.asList(u1, u2));
 
         Categoria cat1 = new Categoria("Mídia");
         Categoria cat2 = new Categoria("Colecionáveis");
@@ -67,36 +70,27 @@ public class TestConfig implements CommandLineRunner {
 
         Produto p1 = new Produto(u1, cat4, "Senhor dos aneis", "", imgComputador);
         Produto p2 = new Produto(u2, cat5, "Mac Air m1", "", imgComputador);
-        Produto p3 = new Produto(u3, cat2, "Galaxy s22", "", imgComputador);
-        Produto p4 = new Produto(u5, cat5, "Nintendo 3ds", "", imgComputador);
+        Produto p3 = new Produto(u2, cat2, "Galaxy s22", "", imgComputador);
+        Produto p4 = new Produto(u1, cat5, "Nintendo 3ds", "", imgComputador);
         Produto p5 = new Produto(u1, cat2, "AirMax", "", imgComputador);
-        Produto p6 = new Produto(u4, cat2, "Moletom", "", imgComputador);
-        Produto p7 = new Produto(u6, cat2, "Onix 2022", "", imgComputador);
-        Produto p8 = new Produto(u6, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgComputador);
-        Produto p9 = new Produto(u6, cat1, "Bee Movie", "", imgComputador);
-        Produto p10 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
-        Produto p11 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
-        Produto p12 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
-
+        Produto p6 = new Produto(u2, cat2, "Moletom", "", imgComputador);
+        Produto p7 = new Produto(u1, cat2, "Onix 2022", "", imgComputador);
+        Produto p8 = new Produto(u2, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgComputador);
+        Produto p9 = new Produto(u1, cat1, "Bee Movie", "", imgComputador);
+        Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "", imgComputador);
+        Produto p11 = new Produto(u1, cat3, "Pote de Jardinagem", "", imgComputador);
+        Produto p12 = new Produto(u2, cat3, "Pote de Jardinagem", "", imgComputador);
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12));
 
-        Troca tr1 = new Troca(u1, p1, false, LocalDateTime.now(), LocalDateTime.now(), null);
-        Troca tr2 = new Troca(u2, p2, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Troca tr3 = new Troca(u3, p3, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Troca tr4 = new Troca(u6, p5, false, LocalDateTime.now(), LocalDateTime.now(), null);
-        Troca tr5 = new Troca(u5, p6, false, LocalDateTime.now(), LocalDateTime.now(), null);
+        Troca tr1 = new Troca(u1, p1, false,  null, null);
+        Troca tr2 = new Troca(u2, p2, false,  null, null);
+        Troca tr3 = new Troca(u2, p3, false,  null, null);
+        Troca tr4 = new Troca(u1, p5, false,  null, null);
+        Troca tr5 = new Troca(u2, p6, false,  null, null);
         trocaRepository.saveAll(Arrays.asList(tr1, tr2, tr3, tr4, tr5));
 
-        Proposta prop1 = new Proposta(u1, tr1, p2, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Proposta prop2 = new Proposta(u2, tr2, p4, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Proposta prop3 = new Proposta(u3, tr3, p3, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Proposta prop4 = new Proposta(u5, tr5, p5, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        Proposta prop5 = new Proposta(u4, tr2, p1, true, LocalDateTime.now(), LocalDateTime.now(), null);
-        propostaRepository.saveAll(Arrays.asList(prop1, prop2, prop3, prop4, prop5));
+        Proposta prop1 = new Proposta(u1, tr5, p5, null, null, null);
+        propostaRepository.save(prop1);
 
-        Avaliacao av1 = new Avaliacao(u1, u2, tr1, prop1, 3.5, 5);
-        Avaliacao av2 = new Avaliacao(u3, u4, tr2, prop2, 2, 5);
-        Avaliacao av3 = new Avaliacao(u5, u6, tr5, prop4, 1, 2);
-        avaliacaoRepository.saveAll(Arrays.asList(av1, av2, av3));
     }
 }

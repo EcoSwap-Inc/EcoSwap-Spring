@@ -1,23 +1,20 @@
 <section class="body">
     <aside id="yourProd" class="prod-display">
         <h2>Seu produto</h2>
-        <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem do seu produto"/>
-        <select id="myProducts">
-            <option value="placeholder">Placeholder</option>
-            <option value="placeholder">Placeholder</option>
-            <option value="placeholder">Placeholder</option>
+        <img [src]="produtoSelecionado.imagem" alt="Imagem do seu produto"/>
+        <select id="myProducts" (change)="selecionarProduto($event)">
+            <option *ngFor="let produto of produtos; index as i" [value]="i">{{produto.nome}}</option>
         </select>
     </aside>
 
     <aside id="otherProd" class="prod-display">
-        <h2>Produto de User</h2>
-        <img src="../../../../assets/placeholder-prod.jpg" alt="Imagem do seu produto"/>
-        <h3>Nome: Produto</h3>
-        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>Uberaba - MG</span>
-
+        <h2>Produto de {{produtoDesejado.usuario.nome}}</h2>
+        <img [src]="produtoDesejado.imagem" alt="Imagem do seu produto"/>
+        <h3>Nome: {{produtoDesejado.nome}}</h3>
+        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{produtoDesejado.usuario.cidade}} - {{produtoDesejado.usuario.uf}}</span>
     </aside>
     
 </section>
 <section class="align-btn">
-    <button class="btn">Fazer proposta</button>
+    <button class="btn" (click)="fazerProposta()">Fazer proposta</button>
 </section>

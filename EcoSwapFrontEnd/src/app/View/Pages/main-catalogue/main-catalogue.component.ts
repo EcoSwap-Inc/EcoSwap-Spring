@@ -7,13 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./main-catalogue.component.css']
 })
 export class MainCatalogueComponent {
-  produtosNovos!: any[];
-  produtosPopulares!: any[];
+  trocasNovas!: any[];
+  trocasPopulares!: any[];
 
   constructor(private route: ActivatedRoute) {
     let token = localStorage.getItem('token')
     route.params.subscribe(() => {
-      fetch('http://localhost:8080/api/produto/novos', {
+      fetch('http://localhost:8080/api/troca/novos', {
         method: 'GET',
         headers: { 
           'Accept': 'application/json', 
@@ -23,10 +23,10 @@ export class MainCatalogueComponent {
       })
       .then(response => response.json())
       .then((data) => {
-        this.produtosNovos = data;
+        this.trocasNovas = data;
       })
 
-      fetch('http://localhost:8080/api/produto/populares', {
+      fetch('http://localhost:8080/api/troca/populares', {
         method: 'GET',
         headers: { 
           'Accept': 'application/json', 
@@ -36,7 +36,7 @@ export class MainCatalogueComponent {
       })
       .then(response => response.json())
       .then((data) => {
-        this.produtosPopulares = data;
+        this.trocasPopulares = data;
       })
     })
   }

@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.swing.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -20,12 +22,11 @@ public class Proposta implements Serializable {
     public Proposta() {
     }
 
-    public Proposta(Usuario usuario, Troca troca, Produto produto, boolean aceito, LocalDateTime data_criacao, LocalDateTime data_conclusao, Avaliacao avaliacao) {
+    public Proposta(Usuario usuario, Troca troca, Produto produto, Boolean aceito, LocalDateTime data_conclusao, Avaliacao avaliacao) {
         this.usuario = usuario;
         this.troca = troca;
         this.produto = produto;
         this.aceito = aceito;
-        this.data_criacao = data_criacao;
         this.data_conclusao = data_conclusao;
         this.avaliacao = avaliacao;
     }
@@ -65,14 +66,12 @@ public class Proposta implements Serializable {
     // JPA
     @Setter
     @Column()
-    private boolean aceito;
+    private Boolean aceito;
 
-    // Validação
-    @NotNull
     // JPA
     @Setter
-    @Column(nullable = false)
-    private LocalDateTime data_criacao;
+    @Column()
+    private LocalDateTime data_criacao = LocalDateTime.now();
 
     // Validação
     // JPA

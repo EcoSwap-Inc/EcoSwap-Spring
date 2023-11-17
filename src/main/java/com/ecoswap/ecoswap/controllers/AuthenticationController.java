@@ -38,6 +38,7 @@ public class AuthenticationController {
 
         Usuario user = (Usuario) auth.getPrincipal();
         String token = tokenService.generateToken(user);
+        System.out.println(data);
 
         return ResponseEntity.ok(new LoginResponseDTO(token, user.getId_usuario()));
     }
