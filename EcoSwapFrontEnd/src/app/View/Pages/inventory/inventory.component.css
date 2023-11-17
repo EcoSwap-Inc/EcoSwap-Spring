@@ -11,6 +11,7 @@
 
 .inventory-grid{
     width: 90%;
+    height: fit-content;
     display: flex;
     flex-wrap: wrap;
 }

@@ -8,12 +8,18 @@
     </section>
     <section class="container-sec">
         <aside class="inventory-grid">
-            <img *ngFor="let produto of produtos" [src]="produto.imagem" alt="Imagem de produto" (click)="selecionarProduto(produto)">
+            <img draggable="false" *ngFor="let produto of produtos" [src]="produto.imagem" alt="Imagem de produto" (click)="selecionarProduto(produto)">
         </aside>
         <aside class="prod-details" *ngIf="produtos.length > 0 && produtoSelecionado != null">
             <img [src]="produtoSelecionado.imagem" alt="Imagem de produto"/>
             <div class="info">
-            <h3>{{produtoSelecionado.nome}}<i class="fa-regular fa-pen-to-square" [routerLink]="['/editproduct', produtoSelecionado.id]"></i><i class="fa-solid fa-trash"></i></h3>
+            <h3>
+                {{produtoSelecionado.nome}}
+                <i class="fa-solid fa-pen-to-square" [routerLink]="['/editproduct', produtoSelecionado.id]"></i>
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid" [ngClass]="!existeTroca ? 'fa-arrow-up-from-bracket' : 'fa-check'" (click)="publicarTroca()"></i>
+                <i *ngIf="existeTroca" class="fa-solid fa-envelopes-bulk" [routerLink]="['/propostas', existeTroca.id]"></i>
+            </h3>
             <div class="category">{{produtoSelecionado.categoria.nome}}</div>
             <h3>Descrição:</h3>
             <span>{{produtoSelecionado.descricao}}</span>
