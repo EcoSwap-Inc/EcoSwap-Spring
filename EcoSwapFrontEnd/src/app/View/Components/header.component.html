@@ -1,5 +1,5 @@
 <header>
-    <app-banner></app-banner>
+    <app-banner [routerLink]="['/main']"></app-banner>
     
     <app-navbar (novoPfpMenuEstadoEvent)="changeMenuPfpMenuState($event)" (novoNotifEvent)="changeNotifState($event)"></app-navbar>
     
@@ -8,6 +8,7 @@
 <div class="navigation-pfp" id="navPfp" *ngIf="menuAberto" >
     <ul >
         <li [routerLink]= "['/profile']"><i class="fa-solid fa-user"></i>Meu perfil</li>
+        <li [routerLink]= "['/inventory']"><i class="fa-solid fa-boxes-stacked"></i>Inventário</li>
         <li (click)="deslogar()"><i class="fa-solid fa-door-open"></i>Sair</li>
     </ul>
 </div>
