@@ -53,6 +53,10 @@ public class PropostaService {
         return propostaRepository.findAllByTrocaId(id);
     }
 
+    public List<Proposta> findAllPropostasFinalizadas(Long id) {
+        return propostaRepository.findAllFinalizadas(id);
+    }
+
     public ResponseEntity<String> deletarProposta(Long id) {
         if (propostaRepository.existsById(id))
             propostaRepository.deleteById(id);
@@ -73,9 +77,14 @@ public class PropostaService {
                 Troca troca = propostaExistente.getTroca();
                 troca.setFinalizada(true);
                 troca.setData_conclusao(LocalDateTime.now());
+                trocaRepository.save(troca);
 
                 Produto produto = troca.getProduto();
                 produto.setUsuario(propostaExistente.getUsuario());
+                produtoRepository.save(produto);
+                Produto produto2 = propostaExistente.getProduto();
+                produto2.setUsuario(troca.getUsuario());
+                produtoRepository.save(produto2);
             }
             propostaExistente.setAceito(proposta.getAceito());
         }

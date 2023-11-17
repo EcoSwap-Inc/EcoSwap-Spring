@@ -1,39 +1,15 @@
 <section class="body">
     <section class="header-section">
         <h2>Histórico de trocas</h2>
-        <span>Confira suas solicitações de troca e trocas bem-sucedidas.</span>
+        <span>Confira suas trocas e propostas bem-sucedidas.</span>
     </section>
     <section class="container-sec">
-        <div class="log">
-            <h3>Troca com User</h3>
+        <div class="log" *ngFor="let proposta of propostas">
+            <h3>Troca entre {{proposta.troca.usuario.nome}} e {{proposta.usuario.nome}}</h3>
             <div class="cards-swap">
-                <app-cards class="card"></app-cards>
+                <app-cards class="card" [produto]="proposta.produto"></app-cards>
                 <i class="fa-solid fa-rotate"></i>
-                <app-cards class="card"></app-cards>
-            </div>
-        </div>
-        <div class="log">
-            <h3>Troca com User</h3>
-            <div class="cards-swap">
-                <app-cards class="card"></app-cards>
-                <i class="fa-solid fa-rotate"></i>
-                <app-cards class="card"></app-cards>
-            </div>
-        </div>
-        <div class="log">
-            <h3>Troca com User</h3>
-            <div class="cards-swap">
-                <app-cards class="card"></app-cards>
-                <i class="fa-solid fa-rotate"></i>
-                <app-cards class="card"></app-cards>
-            </div>
-        </div>
-        <div class="log">
-            <h3>Troca com User</h3>
-            <div class="cards-swap">
-                <app-cards class="card"></app-cards>
-                <i class="fa-solid fa-rotate"></i>
-                <app-cards class="card"></app-cards>
+                <app-cards class="card" [produto]="proposta.troca.produto"></app-cards>
             </div>
         </div>
     </section>
