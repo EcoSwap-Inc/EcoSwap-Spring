@@ -17,7 +17,6 @@ const routes: Routes = [{
     path: 'signup',
     loadChildren: () =>
       import('./View/Pages/sign-up/sign-up.module').then((m) => m.SignUpModule),
-    
   },
   {
     path: 'main',
@@ -70,7 +69,7 @@ const routes: Routes = [{
       canActivate: [AuthGuard],
     },
   {
-    path: 'swap',
+    path: 'swap/:id',
       loadChildren: () =>
         import('./View/Pages/swap-page/swap-page.module').then((m) => m.SwapPageModule),
     canActivate: [AuthGuard],
@@ -85,6 +84,12 @@ const routes: Routes = [{
     path: 'history',
       loadChildren: () =>
         import('./View/Pages/swap-log/swap-log.module').then((m) => m.SwapLogModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'propostas/:id',
+    loadChildren: () =>
+      import('./View/Pages/proposals/proposals.module').then((m) => m.ProposalsModule),
     canActivate: [AuthGuard],
   }
 ];
