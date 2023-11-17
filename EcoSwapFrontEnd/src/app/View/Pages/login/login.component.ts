@@ -15,17 +15,23 @@ export class LoginComponent {
   constructor ( private router: Router ) {}
   
   login(emailField: HTMLInputElement, senhaField: HTMLInputElement) {
-    fetch('http://localhost:8080/api/auth/login', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({email: emailField.value, senha: senhaField.value})
-    })
-    .then(response => response.json())
-    .then((data) => {
-      localStorage.setItem('token', data.token);
+    try {
+      fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({email: emailField.value, senha: senhaField.value})
+      })
+      .then(response => response.json())
+      .then((data) => {
+        if (data.status == undefined) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user_id', data.id)
 
-      this.router.navigateByUrl('/main')
-    })
+          this.router.navigateByUrl('/main')
+        }
+      })
+    } catch (e) {
 
+    }
   }
 }

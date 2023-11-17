@@ -48,7 +48,9 @@ input[type="text"]::placeholder{
 }
 
 input[type="file"]{
-    display:none;
+    visibility:hidden;
+    height: 1px;
+    width: 1px;
 }
 
 h2{

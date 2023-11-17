@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
     menuAberto: boolean = false;
 
+    constructor (private router: Router) {}
+
     changeMenuPfpMenuState (state: boolean) {
       this.menuAberto = state;
     }
@@ -18,5 +21,12 @@ export class HeaderComponent {
 
     changeNotifState (state: boolean) {
       this.notifNav = state;
+    }
+
+    deslogar() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user_id');
+
+      this.router.navigateByUrl('/login');
     }
 }

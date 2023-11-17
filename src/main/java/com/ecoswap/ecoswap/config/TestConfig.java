@@ -9,9 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.awt.image.WritableRaster;
+import java.util.Base64;
 
 // CLASSE DE TESTE PARA O H2
 @Configuration
@@ -37,6 +48,7 @@ public class TestConfig implements CommandLineRunner {
     // TUDO QUE ESTIVER AQUI DENTRO VAI RODAR QUANDO A APLICAÇÃO INICIAR
     @Override
     public void run(String... args) throws Exception {
+        String imgComputador = "data:image/png;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/teste.png"))), StandardCharsets.UTF_8);
 
         Usuario u1 = new Usuario("joaoadsistemas@gmail.com", "123", "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
         Usuario u2 = new Usuario("lucas@gmail.com", "123", "Lucas", "Tiete", "SP", 18522019, "Marte Cico", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
@@ -46,23 +58,27 @@ public class TestConfig implements CommandLineRunner {
         Usuario u6 = new Usuario("ana@gmail.com", "123", "ana", "Rio De Janeiro", "RJ", 7539504, "Copa Copa", 123, "Trabalho", null, "15997883239", LocalDate.parse("2005-10-10"));
         usuarioRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
 
-        Categoria cat1 = new Categoria("Livros");
-        Categoria cat2 = new Categoria("Smartphones");
-        Categoria cat3 = new Categoria("Notebooks");
-        Categoria cat4 = new Categoria("Carros");
-        Categoria cat5 = new Categoria("Roupas");
-        Categoria cat6 = new Categoria("Tenis");
-        Categoria cat7 = new Categoria("Eletronicos");
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
+        Categoria cat1 = new Categoria("Mídia");
+        Categoria cat2 = new Categoria("Colecionáveis");
+        Categoria cat3 = new Categoria("Jardinagem");
+        Categoria cat4 = new Categoria("Livros e HQS");
+        Categoria cat5 = new Categoria("Informática");
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 
-        Produto p1 = new Produto(u1, cat1, "Senhor dos aneis", "", null);
-        Produto p2 = new Produto(u2, cat3, "Mac Air m1", "", null);
-        Produto p3 = new Produto(u3, cat2, "Galaxy s22", "", null);
-        Produto p4 = new Produto(u5, cat7, "Nintendo 3ds", "", null);
-        Produto p5 = new Produto(u1, cat6, "AirMax", "", null);
-        Produto p6 = new Produto(u4, cat5, "Moletom", "", null);
-        Produto p7 = new Produto(u6, cat4, "Onix 2022", "", null);
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
+        Produto p1 = new Produto(u1, cat4, "Senhor dos aneis", "", imgComputador);
+        Produto p2 = new Produto(u2, cat5, "Mac Air m1", "", imgComputador);
+        Produto p3 = new Produto(u3, cat2, "Galaxy s22", "", imgComputador);
+        Produto p4 = new Produto(u5, cat5, "Nintendo 3ds", "", imgComputador);
+        Produto p5 = new Produto(u1, cat2, "AirMax", "", imgComputador);
+        Produto p6 = new Produto(u4, cat2, "Moletom", "", imgComputador);
+        Produto p7 = new Produto(u6, cat2, "Onix 2022", "", imgComputador);
+        Produto p8 = new Produto(u6, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgComputador);
+        Produto p9 = new Produto(u6, cat1, "Bee Movie", "", imgComputador);
+        Produto p10 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
+        Produto p11 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
+        Produto p12 = new Produto(u6, cat3, "Pote de Jardinagem", "", imgComputador);
+
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12));
 
         Troca tr1 = new Troca(u1, p1, false, LocalDateTime.now(), LocalDateTime.now(), null);
         Troca tr2 = new Troca(u2, p2, true, LocalDateTime.now(), LocalDateTime.now(), null);

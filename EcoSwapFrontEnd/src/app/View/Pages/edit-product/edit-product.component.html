@@ -7,17 +7,14 @@
 
     <section class=" form form-new">
         <span>Edite o nome ou descrição do seu produto</span>
-        <form (ngSubmit) = "submit()" [formGroup]="editProduct" #formDir="ngForm">
+        <form >
             <label>Qual é o nome do seu produto?</label>
-            <input type="text" id="productName" placeholder="Nome do produto" formControlName="nomeproduto" required>
-            <div *ngIf="nome.invalid && formDir.submitted">
-                <p *ngIf="nome.errors?.['required']">O nome é obrigatório</p>
-            </div>
+
+            <input type="text" [formControl]="nome" placeholder="Nome do produto">
             <label>Dê uma descrição para o seu produto</label>
-            <input  type="text" id="productDesc" placeholder="Descrição do produto">
-            <button class="btn">Concluir</button>
-            
+            <input  type="text" [formControl]="descricao" placeholder="Descrição do produto">
         </form>
+        <button class="btn" (click)="salvarAlteracoes()">Concluir</button>
 
         
     </section>

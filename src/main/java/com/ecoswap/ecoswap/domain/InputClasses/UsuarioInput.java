@@ -6,13 +6,16 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @Validated
 @Getter
+@Setter
 public class UsuarioInput implements Serializable {
 
     public UsuarioInput() {
@@ -46,6 +49,7 @@ public class UsuarioInput implements Serializable {
     @Size(max = 75)
     private String cidade;
 
+    @Size(max = 2)
     private String UF;
 
     @Size(max = 150)
@@ -66,4 +70,22 @@ public class UsuarioInput implements Serializable {
     private String telefone;
 
     private int cep;
+
+    @Override
+    public String toString() {
+        return "UsuarioInput{" +
+                "email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", UF='" + UF + '\'' +
+                ", rua='" + rua + '\'' +
+                ", numero_rua=" + numero_rua +
+                ", complemento='" + complemento + '\'' +
+                ", imagem=" + Arrays.toString(imagem) +
+                ", dataNasc=" + dataNasc +
+                ", telefone='" + telefone + '\'' +
+                ", cep=" + cep +
+                '}';
+    }
 }

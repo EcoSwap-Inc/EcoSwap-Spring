@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 @Validated
@@ -21,7 +22,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Usuario usuario, Categoria categoria, String nome, String descricao, byte[] imagem) {
+    public Produto(Usuario usuario, Categoria categoria, String nome, String descricao, String imagem) {
         this.usuario = usuario;
         this.categoria = categoria;
         this.nome = nome;
@@ -31,7 +32,7 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_produto;
+    private Long id;
 
     // Validação
     @Valid
@@ -69,25 +70,31 @@ public class Produto implements Serializable {
     @Lob
     @Setter
     @Column (name = "imagem")
-    private byte[] imagem;
+    private String imagem;
+
+    @Column(name = "dataCriada", updatable = false)
+    private Instant dataCriada = Instant.now();
+
+    @Setter
+    private Long views = 0L;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produto produto = (Produto) o;
-        return Objects.equals(id_produto, produto.id_produto);
+        return Objects.equals(id, produto.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_produto);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Produto{" +
-                "id_produto=" + id_produto +
+                "id_produto=" + id +
                 ", usuario=" + usuario +
                 ", categoria=" + categoria +
                 ", nome='" + nome + '\'' +
