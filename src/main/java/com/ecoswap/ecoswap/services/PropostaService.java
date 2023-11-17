@@ -56,6 +56,10 @@ public class PropostaService {
         return propostaRepository.findAllFinalizadas(id);
     }
 
+    public List<Proposta> findAllNaoRespondidas(Long id) {
+        return propostaRepository.findAllNaoRespondidas(id);
+    }
+
     public ResponseEntity<String> deletarProposta(Long id) {
         if (propostaRepository.existsById(id))
             propostaRepository.deleteById(id);

@@ -48,6 +48,11 @@ public class PropostaController {
         return propostaService.findAllPropostasFinalizadas(id);
     }
 
+    @GetMapping("/notificacoes/{id}")
+    public List<Proposta> findAllNaoRespondidas(@PathVariable @Positive Long id) {
+        return propostaService.findAllNaoRespondidas(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarProposta(@PathVariable @Positive Long id) {
         return propostaService.deletarProposta(id);
