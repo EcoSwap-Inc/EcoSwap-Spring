@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-product.component.css']
 })
 export class NewProductComponent {
+
+  newProd!: FormGroup;
+
+  ngOnInit(): void{
+    this.newProd=new FormGroup({
+      nome: new FormControl('', [ Validators.required])
+    })
+  }
+
+  get nome(){
+    return this.newProd.get('nome')!;
+  }
+
   nomeForm: FormControl = new FormControl();
   descricaoForm: FormControl = new FormControl();
   categoriaForm: FormControl = new FormControl();

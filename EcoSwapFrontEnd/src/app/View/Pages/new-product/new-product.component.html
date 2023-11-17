@@ -9,9 +9,13 @@
 
     <section class=" form form-new">
         <span>Cadastre um novo produto para trocar no catálogo EcoSwap!</span>
-        <form>
+        <form [formGroup]="newProd" #formDir="ngForm">
             <label>Qual é o nome do seu produto?</label>
-            <input type="text" [formControl]="nomeForm" placeholder="Nome do produto">
+            <input type="text" [formControl]="nomeForm" placeholder="Nome do produto" formControlName = "nomeProd">
+            <div *ngIf = "nome.invalid && formDir.submitted" class="required-err">
+                <p *ngIf="nome.errors?.['required']">O nome do produto é obrigatório</p>
+            </div>
+
             <label>Dê uma descrição para o seu produto</label>
             <input  type="text" [formControl]="descricaoForm" placeholder="Descrição do produto">
             <label>Em qual categoria seu produto se encaixa?</label>
@@ -31,8 +35,9 @@
                     </label>
                 </div>
             </div>
+            <button class="btn" (click)="salvarProduto()">Concluir</button>
         </form>
-        <button class="btn" (click)="salvarProduto()">Concluir</button>
+       
         
     </section>
 </section>
