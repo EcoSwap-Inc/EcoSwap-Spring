@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    min-height: 65.5vh;
+}
+
 .divider{
     background-color: #B8B7B77E;
     height: 0.1rem;

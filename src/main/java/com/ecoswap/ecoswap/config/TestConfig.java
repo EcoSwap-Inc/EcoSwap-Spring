@@ -50,6 +50,15 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String imgComputador = "data:image/png;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/teste.png"))), StandardCharsets.UTF_8);
+        String imgNintendo = "data:image/png;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/nintendo.png"))), StandardCharsets.UTF_8);
+        String imgPote = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/pote.jpeg"))), StandardCharsets.UTF_8);
+        String imgSenhor = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/senhor.jpg"))), StandardCharsets.UTF_8);
+        String imgAirmax = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/airmax.jpeg"))), StandardCharsets.UTF_8);
+        String imgMoletom = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/moletom.jpeg"))), StandardCharsets.UTF_8);
+        String imgMac = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/mac.jpeg"))), StandardCharsets.UTF_8);
+        String imgGalaxy = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/galaxy.jpeg"))), StandardCharsets.UTF_8);
+        String imgBee = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/bee.jpeg"))), StandardCharsets.UTF_8);
+        String imgDiario = "data:image/jpeg;charset=utf-8;base64," + new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("src/main/resources/imgs/diario.jpg"))), StandardCharsets.UTF_8);
 
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
         Usuario u1 = new Usuario("joaoadsistemas@gmail.com", b.encode("123"), "Joao", "Cerquilho", "SP", 18520029, "Achiles Audi", 1054, "Casa", null, "15997883239", LocalDate.parse("2005-10-10"));
@@ -68,19 +77,16 @@ public class TestConfig implements CommandLineRunner {
         Categoria cat5 = new Categoria("Informática");
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 
-        Produto p1 = new Produto(u1, cat4, "Senhor dos aneis", "", imgComputador);
-        Produto p2 = new Produto(u2, cat5, "Mac Air m1", "", imgComputador);
-        Produto p3 = new Produto(u2, cat2, "Galaxy s22", "", imgComputador);
-        Produto p4 = new Produto(u1, cat5, "Nintendo 3ds", "", imgComputador);
-        Produto p5 = new Produto(u1, cat2, "AirMax", "", imgComputador);
-        Produto p6 = new Produto(u2, cat2, "Moletom", "", imgComputador);
-        Produto p7 = new Produto(u1, cat2, "Onix 2022", "", imgComputador);
-        Produto p8 = new Produto(u2, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgComputador);
-        Produto p9 = new Produto(u1, cat1, "Bee Movie", "", imgComputador);
-        Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "", imgComputador);
-        Produto p11 = new Produto(u1, cat3, "Pote de Jardinagem", "", imgComputador);
-        Produto p12 = new Produto(u2, cat3, "Pote de Jardinagem", "", imgComputador);
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12));
+        Produto p1 = new Produto(u1, cat4, "Senhor dos aneis", "", imgSenhor);
+        Produto p2 = new Produto(u2, cat5, "Mac Air m1", "", imgMac);
+        Produto p3 = new Produto(u2, cat2, "Galaxy s22", "", imgGalaxy);
+        Produto p4 = new Produto(u1, cat5, "Nintendo 3ds", "", imgNintendo);
+        Produto p5 = new Produto(u1, cat2, "AirMax", "Trazendo impacto no visual clássico que seus filhos irão adorar, o tênis Nike Air Max 90 965 esbanja inovação sem comprometer sua originalidade! O design deste Air faz com que ele seja divertido, adicionando elegância e um visual dos anos 90 com detalhes minimalistas que renovam ainda mais o ícone do Air.\n\nO tênis masculino é construído em materiais sintéticos e couro, seu acolchoamento é macio ao redor do tornozelo e combina com o amortecimento Air para oferecer conforto no seu calçar. Seu solado em waffle para manter a alta durabilidade.", imgAirmax);
+        Produto p6 = new Produto(u2, cat2, "Moletom", "", imgMoletom);
+        Produto p8 = new Produto(u2, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgDiario);
+        Produto p9 = new Produto(u1, cat1, "Bee Movie", "", imgBee);
+        Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "Um vaso para jardim em cerâmica é uma peça encantadora que combina funcionalidade e beleza estética para realçar o ambiente externo. Seu design pode variar, desde formas clássicas e elegantes, estilos mais contemporâneos e artísticos. A cerâmica permite uma ampla gama de texturas e padrões, permitindo que o vaso se destaque como uma peça decorativa por si só ou como um complemento perfeito para as plantas que abrigam. Além disso, a cerâmica oferece ótima retenção de água, ajudando a manter as plantas saudáveis \u200B\u200Be hidratadas.", imgPote);
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p8, p9, p10));
 
         Troca tr1 = new Troca(u1, p1, false,  null, null);
         Troca tr2 = new Troca(u2, p2, false,  null, null);
