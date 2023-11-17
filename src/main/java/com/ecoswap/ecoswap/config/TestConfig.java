@@ -77,7 +77,7 @@ public class TestConfig implements CommandLineRunner {
         Produto p3 = new Produto(u2, cat2, "Galaxy s22", "", imgGalaxy);
         Produto p4 = new Produto(u1, cat5, "Nintendo 3ds", "", imgNintendo);
         Produto p5 = new Produto(u1, cat2, "AirMax", "Trazendo impacto no visual clássico que seus filhos irão adorar, o tênis Nike Air Max 90 965 esbanja inovação sem comprometer sua originalidade! O design deste Air faz com que ele seja divertido, adicionando elegância e um visual dos anos 90 com detalhes minimalistas que renovam ainda mais o ícone do Air.", imgAirmax);
-        Produto p6 = new Produto(u2, cat2, "Moletom", "", imgMoletom);
+        Produto p6 = new Produto(u2, cat2, "Moletom", "Aposte no conforto e qualidade do moletom para completar seu visual nos dias mais frios. Fabricado em material 75% algodão 25% poliéster, malha flanelada com gramatura encorpada de excelente qualidade, a peça de estilo clássico possui bolso canguru e capuz. O moletom garante a sensação de maciez e te mantém aquecido em dias mais frios", imgMoletom);
         Produto p8 = new Produto(u2, cat4, "Diário de um Banana 2: Rodrick é o Cara", "", imgDiario);
         Produto p9 = new Produto(u1, cat1, "Bee Movie", "", imgBee);
         Produto p10 = new Produto(u2, cat3, "Pote de Jardinagem", "Um vaso para jardim em cerâmica é uma peça encantadora que combina funcionalidade e beleza estética para realçar o ambiente externo. Seu design pode variar, desde formas clássicas e elegantes, estilos mais contemporâneos e artísticos. A cerâmica permite uma ampla gama de texturas e padrões, permitindo que o vaso se destaque como uma peça decorativa por si só ou como um complemento perfeito para as plantas que abrigam.", imgPote);
