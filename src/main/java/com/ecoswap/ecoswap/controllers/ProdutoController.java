@@ -39,6 +39,11 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.findProdutosByCategoria(cat_id));
     }
 
+    @GetMapping("/usuario/{id_usuario}")
+    public ResponseEntity<List<Produto>> findProdutosByUsuario(@PathVariable @Positive Long id_usuario) {
+        return ResponseEntity.ok(produtoService.findProdutosByUsuario(id_usuario));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findProdutoById(@PathVariable @Positive Long id) {
         Produto produto = produtoService.findProdutoById(id);

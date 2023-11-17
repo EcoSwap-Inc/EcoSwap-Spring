@@ -51,6 +51,10 @@ public class ProdutoService {
         return produtoRepository.findByCategoria(cat_id);
     }
 
+    public List<Produto> findProdutosByUsuario(Long id_usuario) {
+        return produtoRepository.findByUsuario(id_usuario);
+    }
+
     public Produto findProdutoById(Long id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementFoundException("Produto não encontrado com o ID: " + id));
