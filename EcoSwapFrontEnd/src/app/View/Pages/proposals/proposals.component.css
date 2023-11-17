@@ -1,0 +1,50 @@
+.body{
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+}
+
+h2{
+    color:#24501F;
+}
+
+.container-sec{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.card{
+    cursor: default;
+}
+
+.cards-swap{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+}
+
+.log{
+    display: flex;
+    flex-wrap: wrap;
+    width:45%;
+    /* margin-right: 18%;
+    margin-top: 2.5%; */
+}
+
+.container-sec h3{
+    display: flex;
+    color: #24501F;
+    cursor:default;
+
+}
+
+.log i{
+    font-size: 250%;
+    color:#A8985F;
+    margin-left: 15%;
+    margin-right: 5%;
+}
+

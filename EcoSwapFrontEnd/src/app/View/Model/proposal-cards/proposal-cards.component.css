@@ -1,0 +1,59 @@
+:host {
+    width: 100%;
+}
+
+img{
+    height: 12rem;
+    min-height: 8rem;
+    width: 12rem ;
+    min-width: 8rem;
+    border-radius: 16px;
+    border: 2px solid #24501F;
+}
+
+.img-prod{
+    height: 12rem;
+    min-height: 8rem;
+    width: 12rem ;
+    min-width: 8rem;
+    margin:6%;
+}
+
+.product-card{
+    border: 2px solid #24501F;
+    margin-top: 1.5%;
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    margin-bottom: 2%;
+    overflow-wrap: break-word;    
+}
+
+i{
+    color:#24501F;
+    font-size: 24px;
+}
+
+p{
+    font-weight: bold;
+    font-size: 125%;
+}
+
+span, p{
+    margin-left: 6%;
+    
+}
+
+.user-evaluation{
+    display: flex;
+    flex-direction: row;
+    margin-left: 6%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.fa-check, .fa-xmark {
+    cursor: pointer;
+}

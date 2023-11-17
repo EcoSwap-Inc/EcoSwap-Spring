@@ -1,0 +1,21 @@
+<div class="product-card">
+    <div>
+        <div class="img-prod" id="prodImg">
+            <img [src]="proposta.produto.imagem">
+        </div>
+        <p id="prodName" >{{this.proposta.produto.nome}}</p>
+        <span id="userName">{{this.proposta.usuario.nome}}</span>
+        <div class="user-evaluation" id="userEvaluation">
+            <div *ngFor="let item of [].constructor(5); index as i">
+                <i class="fa-star" [ngClass]="i < rating ?  'fa-solid' : 'fa-regular'"></i>
+            </div>
+        </div>
+    </div>
+    <div style="width: 60%;margin-left: 5%; display: flex; flex-direction: column; justify-content: space-between;">
+        <span id="userName">{{this.proposta.usuario.descricao}}</span>  
+        <div style="display: flex; justify-content: center; column-gap: 10%">
+            <i *ngIf="proposta.aceito == null || proposta.aceito" class="fa-solid fa-check" style="font-size: 48px;" (click)="aceitarProposta()"></i>
+            <i *ngIf="proposta.aceito == null || !proposta.aceito" class="fa-solid fa-xmark" style="font-size: 48px;" (click)="negarProposta()"></i>
+        </div>
+    </div>
+</div>
