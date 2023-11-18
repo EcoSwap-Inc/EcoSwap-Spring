@@ -88,7 +88,9 @@ public class TestConfig implements CommandLineRunner {
         Troca tr3 = new Troca(u2, p3, false, null, null);
         Troca tr4 = new Troca(u1, p5, false, null, null);
         Troca tr5 = new Troca(u2, p6, false, null, null);
-        trocaRepository.saveAll(Arrays.asList(tr1, tr2, tr3, tr4, tr5));
+        Troca tr6 = new Troca(u1, p9, false, null, null);
+        Troca tr7 = new Troca(u2, p10, false, null, null);
+        trocaRepository.saveAll(Arrays.asList(tr1, tr2, tr3, tr4, tr5, tr6, tr7));
 
         Proposta prop1 = new Proposta(u1, tr5, p5, null, null, null);
         propostaRepository.save(prop1);
