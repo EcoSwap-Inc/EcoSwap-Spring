@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +9,7 @@ export class NavbarComponent {
     estadoPfpMenu: boolean = false;
 
     @Output() novoPfpMenuEstadoEvent = new EventEmitter<boolean>();
+    @Input() notificacoes: any = [];
 
     changePfpMenuState () {
       this.estadoPfpMenu = !this.estadoPfpMenu;

@@ -37,7 +37,6 @@ export class ProposalsComponent {
       .then(response => response.json())
       .then((data) => {
         this.propostas = data;
-        console.log(data)
       })
     }) 
   }

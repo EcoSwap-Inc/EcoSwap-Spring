@@ -1,9 +1,7 @@
 package com.ecoswap.ecoswap.controllers;
 
 
-import com.ecoswap.ecoswap.domain.InputClasses.ProdutoInput;
 import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
-import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.services.TrocaService;
 import jakarta.validation.Valid;

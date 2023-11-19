@@ -1,7 +1,7 @@
 <header>
     <app-banner [routerLink]="['/main']"></app-banner>
     
-    <app-navbar (novoPfpMenuEstadoEvent)="changeMenuPfpMenuState($event)" (novoNotifEvent)="changeNotifState($event)"></app-navbar>
+    <app-navbar [notificacoes]="notificacoes" (novoPfpMenuEstadoEvent)="changeMenuPfpMenuState($event)" (novoNotifEvent)="changeNotifState($event)"></app-navbar>
     
 </header>
 
@@ -14,12 +14,9 @@
 </div>
 
 <div class="notif-nav" id="navnotif" *ngIf="notifNav">
-    <ul class="notiflist">
-        <li class="notif">Usuario 1 enviou um pedido de troca</li>
-        <li class="notif">Usuario 1 enviou um pedido de troca</li>
-        <li class="notif">Usuario 1 aceitou um pedido de troca</li>
-        <li class="notif">Usuario 1 recusou um pedido de troca</li>
-        <li class="notif">Usuario 256 enviou um pedido de troca</li>
+    <ul class="notiflist" style="min-height: 5vh">
+        <li class="notif" *ngFor="let notificacao of notificacoes">{{notificacao.usuario.nome}} enviou um pedido de troca em {{notificacao.troca.produto.nome}}</li>
+        
     </ul>
 </div>
 

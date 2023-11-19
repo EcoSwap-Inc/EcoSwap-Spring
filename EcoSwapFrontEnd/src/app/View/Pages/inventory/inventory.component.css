@@ -1,5 +1,6 @@
-:host{
-    min-height: 65.5vh;
+:host {
+    display: block;
+    min-height: 66.5vh;
 }
 
 .inventory-grid img{

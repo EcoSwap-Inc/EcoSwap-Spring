@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 @Validated
@@ -69,7 +68,7 @@ public class Produto implements Serializable {
 
     @Lob
     @Setter
-    @Column (name = "imagem")
+    @Column(name = "imagem")
     private String imagem;
 
     @Override

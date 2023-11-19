@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    min-height: 65.5vh;
+}
+
 .products-container{
     display:flex;
     flex-wrap: wrap;

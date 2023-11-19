@@ -38,7 +38,6 @@ export class EditProductComponent {
   salvarAlteracoes() {
     this.produto.nome = this.nome.value;
     this.produto.descricao = this.descricao.value;
-    console.log(this.produto);
 
     fetch('http://localhost:8080/api/produto/' + this.id, {
       method: 'PUT',

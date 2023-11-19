@@ -9,18 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NewProductComponent {
 
-  newProd!: FormGroup;
-
-  ngOnInit(): void{
-    this.newProd=new FormGroup({
-      nome: new FormControl('', [ Validators.required])
-    })
-  }
-
-  get nome(){
-    return this.newProd.get('nome')!;
-  }
-
+  
   nomeForm: FormControl = new FormControl();
   descricaoForm: FormControl = new FormControl();
   categoriaForm: FormControl = new FormControl();

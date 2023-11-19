@@ -1,7 +1,6 @@
 package com.ecoswap.ecoswap.services;
 
 import com.ecoswap.ecoswap.domain.InputClasses.TrocaInput;
-import com.ecoswap.ecoswap.domain.Produto;
 import com.ecoswap.ecoswap.domain.Troca;
 import com.ecoswap.ecoswap.exception.NoSuchElementFoundException;
 import com.ecoswap.ecoswap.repository.AvaliacaoRepository;
@@ -10,8 +9,6 @@ import com.ecoswap.ecoswap.repository.TrocaRepository;
 import com.ecoswap.ecoswap.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

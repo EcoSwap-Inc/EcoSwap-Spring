@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    min-height: 60.8vh;
+}
+
 section{
     height: 30vw;
     cursor: default;

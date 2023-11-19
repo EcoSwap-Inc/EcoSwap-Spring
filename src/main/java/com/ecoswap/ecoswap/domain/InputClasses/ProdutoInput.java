@@ -32,7 +32,7 @@ public class ProdutoInput implements Serializable {
     @Size(min = 5, max = 150)
     private String nome;
 
-    @Size(max=500)
+    @Size(max = 500)
     private String descricao;
 
     @Lob
