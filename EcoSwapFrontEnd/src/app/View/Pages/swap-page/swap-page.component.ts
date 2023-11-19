@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SwapPageComponent {
   produtos: any = [];
-  produtoDesejado: any = {nome: "", descricao: "", usuario: {nome: "", cidade: "", uf: ""}, categoria: {nome: ""}};
+  produtoDesejado: any = {nome: "", descricao: "", usuario: {nome: "", cidade: "", uf: "", email:"", telefone:""}, categoria: {nome: ""}};
   troca: any;
   produtoSelecionado: any = {nome: "", descricao: "", usuario: {nome: "", cidade: "", uf: ""}, categoria: {nome: ""}};
 

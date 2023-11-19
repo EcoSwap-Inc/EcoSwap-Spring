@@ -17,6 +17,7 @@
 .header-section{
     margin-bottom: 2%;
     cursor:default;
+    user-select: none;
 }
 
 h2{

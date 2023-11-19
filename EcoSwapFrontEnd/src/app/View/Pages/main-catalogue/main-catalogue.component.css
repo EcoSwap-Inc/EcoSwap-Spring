@@ -19,6 +19,7 @@
 .header-section{
     margin-bottom: 2%;
     cursor:default;
+    user-select: none;
 }
 
 .header-section h2{
@@ -80,3 +81,7 @@ h2{
     }
 
 }
+
+
+
+

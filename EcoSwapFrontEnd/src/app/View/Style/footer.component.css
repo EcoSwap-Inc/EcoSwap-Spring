@@ -1,6 +1,6 @@
 footer{
     background-color: #4F7942;
-    
+    user-select:none;
     margin-top: auto;
    
     width: 100vw;

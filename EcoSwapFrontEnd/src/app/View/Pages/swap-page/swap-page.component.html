@@ -9,9 +9,13 @@
 
     <aside id="otherProd" class="prod-display">
         <h2>Produto de {{produtoDesejado.usuario.nome}}</h2>
-        <img [src]="produtoDesejado.imagem" alt="Imagem do seu produto"/>
+        <img [src]="produtoDesejado.imagem" alt="Imagem do seu produto" draggable="false"/>
         <h3>Nome: {{produtoDesejado.nome}}</h3>
-        <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{produtoDesejado.usuario.cidade}} - {{produtoDesejado.usuario.uf}}</span>
+        <div class="desired-info">
+            <span id="userLocation"><i class="fa-solid fa-location-dot"></i>{{produtoDesejado.usuario.cidade}} - {{produtoDesejado.usuario.uf}}</span>
+            <span id="userEmail"><i class="fa-solid fa-envelope"></i>{{produtoDesejado.usuario.email}}</span>
+            <span id="userTel"><i class="fa-solid fa-phone"></i>{{produtoDesejado.usuario.telefone}}</span>
+        </div>
     </aside>
     
 </section>

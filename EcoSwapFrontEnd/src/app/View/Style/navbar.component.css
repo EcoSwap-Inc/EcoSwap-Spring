@@ -4,6 +4,8 @@ ul{
     padding: 0;
     overflow: hidden;
     margin-left: 0.95%;
+    user-select:none;
+  
 }
 
 li{

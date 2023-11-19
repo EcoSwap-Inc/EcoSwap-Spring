@@ -6,6 +6,7 @@
 section{
     height: 30vw;
     cursor: default;
+    user-select:none;
 }
 
 ul{
@@ -15,6 +16,7 @@ ul{
 .pfp-page img{
     height: 15rem;
     min-height: 5rem;
+    pointer-events: none;
 }
 
 .side-by-side{

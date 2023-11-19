@@ -5,6 +5,7 @@ img{
     min-width: 8rem;
     border-radius: 16px;
     border: 2px solid #24501F;
+    pointer-events: none;
 }
 
 .img-prod{
@@ -26,7 +27,9 @@ img{
     border-radius: 16px;
     margin-bottom: 2%;
     overflow-wrap: break-word;
-  
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     
 }
 
@@ -48,7 +51,10 @@ p{
 
 span, p{
     margin-left: 6%;
-    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 15%;
 }
 
 .user-evaluation{

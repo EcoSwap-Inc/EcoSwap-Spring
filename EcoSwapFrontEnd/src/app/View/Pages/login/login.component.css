@@ -14,9 +14,12 @@
 
 img{
     height: 10rem;
+    pointer-events: none;
+    user-select: none;
 }
 
 .form{
+    user-select: none;
     display: flex;
     flex-direction: column;
     align-items: center;
