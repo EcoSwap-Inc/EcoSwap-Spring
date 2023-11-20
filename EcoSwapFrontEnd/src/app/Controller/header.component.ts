@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 
@@ -9,27 +9,9 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent {
     menuAberto: boolean = false;
-    notificacoes: any = [];
+    @Input() notificacoes: any;
 
-    constructor (private router: Router, private route: ActivatedRoute) {
-      this.router.events.subscribe((val) => {
-        if (val instanceof NavigationEnd) 
-          fetch('http://localhost:8080/api/proposta/notificacoes/' + localStorage.getItem('user_id'), {
-            method: 'GET',
-            headers: { 
-              'Accept': 'application/json', 
-              'Content-Type': 'application/json', 
-              'Authorization': `${localStorage.getItem('token')}` 
-            },
-          })
-          .then(response => response.json())
-          .then((data) => {
-            this.notificacoes = data;
-          })
-        
-        
-      })
-    }
+    constructor (private router: Router) {}
 
     changeMenuPfpMenuState (state: boolean) {
       this.menuAberto = state;

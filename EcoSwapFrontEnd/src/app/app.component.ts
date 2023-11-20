@@ -9,15 +9,15 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 
 })
 export class AppComponent {
- 
+  notificacoes: Array<Object> = [];
 
   title = 'EcoSwapFrontEnd';
 
   showHeader: boolean = true;
   showFooter: boolean = true;
 
-  constructor(private router:Router){
-    router.events.subscribe((event) => {
+  constructor(private router: Router){
+    this.router.events.subscribe((event) => {
       if(event instanceof NavigationEnd){
           const curRoute = event.url;
           if(curRoute === '/login' || curRoute === '/signup' || curRoute === '/'){
@@ -27,6 +27,19 @@ export class AppComponent {
           else{
             this.showFooter = true;
             this.showHeader = true;
+
+            fetch('http://localhost:8080/api/proposta/notificacoes/' + localStorage.getItem('user_id'), {
+              method: 'GET',
+              headers: { 
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json', 
+                'Authorization': `${localStorage.getItem('token')}` 
+              },
+            })
+            .then(response => response.json())
+            .then((data) => {
+              this.notificacoes = data;
+            })
           }
       }
     })

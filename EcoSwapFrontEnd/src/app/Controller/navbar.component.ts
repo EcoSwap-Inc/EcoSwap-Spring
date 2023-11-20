@@ -9,7 +9,7 @@ export class NavbarComponent {
     estadoPfpMenu: boolean = false;
 
     @Output() novoPfpMenuEstadoEvent = new EventEmitter<boolean>();
-    @Input() notificacoes: any = [];
+    @Input() notificacoes: any;
 
     changePfpMenuState () {
       this.estadoPfpMenu = !this.estadoPfpMenu;
