@@ -68,12 +68,19 @@ public class AvaliacaoService {
         return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Avaliação com ID " + id + " deletada com sucesso\"}");
     }
 
+    public Avaliacao findByPropostaAndTroca(Long proposta, Long troca) {
+        return avaliacaoRepository.findByPropostaAndTroca(proposta, troca);
+    }
+
     public ResponseEntity<String> atualizarAvaliacao(Long id, AvaliacaoInput avaliacao) {
         if (avaliacao.getAvaliacao_proposta() == 0 && avaliacao.getAvaliacao_troca() == 0 && avaliacao.getProposta_id() == null && avaliacao.getTroca_id() == null && avaliacao.getUsuario_proposta_id() == null && avaliacao.getUsuario_troca_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"400\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Nenhum campo válido de 'Avaliação' foi informado\"}");
 
-        Avaliacao avaliacaoExistente = avaliacaoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementFoundException("Avaliação não encontrada com o ID: " + id));
+        Avaliacao avaliacaoExistente = new Avaliacao();
+        Avaliacao avaliacaoFind = avaliacaoRepository.findByPropostaAndTroca(avaliacao.getProposta_id(), avaliacao.getTroca_id());
+        if (avaliacaoFind != null)
+            avaliacaoExistente = avaliacaoFind;
+
 
         if (avaliacao.getAvaliacao_proposta() != avaliacaoExistente.getAvaliacao_proposta()) {
             avaliacaoExistente.setAvaliacao_proposta(avaliacao.getAvaliacao_proposta());
@@ -88,7 +95,6 @@ public class AvaliacaoService {
         if (avaliacao.getTroca_id() != null) {
             Long troca_id = avaliacao.getTroca_id();
             avaliacaoExistente.setTroca(trocaRepository.findById(troca_id).orElseThrow(() -> new NoSuchElementFoundException("Proposta não encontrada com o ID: " + troca_id)));
-
         }
         if (avaliacao.getUsuario_troca_id() != null) {
             Long user_id = avaliacao.getUsuario_troca_id();
@@ -100,6 +106,6 @@ public class AvaliacaoService {
         }
 
         avaliacaoRepository.save(avaliacaoExistente);
-        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Avaliação com ID " + id + " atualizada com sucesso\"}");
+        return ResponseEntity.status(HttpStatus.OK).body("{\"status\": \"200\", \"data\": \"" + LocalDateTime.now() + "\", \"mensagem\": \"Avaliação atualizada com sucesso\"}");
     }
 }

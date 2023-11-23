@@ -4,12 +4,12 @@
         <span>Confira suas trocas e propostas bem-sucedidas.</span>
     </section>
     <section class="container-sec">
-        <div class="log" *ngFor="let proposta of propostas">
+        <div class="log" *ngFor="let proposta of propostas; index as i">
             <h3>Troca entre {{proposta.troca.usuario.nome}} e {{proposta.usuario.nome}}</h3>
             <div class="cards-swap">
-                <app-cards class="card" [produto]="proposta.produto"></app-cards>
+                <log-cards class="card" [produto]="proposta.produto" (changeRating)="mudarRatingProposta($event)" (avaliacao)="avaliarProposta($event)" [proposta]="proposta" [index]="i" [tipo]="true"></log-cards>
                 <i class="fa-solid fa-rotate"></i>
-                <app-cards class="card" [produto]="proposta.troca.produto"></app-cards>
+                <log-cards class="card" [produto]="proposta.troca.produto" (changeRating)="mudarRatingTroca($event)" (avaliacao)="avaliarTroca($event)" [proposta]="proposta" [index]="i" [tipo]="false"></log-cards>
             </div>
         </div>
     </section>

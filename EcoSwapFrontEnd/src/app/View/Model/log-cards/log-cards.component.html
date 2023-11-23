@@ -1,0 +1,12 @@
+<div class="product-card">
+    <div class="img-prod" id="prodImg">
+        <img [src]="produto.imagem" draggable="false">
+    </div>
+    <p id="prodName" >{{this.produto.nome}}</p>
+    <span id="userName">{{this.produto.usuario.nome}}</span>
+    <div class="user-evaluation" id="userEvaluation">
+        <div *ngFor="let item of [].constructor(5); index as i">
+            <i class="fa-star" (click)="avaliar(i + 1)" [ngClass]="i < rating ?  'fa-solid' : 'fa-regular'"></i>
+        </div>
+    </div>
+</div>

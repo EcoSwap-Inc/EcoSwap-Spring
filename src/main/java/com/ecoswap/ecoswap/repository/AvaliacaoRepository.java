@@ -15,4 +15,7 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
     @Query("select coalesce(AVG(a.avaliacao_proposta), 0) from Avaliacao a where a.usuario_proposta.id_usuario = :id_usuario and a.avaliacao_proposta != null")
     BigDecimal getAvMediaPropostasUsuario(@Param("id_usuario") Long id_usuario);
+
+    @Query("select a from Avaliacao a where a.troca.id = :troca and a.proposta.id_proposta = :proposta")
+    Avaliacao findByPropostaAndTroca(Long proposta, Long troca);
 }

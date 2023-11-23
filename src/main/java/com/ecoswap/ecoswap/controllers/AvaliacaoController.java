@@ -24,8 +24,8 @@ public class AvaliacaoController {
     private AvaliacaoService avaliacaoService;
 
     @PostMapping("/")
-    public ResponseEntity<String> salvarAvaliacao(@Valid @RequestBody Avaliacao avaliacao) {
-        return avaliacaoService.salvarAvaliacao(avaliacao);
+    public ResponseEntity<String> salvarAvaliacao(@Valid @RequestBody AvaliacaoInput avaliacao) {
+        return avaliacaoService.atualizarAvaliacao(null, avaliacao);
     }
 
     @GetMapping("/")
@@ -46,6 +46,11 @@ public class AvaliacaoController {
     @GetMapping("/mediaPropostas/{id}")
     public ResponseEntity<String> getAvMediaPropostasUsuario(@PathVariable @Positive Long id) {
         return avaliacaoService.getAvMediaPropostasUsuario(id);
+    }
+
+    @GetMapping("/{proposta}/{troca}")
+    public Avaliacao findByPropostaAndTroca(@PathVariable @Positive Long proposta,  @PathVariable @ Positive Long troca) {
+        return avaliacaoService.findByPropostaAndTroca(proposta, troca);
     }
 
     @DeleteMapping("/{id}")

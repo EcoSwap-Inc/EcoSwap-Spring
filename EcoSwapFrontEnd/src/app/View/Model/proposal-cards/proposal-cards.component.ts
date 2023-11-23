@@ -11,7 +11,7 @@ export class ProposalCardsComponent {
   imagem!: string;
 
   ngOnInit() {
-    fetch("http://localhost:8080/api/avaliacao/mediaTrocas/" + this.proposta.usuario.id_usuario, {
+    fetch("http://localhost:8080/api/avaliacao/mediaPropostas/" + this.proposta.usuario.id_usuario, {
       method: 'GET',
       headers: { 
         'Accept': 'application/json', 

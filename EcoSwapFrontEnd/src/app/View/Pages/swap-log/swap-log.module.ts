@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { SwapLogRoutingModule } from './swap-log-routing.module';
 import { SwapLogComponent } from './swap-log.component';
+import { LogCardsModule } from '../../Model/log-cards/log-cards.module';
 
-import { CardsModule } from '../../Model/cards/cards.module';
+
 
 @NgModule({
   declarations: [SwapLogComponent],
   imports: [
     CommonModule,
     SwapLogRoutingModule,
-    CardsModule
+    LogCardsModule
   ]
 })
 export class SwapLogModule { }
